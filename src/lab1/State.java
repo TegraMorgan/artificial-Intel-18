@@ -257,6 +257,16 @@ public class State implements Comparable<State>{
 		
 	}
 	
+	/*public static void main(String[] args){
+		State s = new State();
+		s.initilizeState(".............XXO...AAO.P.B.O.P.BCC.P");
+		s.show();
+		s.showNextStates();
+		//System.out.println("\n\n"+ s.cars.get(s.redCarIndex).status());
+		//System.out.println('Z' - 'A' + 1);
+	}
+	*/
+	
 	@Override
 	public int compareTo(State other) {
 		double h2_value = other.getHValue();
