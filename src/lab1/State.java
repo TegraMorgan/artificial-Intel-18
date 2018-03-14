@@ -2,7 +2,8 @@ package lab1;
 
 import java.util.ArrayList;
 
-public class State {
+public class State implements Comparable<State>{
+	
 	final int ROW = 6;
 	final int COL = 6;
 	final boolean VERTICAL = false;
@@ -12,6 +13,7 @@ public class State {
 	String carList = "";
 	int redCarIndex;
 	ArrayList<Op> nextStates = new ArrayList<>();
+	private double h_value;
 	
 	public State(){
 		board = new char[6][6];
@@ -87,7 +89,13 @@ public class State {
 		}
 	}
 	
+	/**
+	 * Returns null upon reaching the goal state
+	 */
 	public void generatePossibleMoves(){
+		if(this.redCarIndex == 6){
+			this.nextStates = null;
+		}
 		for(Car c: cars){
 			if(!c.isVertical()){
 				int leftRange = canMoveLeft(c);
@@ -169,13 +177,19 @@ public class State {
 		}
 		return count;
 	}
-
+	
 	public void showNextStates(){
 		this.generatePossibleMoves();
 		for(Op o: nextStates){
 			System.out.println(o.constructOperation());
 		}
 	}
+	
+	public double getHValue(){
+		return this.h_value;
+	}
+	//TODO: implement the makeMove method
+	//It takes an Op object and changes the state
 	
 	public void makeMove(Op op){
 		
@@ -188,5 +202,15 @@ public class State {
 		s.showNextStates();
 		//System.out.println("\n\n"+ s.cars.get(s.redCarIndex).status());
 		//System.out.println('Z' - 'A' + 1);
+	}
+	
+	@Override
+	public int compareTo(State other) {
+		double h2_value = other.getHValue();
+		if(this.h_value > h2_value)
+			return 1;
+		if(this.h_value < h2_value)
+			return -1;
+		return 0;
 	}
 }
