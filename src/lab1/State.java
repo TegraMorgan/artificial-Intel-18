@@ -1,6 +1,10 @@
 package lab1;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+
 
 public class State implements Comparable<State>{
 	
@@ -9,7 +13,7 @@ public class State implements Comparable<State>{
 	final boolean VERTICAL = false;
 	final boolean HORIZONTAL = true;
 	private char[][] board;
-	ArrayList<Car> cars = new ArrayList<>();
+	Map<String,Car> cars = new HashMap<>();
 	String carList = "";
 	int redCarIndex;
 	ArrayList<Op> nextStates = new ArrayList<>();
@@ -38,7 +42,7 @@ public class State implements Comparable<State>{
 								direction = true;
 							}
 						}
-						cars.add(new Car(i,j,car,direction));
+						cars.put(car+"",new Car(i,j,car,direction));
 						direction = false;
 					}
 				}
@@ -51,21 +55,22 @@ public class State implements Comparable<State>{
 	}
 	
 	public void draw(){
-		for(Car c : cars){
-			int x = c.getPosition().x,y = c.getPosition().y;
-			char name = c.name;
+		for (Entry<String, Car> c : this.cars.entrySet()) {
+			int x = c.getValue().getPosition().x,y = c.getValue().getPosition().y;
+			char name = c.getValue().name;
 			this.board[x][y] = name;
 			
-			if(c.isVertical()){
+			if(c.getValue().isVertical()){
 				this.board[x+1][y] = name;
-				if(c.get_size() == 3)
+				if(c.getValue().get_size() == 3)
 					this.board[x+2][y] = name;
 				
 			}else{
 				this.board[x][y+1] = name;
-				if(c.get_size() == 3)
+				if(c.getValue().get_size() == 3)
 					this.board[x][y+2] = name;
 			}
+		    
 		}
 		for(int i = 0; i < ROW; i++){
 			for(int j = 0; j < COL; j++){
@@ -84,9 +89,12 @@ public class State implements Comparable<State>{
 			System.out.println();
 		}
 		System.out.println();
-		for(Car c: cars){
-			System.out.println(c.status());
+		for (Entry<String, Car> entry : this.cars.entrySet()) {
+		    
+		    System.out.println(entry.getValue().status());
+		    
 		}
+		
 	}
 	
 	/**
@@ -96,35 +104,37 @@ public class State implements Comparable<State>{
 		if(this.redCarIndex == 6){
 			this.nextStates = null;
 		}
-		for(Car c: cars){
-			if(!c.isVertical()){
-				int leftRange = canMoveLeft(c);
-				int rightRange = canMoveRight(c);
+		for (Entry<String, Car> c : this.cars.entrySet()) {
+			if(!c.getValue().isVertical()){
+				int leftRange = canMoveLeft(c.getValue());
+				int rightRange = canMoveRight(c.getValue());
 				if(rightRange != 0){
 					for(int k = 1; k <= rightRange; k++){
-						nextStates.add(new Op(Move.RIGHT, k, c.name));
+						nextStates.add(new Op(Move.RIGHT, k, c.getValue().name));
 					}
 				}
 				if(leftRange != 0){
 					for(int k = 1; k <= leftRange; k++){
-						nextStates.add(new Op(Move.LEFT, k, c.name));
+						nextStates.add(new Op(Move.LEFT, k, c.getValue().name));
 					}
 				}
 			}else{
-				int upRange = canMoveUp(c);
-				int downRange = canMoveDown(c);
+				int upRange = canMoveUp(c.getValue());
+				int downRange = canMoveDown(c.getValue());
 				if(upRange != 0){
 					for(int k = 1; k <= upRange; k++){
-						nextStates.add(new Op(Move.UP, k, c.name));
+						nextStates.add(new Op(Move.UP, k, c.getValue().name));
 					}
 				}
 				if(downRange != 0){
 					for(int k = 1; k <= downRange; k++){
-						nextStates.add(new Op(Move.DOWN, k, c.name));
+						nextStates.add(new Op(Move.DOWN, k, c.getValue().name));
 					}
 				}
 			}
+		
 		}
+		
 	}
 	
 	private int canMoveDown(Car c) {
@@ -192,16 +202,43 @@ public class State implements Comparable<State>{
 	//It takes an Op object and changes the state
 	
 	public void makeMove(Op op){
+		Car movingCar = this.cars.get(op.get_car()+"");
+		int x = movingCar.getPosition().x,
+				y = movingCar.getPosition().y,
+					size = movingCar.get_size();
+		if(movingCar.isVertical()){
+			for(int i = x,j = y; i< size + x; i++){
+				this.board[i][j] = '.';
+			}
+			if(op.get_move() == Move.DOWN){
+				for(int i = x + op.get_count(), j = y; i < x + op.get_count() + size; i++ ){
+					this.board[i][j] = movingCar.name;
+				}
+				movingCar.getPosition().x = x + op.get_count();
+			}else{
+				for(int i = x - op.get_count(), j = y; i < x - op.get_count() + size; i++ ){
+					this.board[i][j] = movingCar.name;
+				}
+				movingCar.getPosition().x = x - op.get_count();
+			}
+			
+		}else{
+			for(int i = x,j = y; j< size + y; j++){
+				this.board[i][j] = '.';
+			}
+			if(op.get_move() == Move.RIGHT){
+				for(int i = x, j = y + op.get_count(); j < y + op.get_count() + size; j++ ){
+					this.board[i][j] = movingCar.name;
+				}
+				movingCar.getPosition().y = y + op.get_count();
+			}else{
+				for(int i = x, j = y - op.get_count(); j < y - op.get_count() + size; j++ ){
+					this.board[i][j] = movingCar.name;
+				}
+				movingCar.getPosition().y = y - op.get_count();
+			}
+		}
 		
-	}
-	
-	public static void main(String[] args){
-		State s = new State();
-		s.initilizeState(".............XXO...AAO.P.B.O.P.BCC.P");
-		s.show();
-		s.showNextStates();
-		//System.out.println("\n\n"+ s.cars.get(s.redCarIndex).status());
-		//System.out.println('Z' - 'A' + 1);
 	}
 	
 	@Override
@@ -213,4 +250,17 @@ public class State implements Comparable<State>{
 			return -1;
 		return 0;
 	}
+
+	public static void main(String[] args){
+		State s = new State();
+		s.initilizeState("OAAP..O..P..OXXP....BQQQ..B..E..RRRE");
+		s.show();
+		s.showNextStates();
+		System.out.println();
+		s.makeMove(s.nextStates.get(1));
+		s.show();
+		
+	}
+	
+	
 }
