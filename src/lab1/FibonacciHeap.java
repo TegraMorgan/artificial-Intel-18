@@ -611,14 +611,14 @@ public class FibonacciHeap<T>
 
     // link
     
-    public static void main(String[] args)
+/*    public static void main(String[] args)
     {
         Scanner scan = new Scanner(System.in);
         System.out.println("FibonacciHeap Test\n\n");        
         FibonacciHeap<State> fh = new FibonacciHeap<State>();
  
         char ch;
-        /**  Perform FibonacciHeap operations  **/
+        *//**  Perform FibonacciHeap operations  **//*
         do    
         {
             System.out.println("\nFibonacciHeap Operations\n");
@@ -666,7 +666,7 @@ public class FibonacciHeap<T>
             System.out.println("\nDo you want to continue (Type y or n) \n");
             ch = scan.next().charAt(0);                        
         } while (ch == 'Y'|| ch == 'y');  
-    }
+    }*/
 }
 
 // FibonacciHeap
@@ -816,7 +816,7 @@ class FibonacciHeapNode<T>
      *
      * @return string representing this object
      */
-    public String toString()
+    /*public String toString()
     {
         if (true) {
             return Double.toString(key);
@@ -866,7 +866,7 @@ class FibonacciHeapNode<T>
     }
 
     // toString
-}
+*/}
 
 // End FibonacciHeapNode.java
 
