@@ -203,7 +203,7 @@ public class State implements Comparable<State>{
 		//System.out.println("\n\n"+ s.cars.get(s.redCarIndex).status());
 		//System.out.println('Z' - 'A' + 1);
 	}
-	
+	//TODO opophasdhgaksdhajhdjk
 	@Override
 	public int compareTo(State other) {
 		double h2_value = other.getHValue();
