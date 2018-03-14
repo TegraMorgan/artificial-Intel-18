@@ -8,7 +8,7 @@ public class Car {
 	
 	public Car(int x, int y,char c, boolean direc){
 		this.head = new Position(x,y);
-		this.direction = (c == 'A' || c == 'B' || c == 'C' || c == 'X')? true:false;
+		this.direction = direc;
 		this.size = (c <= 'K' || c == 'X')? 2 : 3;  
 		this.name = c;
 		this.direction = direc;
