@@ -12,5 +12,6 @@ In this tiny research we implemented two strategies to solve the problem.
 
 <footer>
 BASEL SAAD
+  <br>
 ALI SAFADI
 </footer>
