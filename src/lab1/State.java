@@ -195,6 +195,10 @@ public class State implements Comparable<State>{
 		}
 	}
 	
+	public void setHValue(double h2_value){
+		this.h_value = h2_value;
+	}
+	
 	public double getHValue(){
 		return this.h_value;
 	}
