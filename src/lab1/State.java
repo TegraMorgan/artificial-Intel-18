@@ -7,9 +7,6 @@ import java.util.Map.Entry;
 
 
 public class State implements Comparable<State>{
-	
-	final int ROW = 6;
-	final int COL = 6;
 	final boolean VERTICAL = false;
 	final boolean HORIZONTAL = true;
 	private char[][] board;
@@ -17,12 +14,29 @@ public class State implements Comparable<State>{
 	String carList = "";
 	ArrayList<Op> nextStates = new ArrayList<>();
 	private double h_value;
+	private State parent;
+	private String op;
 	
 	public State(){
 		board = new char[6][6];
 	}
+
+	public State(State other){
+		this.board = new char[6][6];
+		this.carList = other.carList;
+		this.cars = new HashMap<>(other.cars.size());
+		for (Entry<String, Car> c : other.cars.entrySet()) {
+			this.cars.put(c.getKey(), new Car(c.getValue()));
+		}
+		this.setHValue(other.getHValue());
+		//this.nextStates = new ArrayList<>(other.nextStates);
+		this.setParent(other.getParent());
+		this.setOp(other.getOp());
+	}
 	
 	public void initilizeState(String disc){
+		final int ROW = 6;
+		final int COL = 6;
 		boolean direction = false;;
 		for(int i = 0, k = 0; i < ROW; i++){
 			for(int j = 0; j < COL; j++){
@@ -52,7 +66,12 @@ public class State implements Comparable<State>{
 	}
 	
 	public void draw(){
+		boolean goal = this.isGoal();
+		final int ROW = 6;
+		final int COL = 6;
 		for (Entry<String, Car> c : this.cars.entrySet()) {
+			if(goal && c.getKey().equals("X"))
+				continue;
 			int x = c.getValue().getPosition().x,y = c.getValue().getPosition().y;
 			char name = c.getValue().name;
 			this.board[x][y] = name;
@@ -79,6 +98,8 @@ public class State implements Comparable<State>{
 	}
 
 	public void show(){
+		final int ROW = 6;
+		final int COL = 6;
 		for(int i = 0; i < ROW; i++){
 			for(int j = 0; j < COL; j++){
 				System.out.print(board[i][j] + " ");
@@ -97,10 +118,13 @@ public class State implements Comparable<State>{
 	/**
 	 * Returns null upon reaching the goal state
 	 */
-	public void generatePossibleMoves(){
-		if(cars.get('X' + "").getPosition().y == 6){
+	public State generatePossibleMoves(){
+		if(this.isGoal()){
 			this.nextStates = null;
-			return;
+			return this;
+		}
+		if(!this.nextStates.isEmpty()){
+			this.nextStates.clear();
 		}
 		for (Entry<String, Car> c : this.cars.entrySet()) {
 			if(!c.getValue().isVertical()){
@@ -137,13 +161,15 @@ public class State implements Comparable<State>{
 			}
 		
 		}
+		return this;
 		
 	}
 	
 	private int canMoveDown(Car c) {
+		final int ROW = 6;	
 		int bound = c.getPosition().x + c.get_size(),count = 0;
 		for(int i = bound,j = c.getPosition().y; i < ROW; i++ ){
-			if(this.board[i][j] != '.'){
+			if(this.board[i][j] >= 'A' && this.board[i][j] <= 'Z'){
 				break;
 			}else{
 				count++;
@@ -155,7 +181,7 @@ public class State implements Comparable<State>{
 	private int canMoveUp(Car c) {
 		int bound = c.getPosition().x - 1,count = 0;
 		for(int i = bound,j = c.getPosition().y; i >= 0; i-- ){
-			if(this.board[i][j] != '.'){
+			if(this.board[i][j] >= 'A' && this.board[i][j] <= 'Z'){
 				break;
 			}else{
 				count++;
@@ -165,11 +191,12 @@ public class State implements Comparable<State>{
 	}
 
 	private int canMoveRight(Car c) {
+		final int COL = 6;
 		int bound = c.getPosition().y + c.get_size(),count = 0;
 		
 		for(int i = c.getPosition().x,j = bound; j < COL; j++ ){
 			
-			if(this.board[i][j] != '.'){
+			if(this.board[i][j] >= 'A' && this.board[i][j] <= 'Z'){
 				break;
 			}else{
 				count++;
@@ -182,7 +209,7 @@ public class State implements Comparable<State>{
 		int bound = c.getPosition().y - 1,count = 0;
 		
 		for(int i = c.getPosition().x,j = bound; j >= 0; j-- ){
-			if(this.board[i][j] != '.'){
+			if(this.board[i][j] >= 'A' && this.board[i][j] <= 'Z'){
 				break;
 			}else{
 				count++;
@@ -236,14 +263,18 @@ public class State implements Comparable<State>{
 				this.board[i][j] = '.';
 			}
 			if(op.get_car() == 'X'){
-				if(op.get_count() + cars.get('X' + "").getPosition().y == 6){
+				if(op.get_count() + cars.get('X' + "").getPosition().y == 6 && op.get_move() == Move.RIGHT){
 					//this is the goal state
 					movingCar.getPosition().y = y + op.get_count();	
 					return;
 				}
 			}
 			if(op.get_move() == Move.RIGHT){
+				
 				for(int i = x, j = y + op.get_count(); j < y + op.get_count() + size; j++ ){
+					if(j == y + op.get_count()){
+						//System.out.println(y + " ## " + op.get_count() + " ## " + size + "^^^ Op: " + op.constructOperation() );
+					}
 					this.board[i][j] = movingCar.name;
 				}
 				movingCar.getPosition().y = y + op.get_count();
@@ -254,18 +285,8 @@ public class State implements Comparable<State>{
 				movingCar.getPosition().y = y - op.get_count();
 			}
 		}
-		
+		this.nextStates.clear();
 	}
-	
-	/*public static void main(String[] args){
-		State s = new State();
-		s.initilizeState(".............XXO...AAO.P.B.O.P.BCC.P");
-		s.show();
-		s.showNextStates();
-		//System.out.println("\n\n"+ s.cars.get(s.redCarIndex).status());
-		//System.out.println('Z' - 'A' + 1);
-	}
-	*/
 	
 	@Override
 	public int compareTo(State other) {
@@ -281,13 +302,44 @@ public class State implements Comparable<State>{
 		return this.cars.get('X' + "").getPosition().y == 6; 
 	}
 	
+	public void setParent(State p){
+		this.parent = p;
+	}
+	
+	public State getParent(){
+		return this.parent;
+	}
+	
+	public void setOp(String string){
+		this.op = string;
+	}
+	
+	public String getOp(){
+		return this.op;
+	}
+	
+	public ArrayList<Op> getPossibleOperations(){
+		return this.nextStates;
+	}
+	
+	/*public State clone(State other){
+		State clone = new State();
+		clone.carList = other.carList;
+		clone.cars = new HashMap<>(other.cars);
+		clone.setHValue(other.getHValue());
+		clone.nextStates = new ArrayList<>(other.nextStates);
+		clone.setParent(other.getParent());
+		clone.setOp(other.getOp());
+		return clone;
+	}*/
+	
 	public static void main(String[] args){
 		State s = new State();
 		s.initilizeState("AA...........XX.....................");
 		s.show();
 		s.showNextStates();
 		System.out.println();
-		s.makeMove(s.nextStates.get(7));
+		s.makeMove(s.nextStates.get(2));
 		s.show();
 		
 		s.showNextStates();

@@ -14,6 +14,13 @@ public class Car {
 		this.direction = direc;
 	} 
 	
+	public Car(Car other){
+		this.name = other.name;
+		this.direction = other.direction;
+		this.head = new Position(other.head.x, other.head.y);
+		this.size = other.size;
+	}
+	
 	public int get_size(){
 		return this.size;
 	}
