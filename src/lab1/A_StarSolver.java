@@ -1,5 +1,6 @@
 package lab1;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,30 +34,79 @@ public class A_StarSolver {
 	static FibonacciHeap<State> OPEN_LIST = new FibonacciHeap<>();
 	static Map<Integer,State > CLOSED_LIST = new HashMap<>();
 	private static int id = 1;
+	private static double heuristicsSample = 100000;
+	State root;
+	
+	public A_StarSolver(State initialState){
+		this.root = initialState;
+	}
 	
 	public static void assignID(State s){
 		s.state_id = id;
 		id++;
 	}
 	
-	public static void main(String args[]){
-		Map<Integer,String > m = new HashMap<>();
-		m.put(1, "11");
-		m.put(2, 22+"");
+	/**
+	 * A* algorithm implementation
+	 * @return
+	 */
+	public boolean solve(){
+		calculate_Heuristics(root);
+		OPEN_LIST.insert(new FibonacciHeapNode<State>(root, root.getHValue()), root.getHValue());
 		
-		System.out.println(m.get(2));
+		//A* loop starts here
+		while(!OPEN_LIST.isEmpty()){
+			State min = getMin();
+			assignID(min);
+			CLOSED_LIST.put(min.state_id, min);
+			if(min.isGoal()){
+				System.out.println("Solution FOUND!");
+				return true;
+			}
+			ArrayList<Op> operations = min.generatePossibleMoves().getPossibleOperations();
+			for(Op op: operations){
+				State s = new State(min);
+				s.setOp(op.constructOperation());
+				s.setParent(min);
+				s.makeMove(op);
+				s.draw();
+				calculate_Heuristics(s);
+				OPEN_LIST.insert(new FibonacciHeapNode<State>(s, s.getHValue()), s.getHValue());
+			}
+		}
+		
+		return false;
+	}
+	
+	/**
+	 * 
+	 * 
+	TODO - implement F(n) = g(n) + h(n). 
+	#NOTE# h(n) needs to be ADMISSIBLE!
+	
+	this is a sample calculation ONLY!!
+	*
+	*
+	**/
+	private void calculate_Heuristics(State node) {
+		node.setHValue(--A_StarSolver.heuristicsSample);
+	}
+	
+	/**
+	 * TODO - needs to be configured to choose goal state if it exists AND handling collisions
+	 * @return
+	 */
+	public State getMin(){
+		return OPEN_LIST.min().data;
+	}
+	public void remove_min(){
+		OPEN_LIST.removeMin();
+	}
+	
+	
+	public static void main(String args[]){
+		
 	}
 
 }
 
-/*public class A_StarNode{
-State state;
-
-public A_StarNode(State newState){
-	state = newState;
-}
-
-public State getState(){
-	return this.state;
-}
-}*/
