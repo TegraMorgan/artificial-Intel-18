@@ -1,9 +1,9 @@
 package lab1;
 
-import java.io.ByteArrayOutputStream;
+/*import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutput;
-import java.io.ObjectOutputStream;
+import java.io.ObjectOutputStream;*/
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -346,6 +346,8 @@ public class State implements Comparable<State>,Serializable{
 		State s = new State();
 		s.initilizeState("AA...........XX.....................");
 		s.generatePossibleMoves();
+		
+		State ss = new State();
 		/*s.show();
 		s.showNextStates();
 		System.out.println();
@@ -354,7 +356,7 @@ public class State implements Comparable<State>,Serializable{
 		
 		s.showNextStates();
 		s.show();*/
-		ByteArrayOutputStream bos = new ByteArrayOutputStream();
+		/*ByteArrayOutputStream bos = new ByteArrayOutputStream();
 		ObjectOutput out = null;
 		try {
 		  out = new ObjectOutputStream(bos);   
@@ -373,6 +375,15 @@ public class State implements Comparable<State>,Serializable{
 		    // ignore close exception
 		  }
 		}
+		*/
+		FibonacciHeap<State> fb = new FibonacciHeap<>();
+		fb.insert(new FibonacciHeapNode<State>(s, 1), 1);
+		fb.insert(new FibonacciHeapNode<State>(ss, 1), 1);
+		/*State min = fb.min().data;
+		//fb.removeMin();
+		State kin = fb.min().data;
+		System.out.println(kin == min);*/
+		System.out.println(fb.toString());
 		
 	}
 	
