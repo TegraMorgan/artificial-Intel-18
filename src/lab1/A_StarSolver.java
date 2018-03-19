@@ -13,7 +13,7 @@ import java.util.Map;
 	(5) If i is a goal node, exit with success; a solution has been found.
 	(6) Expand node i, creating nodes for all of its successors. For every successor node j of i:
 	
-		a. Calculate f(j)- DONE
+		a. Calculate f(j)- DONE!!
 		
 		b. If j is neither in OPEN nor in CLOSED, then add it to OPEN with its f value. 
 				Attach a pointer from j back to its predecessor i 
