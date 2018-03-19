@@ -1,6 +1,12 @@
 package lab1;
 
-public class Op {
+import java.io.Serializable;
+
+public class Op implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int count;
 	private Move move;
 	private char car;
