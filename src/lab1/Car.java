@@ -1,6 +1,12 @@
 package lab1;
 
-public class Car {
+import java.io.Serializable;
+
+public class Car implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	char name;
 	boolean direction;
 	Position head; //false for vertical and true for horizontal
@@ -42,7 +48,11 @@ public class Car {
 		return direction == false;
 	}
 	
-	public class Position{
+	public class Position implements Serializable{
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
 		public Position(int x2, int y2) {
 			this.x = x2;
 			this.y = y2;

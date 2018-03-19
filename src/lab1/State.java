@@ -1,14 +1,21 @@
 package lab1;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
 
-public class State implements Comparable<State>{
-	final boolean VERTICAL = false;
-	final boolean HORIZONTAL = true;
+public class State implements Comparable<State>,Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private char[][] board;
 	Map<String,Car> cars = new HashMap<>();
 	String carList = "";
@@ -16,6 +23,8 @@ public class State implements Comparable<State>{
 	private double h_value;
 	private State parent;
 	private String op;
+	
+	public int state_id;
 	
 	public State(){
 		board = new char[6][6];
@@ -336,15 +345,34 @@ public class State implements Comparable<State>{
 	public static void main(String[] args){
 		State s = new State();
 		s.initilizeState("AA...........XX.....................");
-		s.show();
+		s.generatePossibleMoves();
+		/*s.show();
 		s.showNextStates();
 		System.out.println();
 		s.makeMove(s.nextStates.get(2));
 		s.show();
 		
 		s.showNextStates();
-		s.show();
-		
+		s.show();*/
+		ByteArrayOutputStream bos = new ByteArrayOutputStream();
+		ObjectOutput out = null;
+		try {
+		  out = new ObjectOutputStream(bos);   
+		  out.writeObject(s);
+		  out.flush();
+		  byte[] yourBytes = bos.toByteArray();
+		  System.out.println(yourBytes.length);
+		  
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+		  try {
+		    bos.close();
+		  } catch (IOException ex) {
+		    // ignore close exception
+		  }
+		}
 		
 	}
 	

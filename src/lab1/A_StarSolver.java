@@ -1,5 +1,8 @@
 package lab1;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /* 	(1) Put the start node s on a list, called OPEN, of unexpanded nodes. 
  * 			Calculate f(s) and associate its value with node s.
    	(2) If OPEN is empty, exit with failure, no solution exists.
@@ -26,6 +29,34 @@ package lab1;
 //TODO (1) - implement A* algorithm using the above pseudo-code
 //TODO (2) - implement 2 heuristics functions within this context (At least 2)
 
-public class A_StarSolver {
+public class A_StarSolver {	
+	static FibonacciHeap<State> OPEN_LIST = new FibonacciHeap<>();
+	static Map<Integer,State > CLOSED_LIST = new HashMap<>();
+	private static int id = 1;
+	
+	public static void assignID(State s){
+		s.state_id = id;
+		id++;
+	}
+	
+	public static void main(String args[]){
+		Map<Integer,String > m = new HashMap<>();
+		m.put(1, "11");
+		m.put(2, 22+"");
+		
+		System.out.println(m.get(2));
+	}
 
 }
+
+/*public class A_StarNode{
+State state;
+
+public A_StarNode(State newState){
+	state = newState;
+}
+
+public State getState(){
+	return this.state;
+}
+}*/
