@@ -23,8 +23,9 @@ public class State implements Comparable<State>,Serializable{
 	private double h_value;
 	private State parent;
 	private String op;
+	public String disc;
 	
-	public int state_id;
+	//public int state_id;
 	
 	public State(){
 		board = new char[6][6];
@@ -68,10 +69,9 @@ public class State implements Comparable<State>,Serializable{
 				}
 				/***/
 				
-				
-				
 			}
 		}
+		compress();
 	}
 	
 	public void draw(){
@@ -331,23 +331,22 @@ public class State implements Comparable<State>,Serializable{
 		return this.nextStates;
 	}
 	
-	/*public State clone(State other){
-		State clone = new State();
-		clone.carList = other.carList;
-		clone.cars = new HashMap<>(other.cars);
-		clone.setHValue(other.getHValue());
-		clone.nextStates = new ArrayList<>(other.nextStates);
-		clone.setParent(other.getParent());
-		clone.setOp(other.getOp());
-		return clone;
-	}*/
+	
+	public void compress(){
+		String quatized_state = "";
+		for (Entry<String, Car> c : this.cars.entrySet()) {
+			quatized_state += c.getValue().compress();
+		}
+		this.disc = quatized_state;
+	}
 	
 	public static void main(String[] args){
 		State s = new State();
 		s.initilizeState("AA...........XX.....................");
 		s.generatePossibleMoves();
-		
 		State ss = new State();
+		ss.initilizeState("AA...........XX.....................");
+		
 		/*s.show();
 		s.showNextStates();
 		System.out.println();
@@ -356,34 +355,7 @@ public class State implements Comparable<State>,Serializable{
 		
 		s.showNextStates();
 		s.show();*/
-		/*ByteArrayOutputStream bos = new ByteArrayOutputStream();
-		ObjectOutput out = null;
-		try {
-		  out = new ObjectOutputStream(bos);   
-		  out.writeObject(s);
-		  out.flush();
-		  byte[] yourBytes = bos.toByteArray();
-		  System.out.println(yourBytes.length);
-		  
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-		  try {
-		    bos.close();
-		  } catch (IOException ex) {
-		    // ignore close exception
-		  }
-		}
-		*/
-		FibonacciHeap<State> fb = new FibonacciHeap<>();
-		fb.insert(new FibonacciHeapNode<State>(s, 1), 1);
-		fb.insert(new FibonacciHeapNode<State>(ss, 1), 1);
-		/*State min = fb.min().data;
-		//fb.removeMin();
-		State kin = fb.min().data;
-		System.out.println(kin == min);*/
-		System.out.println(fb.toString());
+		//.out.println(s.compress().equals(ss.compress()));
 		
 	}
 	

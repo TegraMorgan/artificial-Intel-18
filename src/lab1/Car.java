@@ -64,5 +64,9 @@ public class Car implements Serializable{
 	public String status(){
 		return name +", " + (direction==false? "Vertical":"Horizontal") + ", " + size + ", " +name + ", at :("+(head.x+1) + "," + (head.y+1)+");";
 	}
-
+	
+	public String compress(){
+		return ""+this.name+""+this.head.x +""+ this.head.y;
+	}
+	
 }

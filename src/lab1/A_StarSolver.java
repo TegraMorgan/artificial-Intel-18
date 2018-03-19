@@ -13,11 +13,11 @@ import java.util.Map;
 	(5) If i is a goal node, exit with success; a solution has been found.
 	(6) Expand node i, creating nodes for all of its successors. For every successor node j of i:
 	
-		a. Calculate f(j)
+		a. Calculate f(j)- DONE
 		
 		b. If j is neither in OPEN nor in CLOSED, then add it to OPEN with its f value. 
 				Attach a pointer from j back to its predecessor i 
-					(in order to track back a solution path once a goal node is found).
+					(in order to track back a solution path once a goal node is found). DONE
 					
 		c. If j was already on either OPEN or CLOSED, compare the f value just calculated for j with 
 						the value previously associated with the node. If the new value is lower:
@@ -27,51 +27,85 @@ import java.util.Map;
 			
 	(7) Go to (2)
 */
-//TODO (1) - implement A* algorithm using the above pseudo-code
+
 //TODO (2) - implement 2 heuristics functions within this context (At least 2)
 
 public class A_StarSolver {	
 	static FibonacciHeap<State> OPEN_LIST = new FibonacciHeap<>();
-	static Map<Integer,State > CLOSED_LIST = new HashMap<>();
-	private static int id = 1;
-	private static double heuristicsSample = 100000;
+	static Map<String,FibonacciHeapNode<State> > OPEN_LIST_HELPER = new HashMap<>();
+	static Map<String,FibonacciHeapNode<State>  > CLOSED_LIST = new HashMap<>();
+	//private static int id = 1;
+	private static double heuristicsSample = 5;
 	State root;
 	
 	public A_StarSolver(State initialState){
 		this.root = initialState;
 	}
 	
-	public static void assignID(State s){
-		s.state_id = id;
-		id++;
-	}
+	
 	
 	/**
 	 * A* algorithm implementation
-	 * @return
+	 * @return boolean
 	 */
 	public boolean solve(){
 		calculate_Heuristics(root);
-		OPEN_LIST.insert(new FibonacciHeapNode<State>(root, root.getHValue()), root.getHValue());
+		FibonacciHeapNode<State> rootHeapNode = new FibonacciHeapNode<State>(root, root.getHValue());
+		OPEN_LIST.insert(rootHeapNode, root.getHValue());
+		OPEN_LIST_HELPER.put(root.disc, rootHeapNode);
 		
-		//A* loop starts here
+		
 		while(!OPEN_LIST.isEmpty()){
-			State min = getMin();
-			assignID(min);
-			CLOSED_LIST.put(min.state_id, min);
-			if(min.isGoal()){
+			FibonacciHeapNode<State> min = OPEN_LIST.min();
+			//min.data.show();System.out.println();
+			//remove min from OPEN_LIST
+			min = OPEN_LIST.removeMin();
+			OPEN_LIST_HELPER.remove(min.data.disc);
+			
+			CLOSED_LIST.put(min.data.disc, min);
+			if(min.data.isGoal()){
 				System.out.println("Solution FOUND!");
 				return true;
 			}
-			ArrayList<Op> operations = min.generatePossibleMoves().getPossibleOperations();
+			ArrayList<Op> operations = min.data.generatePossibleMoves().getPossibleOperations();
 			for(Op op: operations){
-				State s = new State(min);
+				State s = new State(min.data);
 				s.setOp(op.constructOperation());
-				s.setParent(min);
+				s.setParent(min.data);
 				s.makeMove(op);
 				s.draw();
+				s.compress();
 				calculate_Heuristics(s);
-				OPEN_LIST.insert(new FibonacciHeapNode<State>(s, s.getHValue()), s.getHValue());
+				
+				//Checks if the state was opened/closed previously
+				
+				boolean opened = OPEN_LIST_HELPER.containsKey(s.disc)
+						,closed = CLOSED_LIST.containsKey(s.disc);
+				FibonacciHeapNode<State> stateHelper = null;
+				if(closed || opened){
+					stateHelper = (closed)? CLOSED_LIST.get(s.disc): OPEN_LIST_HELPER.get(s.disc);
+					if(s.getHValue() < stateHelper.key){
+						//stateHelper.setHValue(s.getHValue());
+						if(opened){
+							/**
+							 * TODO - validate that updating in one end causes updates on the other end
+							 */
+							OPEN_LIST.decreaseKey(stateHelper, s.getHValue());
+							stateHelper.data.setHValue(s.getHValue());
+						}else{
+							//fbn equals to stateHelper
+							FibonacciHeapNode<State> fbn = CLOSED_LIST.remove(s.disc);
+							fbn.data.setHValue(s.getHValue());
+							OPEN_LIST.insert(fbn, s.getHValue());
+							OPEN_LIST_HELPER.put(s.disc, fbn);
+						}
+						stateHelper.data.setParent(min.data);
+					}
+				}
+				
+				FibonacciHeapNode<State> new_fbn = new FibonacciHeapNode<State>(s, s.getHValue());
+				OPEN_LIST.insert(new_fbn, s.getHValue());
+				OPEN_LIST_HELPER.put(s.disc, new_fbn);
 			}
 		}
 		
@@ -89,6 +123,9 @@ public class A_StarSolver {
 	*
 	**/
 	private void calculate_Heuristics(State node) {
+		if(A_StarSolver.heuristicsSample < 0){
+			A_StarSolver.heuristicsSample += 10;
+		}
 		node.setHValue(--A_StarSolver.heuristicsSample);
 	}
 	
@@ -104,9 +141,14 @@ public class A_StarSolver {
 	}
 	
 	
-	public static void main(String args[]){
-		
+	
+	public static void main(String[] args){
+		State s = new State();
+		s.initilizeState("A..OOOA..B.PXX.BCPQQQ.CP..D.EEFFDGG.");
+		A_StarSolver solver = new A_StarSolver(s);
+		System.out.println(solver.solve());
 	}
+	
 
 }
 
