@@ -13,7 +13,7 @@ import java.util.Map;
 	(5) If i is a goal node, exit with success; a solution has been found.
 	(6) Expand node i, creating nodes for all of its successors. For every successor node j of i:
 	
-		a. Calculate f(j)- DONE!!
+		a. Calculate f(j)- DONE!!!
 		
 		b. If j is neither in OPEN nor in CLOSED, then add it to OPEN with its f value. 
 				Attach a pointer from j back to its predecessor i 
@@ -72,8 +72,8 @@ public class A_StarSolver {
 				 * TODO - critical bug!
 				 */
 				while(path.getParent() != null){
-					System.out.println(path.getOp()+"\n");
-					path.show();
+					System.out.println(path.getOp());
+					//path.show();
 					path = path.getParent();
 				}
 				return true;
@@ -83,7 +83,10 @@ public class A_StarSolver {
 				
 				State s = new State(min.data);
 				s.setOp(op.constructOperation());
+				s.compress();
+				//System.out.println("##DEBUG: Operation: " +s.disc + "  " +  op.constructOperation());
 				s.makeMove(op);
+				
 				s.draw();
 				s.compress();
 				s.setParent(min.data);
@@ -170,7 +173,7 @@ public class A_StarSolver {
 	
 	public static void main(String[] args){
 		State s = new State();
-		s.initilizeState("..............XX.......................");
+		s.initilizeState("AA...OP..Q.OPXXQ.OP..Q..B...CCB.RRR.");
 		s.setParent(null);
 		s.show();
 		A_StarSolver solver = new A_StarSolver(s);
