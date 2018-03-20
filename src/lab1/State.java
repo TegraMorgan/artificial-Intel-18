@@ -24,7 +24,8 @@ public class State implements Comparable<State>,Serializable{
 	private State parent;
 	private String op;
 	public String disc;
-	
+	boolean visited = false;
+	int g = -1;
 	//public int state_id;
 	
 	public State(){
@@ -44,6 +45,9 @@ public class State implements Comparable<State>,Serializable{
 		this.setOp(other.getOp());
 	}
 	
+	public char[][] getBoard(){
+		return this.board;
+	}
 	public void initilizeState(String disc){
 		final int ROW = 6;
 		final int COL = 6;

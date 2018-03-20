@@ -72,10 +72,10 @@ public class IDDLSolver {
 	
 	public static void main(String[] args){
 		State s = new State();
-		s.initilizeState("A..OOOA..B.PXX.BCPQQQ.CP..D.EEFFDGG.");
+		s.initilizeState(".............XXO...AAO.P.B.O.P.BCC.P");
 		IDDLSolver solver = new IDDLSolver();
 		s.show();
-		System.out.println(solver.IDDLS(s, 8));
+		System.out.println(solver.IDDLS(s, 14));
 	}
 
 }

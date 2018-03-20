@@ -36,6 +36,8 @@ public class A_StarSolver {
 	static Map<String,FibonacciHeapNode<State>  > CLOSED_LIST = new HashMap<>();
 	//private static int id = 1;
 	State root;
+	static int branching_factor = 0;
+	static int level = 0;
 	
 	public A_StarSolver(State initialState){
 		this.root = initialState;
@@ -49,6 +51,7 @@ public class A_StarSolver {
 	 */
 	public boolean solve(){
 		root.setParent(null);
+		root.g = 0;
 		calculate_Heuristics(root);
 		FibonacciHeapNode<State> rootHeapNode = new FibonacciHeapNode<State>(root, root.getHValue());
 		OPEN_LIST.insert(rootHeapNode, root.getHValue());
@@ -56,10 +59,17 @@ public class A_StarSolver {
 		
 		
 		while(!OPEN_LIST.isEmpty()){
+			level++;
 			/*System.out.println("###### " + i++);*/
 			FibonacciHeapNode<State> min = OPEN_LIST.min();
+			
+			
 			//min.data.show();System.out.println();
 			//remove min from OPEN_LIST
+			if(!min.data.visited){
+				branching_factor++;
+				min.data.visited = true;
+			}
 			min = remove_min();
 			
 			
@@ -76,6 +86,8 @@ public class A_StarSolver {
 					//path.show();
 					path = path.getParent();
 				}
+				//System.out.println("##\n\nLevel: " + level + "\n\n");
+				branching_factor *= level;
 				return true;
 			}
 			ArrayList<Op> operations = min.data.generatePossibleMoves().getPossibleOperations();
@@ -90,6 +102,9 @@ public class A_StarSolver {
 				s.draw();
 				s.compress();
 				s.setParent(min.data);
+				if(s.g < 0){
+					s.g = min.data.g + 1;
+				}
 				calculate_Heuristics(s);
 				
 				//Checks if the state was opened/closed previously
@@ -116,7 +131,7 @@ public class A_StarSolver {
 						}
 						stateHelper.data.setParent(min.data);
 					}
-					System.out.println("YEPPE");
+					//System.out.println("YEPPE");
 					continue;
 				}
 				
@@ -152,7 +167,17 @@ public class A_StarSolver {
 		if(node.isGoal()){
 			node.setHValue(-100.0);
 		}else{
-			node.setHValue(0);
+			double count = 0;
+			char[][] board = node.getBoard();
+			int CAR_LENGTH = 2;
+			for(int i = node.cars.get("X").getPosition().y + CAR_LENGTH ; i < 6; i++){
+				char c = board[2][i];
+				if(c != 'X' && c >='A' && c <= 'Z'){
+					count += 10;
+				}
+			}
+			//System.out.println("Heuristics assigned: " + count*17.3);
+			node.setHValue(count*17.3 + node.g);
 		}
 	}
 	
@@ -170,14 +195,33 @@ public class A_StarSolver {
 	}
 	
 	
+	public static double nthroot(int n, double A) {
+		return nthroot(n, A, .001);
+	}
+	public static double nthroot(int n, double A, double p) {
+		if(A < 0) {
+			System.err.println("A < 0");// we handle only real positive numbers
+			return -1;
+		} else if(A == 0) {
+			return 0;
+		}
+		double x_prev = A;
+		double x = A / n;  // starting "guessed" value...
+		while(Math.abs(x - x_prev) > p) {
+			x_prev = x;
+			x = ((n - 1.0) * x + A / Math.pow(x, n - 1.0)) / n;
+		}
+		return x;
+	}
 	
 	public static void main(String[] args){
 		State s = new State();
-		s.initilizeState("AA...........XX.....................");
+		s.initilizeState(".............XXO...AAO.P.B.O.P.BCC.P");
 		s.setParent(null);
 		s.show();
 		A_StarSolver solver = new A_StarSolver(s);
 		System.out.println(solver.solve());
+		System.out.println("\n\n BF: "+nthroot(A_StarSolver.level, A_StarSolver.branching_factor));
 	}
 	
 
