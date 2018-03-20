@@ -23,6 +23,7 @@ public class State implements Comparable<State>,Serializable{
 	private double h_value;
 	private State parent;
 	private String op;
+	private Op opp;
 	public String disc;
 	boolean visited = false;
 	int g = -1;
@@ -62,9 +63,6 @@ public class State implements Comparable<State>,Serializable{
 					continue;
 				}else{
 					if(carList.indexOf(car) == -1){
-						if(car == 'F'){
-							System.out.println();
-						}
 						carList += car;
 						if(j < COL -1 && k <= disc.length() -1 ){
 							if(disc.charAt(k) == car){
@@ -124,11 +122,11 @@ public class State implements Comparable<State>,Serializable{
 			System.out.println();
 		}
 		System.out.println();
-		for (Entry<String, Car> entry : this.cars.entrySet()) {
+		/*for (Entry<String, Car> entry : this.cars.entrySet()) {
 		    
 		    System.out.println(entry.getValue().status());
 		    
-		}
+		}*/
 		
 	}
 	
@@ -327,8 +325,12 @@ public class State implements Comparable<State>,Serializable{
 		return this.parent;
 	}
 	
-	public void setOp(String string){
-		this.op = string;
+	public void setOp(String op2){
+		this.op = op2;
+	}
+	
+	public void setOpp(Op op){
+		this.opp = op;
 	}
 	
 	public String getOp(){
@@ -354,6 +356,7 @@ public class State implements Comparable<State>,Serializable{
 		s.generatePossibleMoves();
 		s.show();
 		s.showNextStates();
+		System.out.println(s.carList);
 		/*State ss = new State();
 		ss.initilizeState("AA...........XX.....................");
 		*/
@@ -367,6 +370,11 @@ public class State implements Comparable<State>,Serializable{
 		s.show();*/
 		//.out.println(s.compress().equals(ss.compress()));
 		
+	}
+
+	public Op getOpp() {
+		// TODO Auto-generated method stub
+		return this.opp;
 	}
 	
 	

@@ -3,6 +3,8 @@ package lab1;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Stack;
+
 
 /* 	(1) Put the start node s on a list, called OPEN, of unexpanded nodes. 
  * 			Calculate f(s) and associate its value with node s.
@@ -28,7 +30,7 @@ import java.util.Map;
 	(7) Go to (2)
 */
 
-//TODO (2) - implement 2 heuristics functions within this context (At least 2)
+
 
 public class A_StarSolver {	
 	static FibonacciHeap<State> OPEN_LIST = new FibonacciHeap<>();
@@ -38,13 +40,11 @@ public class A_StarSolver {
 	State root;
 	static int branching_factor = 0;
 	static int level = 0;
-	
+	Stack<Op> ops = new Stack<Op>(); 
 	public A_StarSolver(State initialState){
 		this.root = initialState;
 	}
-	
-	
-	
+
 	/**
 	 * A* algorithm implementation
 	 * @return boolean
@@ -57,48 +57,29 @@ public class A_StarSolver {
 		OPEN_LIST.insert(rootHeapNode, root.getHValue());
 		OPEN_LIST_HELPER.put(root.disc, rootHeapNode);
 		
-		
+		//final long startTime = System.currentTimeMillis();
 		while(!OPEN_LIST.isEmpty()){
 			level++;
-			/*System.out.println("###### " + i++);*/
 			FibonacciHeapNode<State> min = OPEN_LIST.min();
-			
-			
-			//min.data.show();System.out.println();
-			//remove min from OPEN_LIST
-			if(!min.data.visited){
-				branching_factor++;
-				min.data.visited = true;
-			}
 			min = remove_min();
-			
 			
 			CLOSED_LIST.put(min.data.disc, min);
 			if(min.data.isGoal()){
-				/*System.out.println(min.data.cars.get('X'+"").status());*/
 				System.out.println("Solution FOUND!");
 				State path = min.data;
-				/**
-				 * TODO - critical bug!
-				 */
 				while(path.getParent() != null){
-					System.out.println(path.getOp());
-					//path.show();
+					ops.push(path.getOpp());
 					path = path.getParent();
 				}
-				//System.out.println("##\n\nLevel: " + level + "\n\n");
 				branching_factor *= level;
 				return true;
 			}
 			ArrayList<Op> operations = min.data.generatePossibleMoves().getPossibleOperations();
 			for(Op op: operations){
-				
 				State s = new State(min.data);
-				s.setOp(op.constructOperation());
+				s.setOpp(op);
 				s.compress();
-				//System.out.println("##DEBUG: Operation: " +s.disc + "  " +  op.constructOperation());
-				s.makeMove(op);
-				
+				s.makeMove(op);				
 				s.draw();
 				s.compress();
 				s.setParent(min.data);
@@ -113,13 +94,13 @@ public class A_StarSolver {
 						,closed = CLOSED_LIST.containsKey(s.disc);
 				FibonacciHeapNode<State> stateHelper = null;
 				if(closed || opened){
+					//System.out.println(opened? "#opened#\n":"#closed#\n"+ "      lvl: " + level);
 					stateHelper = (closed)? CLOSED_LIST.get(s.disc): OPEN_LIST_HELPER.get(s.disc);
+					
+					//stateHelper.data.show();
 					if(s.getHValue() < stateHelper.key){
 						//stateHelper.setHValue(s.getHValue());
 						if(opened){
-							/**
-							 * TODO - validate that updating in one end causes updates on the other end
-							 */
 							OPEN_LIST.decreaseKey(stateHelper, s.getHValue());
 							stateHelper.data.setHValue(s.getHValue());
 						}else{
@@ -134,35 +115,25 @@ public class A_StarSolver {
 					//System.out.println("YEPPE");
 					continue;
 				}
-				
+				branching_factor++;
 				FibonacciHeapNode<State> new_fbn = new FibonacciHeapNode<State>(s, s.getHValue());
 				insert_opened(new_fbn);
-				/*OPEN_LIST.insert(new_fbn, s.getHValue());
-				OPEN_LIST_HELPER.put(s.disc, new_fbn);*/
+				/*if(TimeUnit.MILLISECONDS.toMinutes(System.currentTimeMillis() - startTime) > 1){
+					System.out.println("SS");
+					return false;
+				}*/
+				
 			}
 		}
-		
 		return false;
 	}
 	
-	private void insert_opened(FibonacciHeapNode<State> fbn) {
+	public void insert_opened(FibonacciHeapNode<State> fbn) {
 		OPEN_LIST.insert(fbn, fbn.data.getHValue());
 		OPEN_LIST_HELPER.put(fbn.data.disc, fbn);
 		
 	}
 
-
-
-	/**
-	 * 
-	 * 
-	TODO - implement F(n) = g(n) + h(n). 
-	#NOTE# h(n) needs to be ADMISSIBLE!
-	
-	this is a sample calculation ONLY!!
-	*
-	*
-	**/
 	private void calculate_Heuristics(State node) {
 		if(node.isGoal()){
 			node.setHValue(-100.0);
@@ -176,28 +147,24 @@ public class A_StarSolver {
 					count += 10;
 				}
 			}
-			//System.out.println("Heuristics assigned: " + count*17.3);
 			node.setHValue(count + node.g);
 		}
 	}
 	
-	/**
-	 * TODO - needs to be configured to choose goal state if it exists AND handling collisions
-	 * @return
-	 */
 	public State getMin(){
 		return OPEN_LIST.min().data;
 	}
+	
 	public FibonacciHeapNode<State> remove_min(){
 		FibonacciHeapNode<State> min = OPEN_LIST.removeMin();
 		OPEN_LIST_HELPER.remove(min.data.disc);
 		return min;
 	}
 	
-	
 	public static double nthroot(int n, double A) {
 		return nthroot(n, A, .001);
 	}
+	
 	public static double nthroot(int n, double A, double p) {
 		if(A < 0) {
 			System.err.println("A < 0");// we handle only real positive numbers
@@ -216,11 +183,21 @@ public class A_StarSolver {
 	
 	public static void main(String[] args){
 		State s = new State();
-		s.initilizeState(".............XXO...AAO.P.B.O.P.BCC.P");
+		s.initilizeState("OAA.B.OCD.BPOCDXXPQQQE.P..FEGGHHFII.");
 		s.setParent(null);
 		s.show();
 		A_StarSolver solver = new A_StarSolver(s);
 		System.out.println(solver.solve());
+		
+		int u = 1;
+		while(!solver.ops.isEmpty()){
+			
+			Op oo = solver.ops.pop();
+			System.out.println(oo.constructOperation() + "\n"+ (u++) +"\n::::");
+			solver.root.makeMove(oo);
+			solver.root.draw();
+			solver.root.show();
+		}
 		System.out.println("\n\n BF: "+nthroot(A_StarSolver.level, A_StarSolver.branching_factor));
 	}
 	

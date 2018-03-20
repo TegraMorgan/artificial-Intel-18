@@ -256,6 +256,7 @@ public class FibonacciHeap<T>
             int numKids = z.degree;
             FibonacciHeapNode<T> x = z.child;
             FibonacciHeapNode<T> tempRight;
+            
 
             // for each child of z do...
             while (numKids > 0) {
@@ -280,11 +281,19 @@ public class FibonacciHeap<T>
             // remove z from root list of heap
             z.left.right = z.right;
             z.right.left = z.left;
+            
+         
+            
 
             if (z == z.right) {
                 minNode = null;
             } else {
                 minNode = z.right;
+                z.left = z;
+                z.right = z;
+                z.degree = 0;
+                z.child = null;
+                z.mark = false;
                 consolidate();
             }
 
