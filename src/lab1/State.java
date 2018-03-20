@@ -21,7 +21,7 @@ public class State implements Comparable<State>,Serializable{
 	String carList = "";
 	ArrayList<Op> nextStates = new ArrayList<>();
 	private double h_value;
-	private State parent;
+	private State parent = null;
 	private String op;
 	public String disc;
 	
@@ -100,7 +100,7 @@ public class State implements Comparable<State>,Serializable{
 		for(int i = 0; i < ROW; i++){
 			for(int j = 0; j < COL; j++){
 				if(this.board[i][j] < 'A'){
-					this.board[i][j] = '#';
+					this.board[i][j] = '.';
 				}
 			}
 		}
@@ -147,6 +147,10 @@ public class State implements Comparable<State>,Serializable{
 						if(c.getValue().getPosition().y + rightRange == 4){
 							nextStates.add(new Op(Move.RIGHT,rightRange + 2,'X'));
 						}
+					}
+				}else{
+					if(c.getValue().name == 'X'){
+						nextStates.add(new Op(Move.RIGHT,2,'X'));
 					}
 				}
 				if(leftRange != 0){
@@ -312,6 +316,7 @@ public class State implements Comparable<State>,Serializable{
 	}
 	
 	public void setParent(State p){
+		if(this.parent != null) System.out.println("WTFF");
 		this.parent = p;
 	}
 	
