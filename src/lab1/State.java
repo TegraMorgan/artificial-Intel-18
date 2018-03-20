@@ -48,6 +48,8 @@ public class State implements Comparable<State>,Serializable{
 	public char[][] getBoard(){
 		return this.board;
 	}
+	
+	//TODO [test this]
 	public void initilizeState(String disc){
 		final int ROW = 6;
 		final int COL = 6;
@@ -60,9 +62,11 @@ public class State implements Comparable<State>,Serializable{
 					continue;
 				}else{
 					if(carList.indexOf(car) == -1){
-						
+						if(car == 'F'){
+							System.out.println();
+						}
 						carList += car;
-						if(j < COL -1 && k < disc.length() -1 ){
+						if(j < COL -1 && k <= disc.length() -1 ){
 							if(disc.charAt(k) == car){
 								direction = true;
 							}
@@ -88,7 +92,7 @@ public class State implements Comparable<State>,Serializable{
 			int x = c.getValue().getPosition().x,y = c.getValue().getPosition().y;
 			char name = c.getValue().name;
 			this.board[x][y] = name;
-			
+			//System.out.println("KKKK      " + name);
 			if(c.getValue().isVertical()){
 				this.board[x+1][y] = name;
 				if(c.getValue().get_size() == 3)
@@ -346,11 +350,13 @@ public class State implements Comparable<State>,Serializable{
 	
 	public static void main(String[] args){
 		State s = new State();
-		s.initilizeState("AA...........XX.....................");
+		s.initilizeState(".............XXO...AAO.P.B.O.P.BCC.P");
 		s.generatePossibleMoves();
-		State ss = new State();
+		s.show();
+		s.showNextStates();
+		/*State ss = new State();
 		ss.initilizeState("AA...........XX.....................");
-		
+		*/
 		/*s.show();
 		s.showNextStates();
 		System.out.println();

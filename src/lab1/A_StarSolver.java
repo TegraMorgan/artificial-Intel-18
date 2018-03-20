@@ -177,7 +177,7 @@ public class A_StarSolver {
 				}
 			}
 			//System.out.println("Heuristics assigned: " + count*17.3);
-			node.setHValue(count*17.3 + node.g);
+			node.setHValue(count + node.g);
 		}
 	}
 	
