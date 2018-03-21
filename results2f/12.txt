@@ -1,0 +1,8 @@
+ABB..OA.P..OXXP..O..PQQQ....C.RRR.C.
+Solution FOUND!
+BR2 PU1 QL3 CU3 RR3 QR3 PD3 BL1 CU1 XR3 AD3 BL2 PU3 RL1 QL1 OD3 XR3 
+
+
+Branching Factor: 1.0969755220421369
+
+Number of moves: 17  vs. Provided solution: 17

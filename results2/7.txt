@@ -8,12 +8,16 @@
 
 Solution FOUND!
 trueFD1
+
+FD1
 # A B B C D 
 # A # E C D 
 # X X E # # 
 # # I I # F 
 # # # H # F 
 # # # H # # 
+
+DD1
 
 DD1
 # A B B C # 
@@ -24,12 +28,16 @@ DD1
 # # # H # # 
 
 CD3
+
+CD3
 # A B B # # 
 # A # E # D 
 # X X E # D 
 # # I I C F 
 # # # H C F 
 # # # H # # 
+
+BR2
 
 BR2
 # A # # B B 
@@ -40,12 +48,16 @@ BR2
 # # # H # # 
 
 EU1
+
+EU1
 # A # E B B 
 # A # E # D 
 # X X # # D 
 # # I I C F 
 # # # H C F 
 # # # H # # 
+
+XR1
 
 XR1
 # A # E B B 
@@ -56,12 +68,16 @@ XR1
 # # # H # # 
 
 AD4
+
+AD4
 # # # E B B 
 # # # E # D 
 # # X X # D 
 # # I I C F 
 # A # H C F 
 # A # H # # 
+
+XL1
 
 XL1
 # # # E B B 
@@ -72,12 +88,16 @@ XL1
 # A # H # # 
 
 ED1
+
+ED1
 # # # # B B 
 # # # E # D 
 # X X E # D 
 # # I I C F 
 # A # H C F 
 # A # H # # 
+
+BL3
 
 BL3
 # B B # # # 
@@ -88,6 +108,8 @@ BL3
 # A # H # # 
 
 DU1
+
+DU1
 # B B # # D 
 # # # E # D 
 # X X E # # 
@@ -96,12 +118,16 @@ DU1
 # A # H # # 
 
 EU1
+
+EU1
 # B B E # D 
 # # # E # D 
 # X X # # # 
 # # I I C F 
 # A # H C F 
 # A # H # # 
+
+XR5
 
 XR5
 # B B E # D 

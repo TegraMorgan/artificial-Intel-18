@@ -8,6 +8,8 @@
 
 Solution FOUND!
 trueDU2
+
+DU2
 # D A B B # 
 # D A # J # 
 # # X X J # 
@@ -16,12 +18,16 @@ trueDU2
 # # # # # # 
 
 EL2
+
+EL2
 # D A B B # 
 # D A # J # 
 # # X X J # 
 E E # # F # 
 # O O O F # 
 # # # # # # 
+
+XL2
 
 XL2
 # D A B B # 
@@ -32,12 +38,16 @@ E E # # F #
 # # # # # # 
 
 AD2
+
+AD2
 # D # B B # 
 # D # # J # 
 X X A # J # 
 E E A # F # 
 # O O O F # 
 # # # # # # 
+
+BL1
 
 BL1
 # D B B # # 
@@ -48,12 +58,16 @@ E E A # F #
 # # # # # # 
 
 JU1
+
+JU1
 # D B B J # 
 # D # # J # 
 X X A # # # 
 E E A # F # 
 # O O O F # 
 # # # # # # 
+
+FU1
 
 FU1
 # D B B J # 
@@ -64,12 +78,16 @@ E E A # F #
 # # # # # # 
 
 OR2
+
+OR2
 # D B B J # 
 # D # # J # 
 X X A # F # 
 E E A # F # 
 # # # O O O 
 # # # # # # 
+
+AD2
 
 AD2
 # D B B J # 
@@ -80,12 +98,16 @@ E E # # F #
 # # A # # # 
 
 ER2
+
+ER2
 # D B B J # 
 # D # # J # 
 X X # # F # 
 # # E E F # 
 # # A O O O 
 # # A # # # 
+
+XR2
 
 XR2
 # D B B J # 
@@ -96,12 +118,16 @@ XR2
 # # A # # # 
 
 DD4
+
+DD4
 # # B B J # 
 # # # # J # 
 # # X X F # 
 # # E E F # 
 # D A O O O 
 # D A # # # 
+
+BL2
 
 BL2
 B B # # J # 
@@ -112,12 +138,16 @@ B B # # J #
 # D A # # # 
 
 EL2
+
+EL2
 B B # # J # 
 # # # # J # 
 # # X X F # 
 E E # # F # 
 # D A O O O 
 # D A # # # 
+
+XL2
 
 XL2
 B B # # J # 
@@ -128,12 +158,16 @@ E E # # F #
 # D A # # # 
 
 AU4
+
+AU4
 B B A # J # 
 # # A # J # 
 X X # # F # 
 E E # # F # 
 # D # O O O 
 # D # # # # 
+
+ER2
 
 ER2
 B B A # J # 
@@ -144,12 +178,16 @@ X X # # F #
 # D # # # # 
 
 XR2
+
+XR2
 B B A # J # 
 # # A # J # 
 # # X X F # 
 # # E E F # 
 # D # O O O 
 # D # # # # 
+
+DU3
 
 DU3
 B B A # J # 
@@ -160,6 +198,8 @@ B B A # J #
 # # # # # # 
 
 OL2
+
+OL2
 B B A # J # 
 # D A # J # 
 # D X X F # 
@@ -168,12 +208,16 @@ B B A # J #
 # # # # # # 
 
 FD1
+
+FD1
 B B A # J # 
 # D A # J # 
 # D X X # # 
 # # E E F # 
 # O O O F # 
 # # # # # # 
+
+XR4
 
 XR4
 B B A # J # 

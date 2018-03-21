@@ -1,0 +1,8 @@
+AABO..P.BO..PXXO..PQQQ...........RRR
+Solution FOUND!
+PD2 XL1 QR2 BD4 AR1 XR1 PU3 QL3 OD1 AR3 OU1 QR3 PD3 XL1 BU4 XR1 PU3 RL3 QL3 OD3 XR5 
+
+
+Branching Factor: 1.0466756619398911
+
+Number of moves: 21  vs. Provided solution: 21

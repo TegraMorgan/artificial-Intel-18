@@ -8,12 +8,16 @@ P . G . . H
 
 Solution FOUND!
 trueXR1
+
+XR1
 # A B B C C 
 # A # D E E 
 # X X D O F 
 P Q Q Q O F 
 P # G # O H 
 P # G # # H 
+
+PU3
 
 PU3
 P A B B C C 
@@ -24,12 +28,16 @@ P X X D O F
 # # G # # H 
 
 QL1
+
+QL1
 P A B B C C 
 P A # D E E 
 P X X D O F 
 Q Q Q # O F 
 # # G # O H 
 # # G # # H 
+
+DD2
 
 DD2
 P A B B C C 
@@ -40,12 +48,16 @@ Q Q Q D O F
 # # G # # H 
 
 XR1
+
+XR1
 P A B B C C 
 P A # # E E 
 P # X X O F 
 Q Q Q D O F 
 # # G D O H 
 # # G # # H 
+
+AD1
 
 AD1
 P # B B C C 
@@ -56,12 +68,16 @@ Q Q Q D O F
 # # G # # H 
 
 BL1
+
+BL1
 P B B # C C 
 P A # # E E 
 P A X X O F 
 Q Q Q D O F 
 # # G D O H 
 # # G # # H 
+
+CL1
 
 CL1
 P B B C C # 
@@ -72,12 +88,16 @@ Q Q Q D O F
 # # G # # H 
 
 EL1
+
+EL1
 P B B C C # 
 P A # E E # 
 P A X X O F 
 Q Q Q D O F 
 # # G D O H 
 # # G # # H 
+
+OD1
 
 OD1
 P B B C C # 
@@ -88,12 +108,16 @@ Q Q Q D O F
 # # G # O H 
 
 FU2
+
+FU2
 P B B C C F 
 P A # E E F 
 P A X X # # 
 Q Q Q D O # 
 # # G D O H 
 # # G # O H 
+
+XR4
 
 XR4
 P B B C C F 

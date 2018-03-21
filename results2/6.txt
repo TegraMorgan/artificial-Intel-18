@@ -8,12 +8,16 @@ F . . R R R
 
 Solution FOUND!
 trueXL1
+
+XL1
 A A # B # # 
 C C # B O P 
 X X # Q O P 
 D D E Q O P 
 F # E Q # # 
 F # # R R R 
+
+EU3
 
 EU3
 A A E B # # 
@@ -24,12 +28,16 @@ F # # Q # #
 F # # R R R 
 
 DR1
+
+DR1
 A A E B # # 
 C C E B O P 
 X X # Q O P 
 # D D Q O P 
 F # # Q # # 
 F # # R R R 
+
+FU1
 
 FU1
 A A E B # # 
@@ -40,12 +48,16 @@ F # # Q # #
 # # # R R R 
 
 RL3
+
+RL3
 A A E B # # 
 C C E B O P 
 X X # Q O P 
 F D D Q O P 
 F # # Q # # 
 R R R # # # 
+
+QD1
 
 QD1
 A A E B # # 
@@ -56,6 +68,8 @@ F # # Q # #
 R R R Q # # 
 
 OD2
+
+OD2
 A A E B # # 
 C C E B # P 
 X X # # # P 
@@ -64,12 +78,16 @@ F # # Q O #
 R R R Q O # 
 
 PD2
+
+PD2
 A A E B # # 
 C C E B # # 
 X X # # # # 
 F D D Q O P 
 F # # Q O P 
 R R R Q O P 
+
+XR6
 
 XR6
 A A E B # # 

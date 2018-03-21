@@ -8,12 +8,16 @@
 
 Solution FOUND!
 truePU3
+
+PU3
 # # # # # P 
 # # # # # P 
 # X X O # P 
 # A A O # # 
 # B # O # # 
 # B C C # # 
+
+OU2
 
 OU2
 # # # O # P 
@@ -24,12 +28,16 @@ OU2
 # B C C # # 
 
 AR3
+
+AR3
 # # # O # P 
 # # # O # P 
 # X X O # P 
 # # # # A A 
 # B # # # # 
 # B C C # # 
+
+CR2
 
 CR2
 # # # O # P 
@@ -40,12 +48,16 @@ CR2
 # B # # C C 
 
 OD3
+
+OD3
 # # # # # P 
 # # # # # P 
 # X X # # P 
 # # # O A A 
 # B # O # # 
 # B # O C C 
+
+XR2
 
 XR2
 # # # # # P 
@@ -56,12 +68,16 @@ XR2
 # B # O C C 
 
 BU4
+
+BU4
 # B # # # P 
 # B # # # P 
 # # # X X P 
 # # # O A A 
 # # # O # # 
 # # # O C C 
+
+XL3
 
 XL3
 # B # # # P 
@@ -72,12 +88,16 @@ X X # # # P
 # # # O C C 
 
 OU3
+
+OU3
 # B # O # P 
 # B # O # P 
 X X # O # P 
 # # # # A A 
 # # # # # # 
 # # # # C C 
+
+CL3
 
 CL3
 # B # O # P 
@@ -88,12 +108,16 @@ X X # O # P
 # C C # # # 
 
 AL4
+
+AL4
 # B # O # P 
 # B # O # P 
 X X # O # P 
 A A # # # # 
 # # # # # # 
 # C C # # # 
+
+PD3
 
 PD3
 # B # O # # 
@@ -104,12 +128,16 @@ A A # # # P
 # C C # # P 
 
 OD3
+
+OD3
 # B # # # # 
 # B # # # # 
 X X # # # # 
 A A # O # P 
 # # # O # P 
 # C C O # P 
+
+XR6
 
 XR6
 # B # # # # 

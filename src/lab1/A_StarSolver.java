@@ -104,7 +104,7 @@ public class A_StarSolver {
 			/**
 			 * @DEBUG
 			 */
-			if(min.data.getOpp()!= null){
+			/*if(min.data.getOpp()!= null){
 				if(min.data.getOpp().constructOperation().equals("QR2")){
 					System.out.println("//Debug: \nParent: ");
 					min.data.getParent().show();
@@ -114,7 +114,7 @@ public class A_StarSolver {
 					min.data.showNextStates();
 					System.out.println("\nEND of pm\n");
 				}
-			}
+			}*/
 			ArrayList<Op> operations = min.data.generatePossibleMoves().getPossibleOperations();
 			for(Op op: operations){
 				/*if(op.constructOperation().equals("QR2") && min.data.getParent().getOpp().constructOperation().equals("QR2")){
@@ -316,7 +316,7 @@ public class A_StarSolver {
 		}*/
 		PrintStream out = null;
 		try {
-			out = new PrintStream(new FileOutputStream("results2/"+i+".txt"));
+			out = new PrintStream(new FileOutputStream("results2f/"+i+".txt"));
 			i++;
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -328,21 +328,23 @@ public class A_StarSolver {
 		A_StarSolver solver = new A_StarSolver(s);
 		s.initilizeState(disc);
 		s.setParent(null);
-		s.show();
-		System.out.print(solver.solve());
+		//s.show();
+		solver.solve();
 		
 		
 		int si = solver.ops.size();
 		while(!solver.ops.isEmpty()){
 			
 			Op oo = solver.ops.pop();
-			System.out.println(oo.constructOperation());
+			System.out.print(oo.constructOperation() + " ");
+			/*System.out.println(oo.constructOperation());
 			solver.root.makeMove(oo);
 			solver.root.draw();
-			solver.root.show();
+			solver.root.show();*/
 		}
-		System.out.println("\n\n BF: " +nthroot(A_StarSolver.level, A_StarSolver.branching_factor));
-		System.out.println("\nNumber of moves: " + si + "  should be: " + optimal_solutions[i-2]);
+		System.out.println();
+		System.out.println("\n\nBranching Factor: " +nthroot(A_StarSolver.level, A_StarSolver.branching_factor));
+		System.out.println("\nNumber of moves: " + si + "  vs. Provided solution: " + optimal_solutions[i-2]);
 		out.close();
 	}
 }

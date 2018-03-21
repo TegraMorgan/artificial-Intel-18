@@ -6,561 +6,18 @@ O X X P . .
 . . B . . E 
 . . R R R E 
 
-//Debug: 
-Parent: 
-A A # P # # 
-# # B P # E 
-X X B P # E 
-O Q Q Q # # 
-O # # # # # 
-O # R R R # 
-
-Current: 
-A A # P # # 
-# # B P # E 
-X X B P # E 
-O # # Q Q Q 
-O # # # # # 
-O # R R R # 
-
-
-Possible moves: 
-AR1
-QL1
-QL2
-BU1
-BD1
-BD2
-RR1
-RL1
-EU1
-
-END of pm
-
-//Debug: 
-Parent: 
-# A A P # E 
-# # B P # E 
-X X B P # # 
-O Q Q Q # # 
-O # # # # # 
-O R R R # # 
-
-Current: 
-# A A P # E 
-# # B P # E 
-X X B P # # 
-O # # Q Q Q 
-O # # # # # 
-O R R R # # 
-
-
-Possible moves: 
-AL1
-QL1
-QL2
-BD1
-BD2
-RR1
-RR2
-ED1
-
-END of pm
-
-//Debug: 
-Parent: 
-A A # P # E 
-# # B P # E 
-X X B P # # 
-O Q Q Q # # 
-O # # # # # 
-O # R R R # 
-
-Current: 
-A A # P # E 
-# # B P # E 
-X X B P # # 
-O # # Q Q Q 
-O # # # # # 
-O # R R R # 
-
-
-Possible moves: 
-AR1
-QL1
-QL2
-BU1
-BD1
-BD2
-RR1
-RL1
-ED1
-
-END of pm
-
-//Debug: 
-Parent: 
-# A A P # # 
-# # B P # E 
-X X B P # E 
-O Q Q Q # # 
-O # # # # # 
-O R R R # # 
-
-Current: 
-# A A P # # 
-# # B P # E 
-X X B P # E 
-O # # Q Q Q 
-O # # # # # 
-O R R R # # 
-
-
-Possible moves: 
-AL1
-QL1
-QL2
-BD1
-BD2
-RR1
-RR2
-EU1
-
-END of pm
-
-//Debug: 
-Parent: 
-# A A P # E 
-# # B P # E 
-X X B P # # 
-O Q Q Q # # 
-O # # # # # 
-O # # R R R 
-
-Current: 
-# A A P # E 
-# # B P # E 
-X X B P # # 
-O # # Q Q Q 
-O # # # # # 
-O # # R R R 
-
-
-Possible moves: 
-AL1
-QL1
-QL2
-BD1
-BD2
-BD3
-RL1
-RL2
-ED1
-
-END of pm
-
-//Debug: 
-Parent: 
-# A A P # # 
-# # B P # E 
-X X B P # E 
-O Q Q Q # # 
-O # # # # # 
-O # # R R R 
-
-Current: 
-# A A P # # 
-# # B P # E 
-X X B P # E 
-O # # Q Q Q 
-O # # # # # 
-O # # R R R 
-
-
-Possible moves: 
-AL1
-QL1
-QL2
-BD1
-BD2
-BD3
-RL1
-RL2
-EU1
-
-END of pm
-
-//Debug: 
-Parent: 
-A A B P # E 
-# # B P # E 
-X X # P # # 
-O Q Q Q # # 
-O # # # # # 
-O # R R R # 
-
-Current: 
-A A B P # E 
-# # B P # E 
-X X # P # # 
-O # # Q Q Q 
-O # # # # # 
-O # R R R # 
-
-
-Possible moves: 
-QL1
-QL2
-BD1
-BD2
-BD3
-RR1
-RL1
-ED1
-XR1
-
-END of pm
-
-//Debug: 
-Parent: 
-A A B P # # 
-# # B P # E 
-X X # P # E 
-O Q Q Q # # 
-O # # # # # 
-O # R R R # 
-
-Current: 
-A A B P # # 
-# # B P # E 
-X X # P # E 
-O # # Q Q Q 
-O # # # # # 
-O # R R R # 
-
-
-Possible moves: 
-QL1
-QL2
-BD1
-BD2
-BD3
-RR1
-RL1
-EU1
-XR1
-
-END of pm
-
-//Debug: 
-Parent: 
-A A # P # E 
-# # B P # E 
-X X B P # # 
-O Q Q Q # # 
-O # # # # # 
-O R R R # # 
-
-Current: 
-A A # P # E 
-# # B P # E 
-X X B P # # 
-O # # Q Q Q 
-O # # # # # 
-O R R R # # 
-
-
-Possible moves: 
-AR1
-QL1
-QL2
-BU1
-BD1
-BD2
-RR1
-RR2
-ED1
-
-END of pm
-
-//Debug: 
-Parent: 
-A A B P # E 
-# # B P # E 
-# X X P # # 
-O Q Q Q # # 
-O # # # # # 
-O # # R R R 
-
-Current: 
-A A B P # E 
-# # B P # E 
-# X X P # # 
-O # # Q Q Q 
-O # # # # # 
-O # # R R R 
-
-
-Possible moves: 
-QL1
-QL2
-RL1
-RL2
-ED1
-XL1
-OU1
-OU2
-
-END of pm
-
-//Debug: 
-Parent: 
-A A B P # # 
-# # B P # E 
-O X X P # E 
-O Q Q Q # # 
-O # # # # # 
-# # R R R # 
-
-Current: 
-A A B P # # 
-# # B P # E 
-O X X P # E 
-O # # Q Q Q 
-O # # # # # 
-# # R R R # 
-
-
-Possible moves: 
-QL1
-QL2
-RR1
-RL1
-RL2
-EU1
-OU1
-OD1
-
-END of pm
-
-//Debug: 
-Parent: 
-A A B P # # 
-# # B P # E 
-# X X P # E 
-O Q Q Q # # 
-O # # # # # 
-O R R R # # 
-
-Current: 
-A A B P # # 
-# # B P # E 
-# X X P # E 
-O # # Q Q Q 
-O # # # # # 
-O R R R # # 
-
-
-Possible moves: 
-QL1
-QL2
-RR1
-RR2
-EU1
-XL1
-OU1
-OU2
-
-END of pm
-
-//Debug: 
-Parent: 
-A A B P # # 
-# # B P # E 
-# X X P # E 
-O Q Q Q # # 
-O # # # # # 
-O # # R R R 
-
-Current: 
-A A B P # # 
-# # B P # E 
-# X X P # E 
-O # # Q Q Q 
-O # # # # # 
-O # # R R R 
-
-
-Possible moves: 
-QL1
-QL2
-RL1
-RL2
-EU1
-XL1
-OU1
-OU2
-
-END of pm
-
-//Debug: 
-Parent: 
-A A B P # E 
-O # B P # E 
-O X X P # # 
-O Q Q Q # # 
-# # # # # # 
-# # R R R # 
-
-Current: 
-A A B P # E 
-O # B P # E 
-O X X P # # 
-O # # Q Q Q 
-# # # # # # 
-# # R R R # 
-
-
-Possible moves: 
-QL1
-QL2
-RR1
-RL1
-RL2
-ED1
-OD1
-OD2
-
-END of pm
-
-//Debug: 
-Parent: 
-A A B P # # 
-O # B P # E 
-O X X P # E 
-O Q Q Q # # 
-# # # # # # 
-# # R R R # 
-
-Current: 
-A A B P # # 
-O # B P # E 
-O X X P # E 
-O # # Q Q Q 
-# # # # # # 
-# # R R R # 
-
-
-Possible moves: 
-QL1
-QL2
-RR1
-RL1
-RL2
-EU1
-OD1
-OD2
-
-END of pm
-
-//Debug: 
-Parent: 
-A A B P # E 
-# # B P # E 
-O X X P # # 
-O Q Q Q # # 
-O # # # # # 
-# # R R R # 
-
-Current: 
-A A B P # E 
-# # B P # E 
-O X X P # # 
-O # # Q Q Q 
-O # # # # # 
-# # R R R # 
-
-
-Possible moves: 
-QL1
-QL2
-RR1
-RL1
-RL2
-ED1
-OU1
-OD1
-
-END of pm
-
-//Debug: 
-Parent: 
-A A B P # E 
-# # B P # E 
-# X X P # # 
-O Q Q Q # # 
-O # # # # # 
-O R R R # # 
-
-Current: 
-A A B P # E 
-# # B P # E 
-# X X P # # 
-O # # Q Q Q 
-O # # # # # 
-O R R R # # 
-
-
-Possible moves: 
-QL1
-QL2
-RR1
-RR2
-ED1
-XL1
-OU1
-OU2
-
-END of pm
-
-//Debug: 
-Parent: 
-O # # P A A 
-O # # P # E 
-O X X P # E 
-Q Q Q # # # 
-# # B # # # 
-# # B R R R 
-
-Current: 
-O # # P A A 
-O # # P # E 
-O X X P # E 
-# # Q Q Q # 
-# # B # # # 
-# # B R R R 
-
-
-Possible moves: 
-QR1
-QL1
-QL2
-ED1
-ED2
-OD1
-OD2
-OD3
-
-END of pm
-
 Solution FOUND!
 trueOD3
+
+OD3
 # A A P # # 
 # # # P # # 
 # X X P # # 
 O # B Q Q Q 
 O # B # # E 
 O # R R R E 
+
+XL1
 
 XL1
 # A A P # # 
@@ -571,12 +28,16 @@ O # B # # E
 O # R R R E 
 
 BU2
+
+BU2
 # A A P # # 
 # # B P # # 
 X X B P # # 
 O # # Q Q Q 
 O # # # # E 
 O # R R R E 
+
+QL2
 
 QL2
 # A A P # # 
@@ -587,12 +48,16 @@ O # # # # E
 O # R R R E 
 
 EU3
+
+EU3
 # A A P # # 
 # # B P # E 
 X X B P # E 
 O Q Q Q # # 
 O # # # # # 
 O # R R R # 
+
+RR1
 
 RR1
 # A A P # # 
@@ -603,12 +68,16 @@ O # # # # #
 O # # R R R 
 
 QR2
+
+QR2
 # A A P # # 
 # # B P # E 
 X X B P # E 
 O # # Q Q Q 
 O # # # # # 
 O # # R R R 
+
+BD3
 
 BD3
 # A A P # # 
@@ -619,6 +88,8 @@ O # B # # #
 O # B R R R 
 
 XR1
+
+XR1
 # A A P # # 
 # # # P # E 
 # X X P # E 
@@ -627,12 +98,16 @@ O # B # # #
 O # B R R R 
 
 OU3
+
+OU3
 O A A P # # 
 O # # P # E 
 O X X P # E 
 # # # Q Q Q 
 # # B # # # 
 # # B R R R 
+
+QL3
 
 QL3
 O A A P # # 
@@ -643,12 +118,16 @@ Q Q Q # # #
 # # B R R R 
 
 PD2
+
+PD2
 O A A # # # 
 O # # # # E 
 O X X P # E 
 Q Q Q P # # 
 # # B P # # 
 # # B R R R 
+
+AR3
 
 AR3
 O # # # A A 
@@ -659,12 +138,16 @@ Q Q Q P # #
 # # B R R R 
 
 PU2
+
+PU2
 O # # P A A 
 O # # P # E 
 O X X P # E 
 Q Q Q # # # 
 # # B # # # 
 # # B R R R 
+
+QR3
 
 QR3
 O # # P A A 
@@ -675,12 +158,16 @@ O X X P # E
 # # B R R R 
 
 OD3
+
+OD3
 # # # P A A 
 # # # P # E 
 # X X P # E 
 O # # Q Q Q 
 O # B # # # 
 O # B R R R 
+
+XL1
 
 XL1
 # # # P A A 
@@ -691,12 +178,16 @@ O # B # # #
 O # B R R R 
 
 BU4
+
+BU4
 # # B P A A 
 # # B P # E 
 X X # P # E 
 O # # Q Q Q 
 O # # # # # 
 O # # R R R 
+
+XR1
 
 XR1
 # # B P A A 
@@ -707,12 +198,16 @@ O # # # # #
 O # # R R R 
 
 OU3
+
+OU3
 O # B P A A 
 O # B P # E 
 O X X P # E 
 # # # Q Q Q 
 # # # # # # 
 # # # R R R 
+
+QL3
 
 QL3
 O # B P A A 
@@ -723,12 +218,16 @@ Q Q Q # # #
 # # # R R R 
 
 RL3
+
+RL3
 O # B P A A 
 O # B P # E 
 O X X P # E 
 Q Q Q # # # 
 # # # # # # 
 R R R # # # 
+
+PD3
 
 PD3
 O # B # A A 
@@ -739,12 +238,16 @@ Q Q Q P # #
 R R R P # # 
 
 ED2
+
+ED2
 O # B # A A 
 O # B # # # 
 O X X # # # 
 Q Q Q P # E 
 # # # P # E 
 R R R P # # 
+
+XR5
 
 XR5
 O # B # A A 

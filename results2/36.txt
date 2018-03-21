@@ -8,12 +8,16 @@ G G E . . .
 
 Solution FOUND!
 trueDD1
+
+DD1
 O P P P A A 
 O B C C # Q 
 O B X X # Q 
 R R R # # Q 
 # # E D F F 
 G G E D # # 
+
+RR1
 
 RR1
 O P P P A A 
@@ -24,12 +28,16 @@ O B X X # Q
 G G E D # # 
 
 XR1
+
+XR1
 O P P P A A 
 O B C C # Q 
 O B # X X Q 
 # R R R # Q 
 # # E D F F 
 G G E D # # 
+
+OD1
 
 OD1
 # P P P A A 
@@ -40,6 +48,8 @@ O R R R # Q
 G G E D # # 
 
 PL1
+
+PL1
 P P P # A A 
 O B C C # Q 
 O B # X X Q 
@@ -48,12 +58,16 @@ O R R R # Q
 G G E D # # 
 
 AL1
+
+AL1
 P P P A A # 
 O B C C # Q 
 O B # X X Q 
 O R R R # Q 
 # # E D F F 
 G G E D # # 
+
+QU1
 
 QU1
 P P P A A Q 
@@ -64,12 +78,16 @@ O R R R # #
 G G E D # # 
 
 CR1
+
+CR1
 P P P A A Q 
 O B # C C Q 
 O B # X X Q 
 O R R R # # 
 # # E D F F 
 G G E D # # 
+
+RR2
 
 RR2
 P P P A A Q 
@@ -80,12 +98,16 @@ O # # R R R
 G G E D # # 
 
 EU3
+
+EU3
 P P P A A Q 
 O B E C C Q 
 O B E X X Q 
 O # # R R R 
 # # # D F F 
 G G # D # # 
+
+RL2
 
 RL2
 P P P A A Q 
@@ -96,6 +118,8 @@ O R R R # #
 G G # D # # 
 
 QD1
+
+QD1
 P P P A A # 
 O B E C C Q 
 O B E X X Q 
@@ -104,12 +128,16 @@ O R R R # Q
 G G # D # # 
 
 AR1
+
+AR1
 P P P # A A 
 O B E C C Q 
 O B E X X Q 
 O R R R # Q 
 # # # D F F 
 G G # D # # 
+
+PR1
 
 PR1
 # P P P A A 
@@ -120,6 +148,8 @@ O R R R # Q
 G G # D # # 
 
 OU1
+
+OU1
 O P P P A A 
 O B E C C Q 
 O B E X X Q 
@@ -128,12 +158,16 @@ O B E X X Q
 G G # D # # 
 
 RL1
+
+RL1
 O P P P A A 
 O B E C C Q 
 O B E X X Q 
 R R R # # Q 
 # # # D F F 
 G G # D # # 
+
+DU1
 
 DU1
 O P P P A A 
@@ -144,12 +178,16 @@ R R R D # Q
 G G # # # # 
 
 GR4
+
+GR4
 O P P P A A 
 O B E C C Q 
 O B E X X Q 
 R R R D # Q 
 # # # D F F 
 # # # # G G 
+
+DD1
 
 DD1
 O P P P A A 
@@ -160,6 +198,8 @@ R R R # # Q
 # # # D G G 
 
 RR2
+
+RR2
 O P P P A A 
 O B E C C Q 
 O B E X X Q 
@@ -168,12 +208,16 @@ O B E X X Q
 # # # D G G 
 
 OD2
+
+OD2
 # P P P A A 
 # B E C C Q 
 O B E X X Q 
 O # R R R Q 
 O # # D F F 
 # # # D G G 
+
+PL1
 
 PL1
 P P P # A A 
@@ -184,12 +228,16 @@ O # # D F F
 # # # D G G 
 
 AL1
+
+AL1
 P P P A A # 
 # B E C C Q 
 O B E X X Q 
 O # R R R Q 
 O # # D F F 
 # # # D G G 
+
+QU1
 
 QU1
 P P P A A Q 
@@ -200,12 +248,16 @@ O # # D F F
 # # # D G G 
 
 RR1
+
+RR1
 P P P A A Q 
 # B E C C Q 
 O B E X X Q 
 O # # R R R 
 O # # D F F 
 # # # D G G 
+
+ED3
 
 ED3
 P P P A A Q 
@@ -216,12 +268,16 @@ O # E D F F
 # # E D G G 
 
 RL1
+
+RL1
 P P P A A Q 
 # B # C C Q 
 O B # X X Q 
 O # R R R # 
 O # E D F F 
 # # E D G G 
+
+QD1
 
 QD1
 P P P A A # 
@@ -232,12 +288,16 @@ O # E D F F
 # # E D G G 
 
 AR1
+
+AR1
 P P P # A A 
 # B # C C Q 
 O B # X X Q 
 O # R R R Q 
 O # E D F F 
 # # E D G G 
+
+PR1
 
 PR1
 # P P P A A 
@@ -248,12 +308,16 @@ O # E D F F
 # # E D G G 
 
 BD3
+
+BD3
 # P P P A A 
 # # # C C Q 
 O # # X X Q 
 O # R R R Q 
 O B E D F F 
 # B E D G G 
+
+CL2
 
 CL2
 # P P P A A 
@@ -264,12 +328,16 @@ O B E D F F
 # B E D G G 
 
 XL2
+
+XL2
 # P P P A A 
 # C C # # Q 
 O X X # # Q 
 O # R R R Q 
 O B E D F F 
 # B E D G G 
+
+OU2
 
 OU2
 O P P P A A 
@@ -280,12 +348,16 @@ O X X # # Q
 # B E D G G 
 
 RL2
+
+RL2
 O P P P A A 
 O C C # # Q 
 O X X # # Q 
 R R R # # Q 
 # B E D F F 
 # B E D G G 
+
+DU3
 
 DU3
 O P P P A A 
@@ -296,12 +368,16 @@ R R R # # Q
 # B E # G G 
 
 RR2
+
+RR2
 O P P P A A 
 O C C D # Q 
 O X X D # Q 
 # # R R R Q 
 # B E # F F 
 # B E # G G 
+
+OD2
 
 OD2
 # P P P A A 
@@ -312,12 +388,16 @@ O B E # F F
 # B E # G G 
 
 PL1
+
+PL1
 P P P # A A 
 # C C D # Q 
 O X X D # Q 
 O # R R R Q 
 O B E # F F 
 # B E # G G 
+
+DU1
 
 DU1
 P P P D A A 
@@ -328,12 +408,16 @@ O B E # F F
 # B E # G G 
 
 FL1
+
+FL1
 P P P D A A 
 # C C D # Q 
 O X X # # Q 
 O # R R R Q 
 O B E F F # 
 # B E # G G 
+
+GL1
 
 GL1
 P P P D A A 
@@ -344,12 +428,16 @@ O B E F F #
 # B E G G # 
 
 QD2
+
+QD2
 P P P D A A 
 # C C D # # 
 O X X # # # 
 O # R R R Q 
 O B E F F Q 
 # B E G G Q 
+
+XR5
 
 XR5
 P P P D A A 

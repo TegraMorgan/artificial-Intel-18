@@ -1,0 +1,8 @@
+.ABBCD.A.ECD.XXE.F..II.F...H.....H..
+Solution FOUND!
+FD1 DD1 CD3 BR2 EU1 XR1 AD4 XL1 ED1 BL3 DU1 EU1 XR5 
+
+
+Branching Factor: 3.3666488397514462
+
+Number of moves: 13  vs. Provided solution: 13

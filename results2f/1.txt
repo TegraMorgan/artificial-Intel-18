@@ -1,0 +1,8 @@
+AA...OP..Q.OPXXQ.OP..Q..B...CCB.RRR.
+Solution FOUND!
+CL3 OD3 AR4 PU1 BU1 RL2 QD2 XR5 
+
+
+Branching Factor: 1.0157685689995792
+
+Number of moves: 8  vs. Provided solution: 8
