@@ -342,7 +342,7 @@ public class A_StarSolver {
 			solver.root.draw();
 			solver.root.show();*/
 		}
-		System.out.println();
+		System.out.println("");
 		System.out.println("\n\nBranching Factor: " +nthroot(A_StarSolver.level, A_StarSolver.branching_factor));
 		System.out.println("\nNumber of moves: " + si + "  vs. Provided solution: " + optimal_solutions[i-2]);
 		out.close();
