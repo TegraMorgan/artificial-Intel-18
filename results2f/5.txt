@@ -6,3 +6,4 @@ AR1 PU1 RL1 EL3 FL3 GD1 OD3 QD2 XR5
 Branching Factor: 1.5962174603816055
 
 Number of moves: 9  vs. Provided solution: 9
+Total Runtime: 0.355 Sec

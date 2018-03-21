@@ -1,6 +1,7 @@
 package lab1;
 
 import java.io.BufferedReader;
+import java.io.FileDescriptor;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
+import java.util.concurrent.TimeUnit;
 
 /***
  * 
@@ -43,6 +45,7 @@ import java.util.Stack;
 
 
 public class A_StarSolver {	
+	private static long RUNTIME;
 	static FibonacciHeap<State> OPEN_LIST;
 	static Map<String,FibonacciHeapNode<State> > OPEN_LIST_HELPER;
 	static Map<String,FibonacciHeapNode<State>  > CLOSED_LIST;
@@ -58,6 +61,7 @@ public class A_StarSolver {
 		CLOSED_LIST = new HashMap<>();
 		branching_factor = 0;
 		level = 0;
+		RUNTIME = 1000000;
 	}
 
 	/**
@@ -67,14 +71,19 @@ public class A_StarSolver {
 	static String voo = "";
 	static int[] optimal_solutions = new int[40];
 	public boolean solve(){
+		
 		root.setParent(null);
 		root.g = 0;
-		calculate_Heuristics2(root);
+		calculate_Heuristics(root);
+		root.generatePossibleMoves();
+		RUNTIME /= root.nextStates.size();
+		RUNTIME = 7000;
+		//if(RUNTIME < 50000)
 		FibonacciHeapNode<State> rootHeapNode = new FibonacciHeapNode<State>(root, root.getHValue());
 		OPEN_LIST.insert(rootHeapNode, root.getHValue());
 		OPEN_LIST_HELPER.put(root.disc, rootHeapNode);
 		
-		//final long startTime = System.currentTimeMillis();
+		final long startTime = System.currentTimeMillis();
 		while(!OPEN_LIST.isEmpty()){
 			level++;
 			FibonacciHeapNode<State> min = OPEN_LIST.min();
@@ -133,7 +142,7 @@ public class A_StarSolver {
 				if(s.g < 0){
 					s.g = min.data.g + 1;
 				}
-				calculate_Heuristics2(s);
+				calculate_Heuristics(s);
 				
 				//Checks if the state was opened/closed previously
 				
@@ -164,25 +173,19 @@ public class A_StarSolver {
 						//stateHelper.data.setParent(min.data);
 					}
 					//System.out.println("YEPPE");
-					if(min.data.getOpp().constructOperation().equals("QR2")){
-						if(op.constructOperation().equals("QR2")){
-							System.out.println("here");
-						}
+					if(TimeUnit.MILLISECONDS.toMicros(System.currentTimeMillis() - startTime) > RUNTIME){
+						System.out.println("Failure");
+						return false;
 					}
 					continue;
 				}
 				branching_factor++;
 				FibonacciHeapNode<State> new_fbn = new FibonacciHeapNode<State>(s, s.getHValue());
 				insert_opened(new_fbn);
-				/*if(TimeUnit.MILLISECONDS.toMinutes(System.currentTimeMillis() - startTime) > 1){
-					System.out.println("SS");
+				//System.out.println("timetime" + TimeUnit.MILLISECONDS.toMicros(System.currentTimeMillis() - startTime));
+				if(TimeUnit.MILLISECONDS.toMicros(System.currentTimeMillis() - startTime) > RUNTIME){
+					System.out.println("Failure");
 					return false;
-				}*/
-				
-				if(min.data.getOpp() != null && min.data.getOpp().constructOperation().equals("QR2")){
-					if(op.constructOperation().equals("QR2")){
-						System.out.println("here");
-					}
 				}
 				
 			}
@@ -308,6 +311,7 @@ public class A_StarSolver {
 		System.out.println("\n\n BF: "+nthroot(A_StarSolver.level, A_StarSolver.branching_factor));*/
 	}
 	public static int i = 1;
+	public static int countt = 0;
 	public static void automation(String disc){
 		/*if(i != 12 && i != 17 && i != 24 && i!= 33 && i!= 36 && i !=38 ){
 			
@@ -316,7 +320,7 @@ public class A_StarSolver {
 		}*/
 		PrintStream out = null;
 		try {
-			out = new PrintStream(new FileOutputStream("results2f/"+i+".txt"));
+			out = new PrintStream(new FileOutputStream("results2f2/"+i+".txt"));
 			i++;
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -329,9 +333,14 @@ public class A_StarSolver {
 		s.initilizeState(disc);
 		s.setParent(null);
 		//s.show();
-		solver.solve();
+		if(solver.solve()){
+			countt++;
+			System.setOut(new PrintStream(new FileOutputStream(FileDescriptor.out)));
+			System.out.println("Found " + (countt));
+		}
 		
 		
+		System.setOut(out);
 		int si = solver.ops.size();
 		while(!solver.ops.isEmpty()){
 			
@@ -345,6 +354,7 @@ public class A_StarSolver {
 		System.out.println("");
 		System.out.println("\n\nBranching Factor: " +nthroot(A_StarSolver.level, A_StarSolver.branching_factor));
 		System.out.println("\nNumber of moves: " + si + "  vs. Provided solution: " + optimal_solutions[i-2]);
+		System.out.println("Total Runtime: " + solver.RUNTIME/(1000000.0) + " Sec");
 		out.close();
 	}
 }

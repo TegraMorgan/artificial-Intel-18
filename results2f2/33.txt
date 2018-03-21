@@ -1,0 +1,9 @@
+.AR.BB.AR...XXR...IDDEEPIFFGHPQQQGHP
+Failure
+
+
+
+Branching Factor: 1.039004440575643
+
+Number of moves: 0  vs. Provided solution: 40
+Total Runtime: 0.007 Sec

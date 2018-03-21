@@ -6,3 +6,4 @@ CD1 BR3 DU2 EU2 FL3 QL3 ED1 PD1 CD1 XR6
 Branching Factor: 1.016791045316928
 
 Number of moves: 10  vs. Provided solution: 10
+Total Runtime: 0.355 Sec

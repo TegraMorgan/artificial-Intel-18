@@ -1,0 +1,9 @@
+OPPPAAOBCC.QOBXX.QRRRD.Q..EDFFGGE...
+Failure
+
+
+
+Branching Factor: 1.0312134112472886
+
+Number of moves: 0  vs. Provided solution: 44
+Total Runtime: 0.007 Sec

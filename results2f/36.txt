@@ -6,3 +6,4 @@ DD1 RR1 XR1 OD1 PL1 AL1 QU1 CR1 RR2 EU3 RL2 QD1 AR1 PR1 OU1 RL1 DU1 GR4 DD1 RR2 
 Branching Factor: 2.3077761759234576
 
 Number of moves: 44  vs. Provided solution: 44
+Total Runtime: 0.355 Sec

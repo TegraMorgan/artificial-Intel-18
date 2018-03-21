@@ -1,0 +1,9 @@
+ABBO..ACCO..XXDO.P..DEEP..F..P..FRRR
+Failure
+
+
+
+Branching Factor: 1.030903542936346
+
+Number of moves: 0  vs. Provided solution: 28
+Total Runtime: 0.007 Sec
