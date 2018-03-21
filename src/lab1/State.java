@@ -352,7 +352,7 @@ public class State implements Comparable<State>,Serializable{
 	
 	public static void main(String[] args){
 		State s = new State();
-		s.initilizeState(".............XXO...AAO.P.B.O.P.BCC.P");
+		s.initilizeState("A.PBBOA.P.COXXP.CO...QQQ......RRR...");
 		s.generatePossibleMoves();
 		s.show();
 		s.showNextStates();

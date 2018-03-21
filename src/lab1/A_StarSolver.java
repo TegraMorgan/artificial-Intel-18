@@ -1,11 +1,21 @@
 package lab1;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
 
-
+/***
+ * 
+ * TODO - test 12,17,24,33,36,38
+ *
+ */
 /* 	(1) Put the start node s on a list, called OPEN, of unexpanded nodes. 
  * 			Calculate f(s) and associate its value with node s.
    	(2) If OPEN is empty, exit with failure, no solution exists.
@@ -33,22 +43,28 @@ import java.util.Stack;
 
 
 public class A_StarSolver {	
-	static FibonacciHeap<State> OPEN_LIST = new FibonacciHeap<>();
-	static Map<String,FibonacciHeapNode<State> > OPEN_LIST_HELPER = new HashMap<>();
-	static Map<String,FibonacciHeapNode<State>  > CLOSED_LIST = new HashMap<>();
+	static FibonacciHeap<State> OPEN_LIST;
+	static Map<String,FibonacciHeapNode<State> > OPEN_LIST_HELPER;
+	static Map<String,FibonacciHeapNode<State>  > CLOSED_LIST;
 	//private static int id = 1;
 	State root;
-	static int branching_factor = 0;
-	static int level = 0;
+	static int branching_factor;
+	static int level;
 	Stack<Op> ops = new Stack<Op>(); 
 	public A_StarSolver(State initialState){
 		this.root = initialState;
+		OPEN_LIST = new FibonacciHeap<>();
+		OPEN_LIST_HELPER = new HashMap<>();
+		CLOSED_LIST = new HashMap<>();
+		branching_factor = 0;
+		level = 0;
 	}
 
 	/**
 	 * A* algorithm implementation
 	 * @return boolean
 	 */
+	static String voo = "";
 	public boolean solve(){
 		root.setParent(null);
 		root.g = 0;
@@ -67,7 +83,13 @@ public class A_StarSolver {
 			if(min.data.isGoal()){
 				System.out.println("Solution FOUND!");
 				State path = min.data;
+				//int ii = 0;
 				while(path.getParent() != null){
+					/*if(ii > 1 && path.getParent().getOp().equals(path.getOp())){
+						System.out.println("##################");
+						path.show();
+						ii++;
+					}*/
 					ops.push(path.getOpp());
 					path = path.getParent();
 				}
@@ -76,6 +98,12 @@ public class A_StarSolver {
 			}
 			ArrayList<Op> operations = min.data.generatePossibleMoves().getPossibleOperations();
 			for(Op op: operations){
+				/*if(op.constructOperation().equals("QR2") && min.data.getParent().getOpp().constructOperation().equals("QR2")){
+					
+					System.out.println("$#$#$#$#$#$#$\n");
+					min.data.show();
+				
+			}*/
 				State s = new State(min.data);
 				s.setOpp(op);
 				s.compress();
@@ -182,8 +210,19 @@ public class A_StarSolver {
 	}
 	
 	public static void main(String[] args){
-		State s = new State();
-		s.initilizeState("OAA.B.OCD.BPOCDXXPQQQE.P..FEGGHHFII.");
+		
+		try(BufferedReader br = new BufferedReader(new FileReader("states.txt"))) {
+		    for(String line; (line = br.readLine()) != null; ) {
+		    	
+		        automation(line);
+		    }
+		    // line is not visible here.
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		/*State s = new State();
+		s.initilizeState("ABB..OA.P..OXXP..O..PQQQ....C.RRR.C.");
 		s.setParent(null);
 		s.show();
 		A_StarSolver solver = new A_StarSolver(s);
@@ -193,14 +232,43 @@ public class A_StarSolver {
 		while(!solver.ops.isEmpty()){
 			
 			Op oo = solver.ops.pop();
-			System.out.println(oo.constructOperation() + "\n"+ (u++) +"\n::::");
+			System.out.println(oo.constructOperation());
+			System.out.println(oo.constructOperation() + "\n\n"+ (u++) +"\n::::");
 			solver.root.makeMove(oo);
 			solver.root.draw();
 			solver.root.show();
 		}
-		System.out.println("\n\n BF: "+nthroot(A_StarSolver.level, A_StarSolver.branching_factor));
+		System.out.println("\n\n BF: "+nthroot(A_StarSolver.level, A_StarSolver.branching_factor));*/
 	}
-	
-
+	public static int i = 1;
+	public static void automation(String disc){
+		PrintStream out = null;
+		try {
+			out = new PrintStream(new FileOutputStream("results/"+i+".txt"));
+			i++;
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.setOut(out);
+		State s = new State();
+		A_StarSolver solver = new A_StarSolver(s);
+		s.initilizeState(disc);
+		s.setParent(null);
+		s.show();
+		System.out.print(solver.solve());
+		
+		int u = 1;
+		while(!solver.ops.isEmpty()){
+			
+			Op oo = solver.ops.pop();
+			System.out.println(oo.constructOperation() + " ::::"+ (u++) +"\n::::");
+			solver.root.makeMove(oo);
+			solver.root.draw();
+			solver.root.show();
+		}
+		System.out.print("\n\n BF: "+nthroot(A_StarSolver.level, A_StarSolver.branching_factor));
+		out.close();
+	}
 }
 
