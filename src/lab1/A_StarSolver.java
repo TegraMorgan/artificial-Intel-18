@@ -65,6 +65,7 @@ public class A_StarSolver {
 	 * @return boolean
 	 */
 	static String voo = "";
+	static int[] optimal_solutions = new int[40];
 	public boolean solve(){
 		root.setParent(null);
 		root.g = 0;
@@ -79,6 +80,10 @@ public class A_StarSolver {
 			FibonacciHeapNode<State> min = OPEN_LIST.min();
 			min = remove_min();
 			
+			
+				
+				
+			//DEBUG
 			CLOSED_LIST.put(min.data.disc, min);
 			if(min.data.isGoal()){
 				System.out.println("Solution FOUND!");
@@ -95,6 +100,20 @@ public class A_StarSolver {
 				}
 				branching_factor *= level;
 				return true;
+			}
+			/**
+			 * @DEBUG
+			 */
+			if(min.data.getOpp()!= null){
+				if(min.data.getOpp().constructOperation().equals("QR2")){
+					System.out.println("//Debug: \nParent: ");
+					min.data.getParent().show();
+					System.out.println("Current: ");
+					min.data.show();
+					System.out.println("\nPossible moves: ");
+					min.data.showNextStates();
+					System.out.println("\nEND of pm\n");
+				}
 			}
 			ArrayList<Op> operations = min.data.generatePossibleMoves().getPossibleOperations();
 			for(Op op: operations){
@@ -122,6 +141,7 @@ public class A_StarSolver {
 						,closed = CLOSED_LIST.containsKey(s.disc);
 				FibonacciHeapNode<State> stateHelper = null;
 				if(closed || opened){
+					
 					//System.out.println(opened? "#opened#\n":"#closed#\n"+ "      lvl: " + level);
 					stateHelper = (closed)? CLOSED_LIST.get(s.disc): OPEN_LIST_HELPER.get(s.disc);
 					
@@ -129,8 +149,11 @@ public class A_StarSolver {
 					if(s.getHValue() < stateHelper.key){
 						//stateHelper.setHValue(s.getHValue());
 						if(opened){
-							OPEN_LIST.decreaseKey(stateHelper, s.getHValue());
+							//OPEN_LIST.decreaseKey(stateHelper, s.getHValue());
+							OPEN_LIST.delete(stateHelper);
+							OPEN_LIST_HELPER.remove(stateHelper);
 							stateHelper.data.setHValue(s.getHValue());
+							insert_opened(stateHelper);
 						}else{
 							//fbn equals to stateHelper
 							FibonacciHeapNode<State> fbn = CLOSED_LIST.remove(s.disc);
@@ -138,9 +161,14 @@ public class A_StarSolver {
 							insert_opened(fbn);
 							
 						}
-						stateHelper.data.setParent(min.data);
+						//stateHelper.data.setParent(min.data);
 					}
 					//System.out.println("YEPPE");
+					if(min.data.getOpp().constructOperation().equals("QR2")){
+						if(op.constructOperation().equals("QR2")){
+							System.out.println("here");
+						}
+					}
 					continue;
 				}
 				branching_factor++;
@@ -150,6 +178,12 @@ public class A_StarSolver {
 					System.out.println("SS");
 					return false;
 				}*/
+				
+				if(min.data.getOpp() != null && min.data.getOpp().constructOperation().equals("QR2")){
+					if(op.constructOperation().equals("QR2")){
+						System.out.println("here");
+					}
+				}
 				
 			}
 		}
@@ -211,10 +245,30 @@ public class A_StarSolver {
 	
 	public static void main(String[] args){
 		
-		try(BufferedReader br = new BufferedReader(new FileReader("states.txt"))) {
+		try(BufferedReader br = new BufferedReader(new FileReader("states2.txt"))) {
+			int k = 0;
 		    for(String line; (line = br.readLine()) != null; ) {
+		    	//System.out.println(line);
+		        //automation(line);
+		    	line = line.trim();
+		    	int shouldBe = 0;
+		    	if(line.startsWith("Soln")){
+		    		//System.out.println(line);
+		    		line = line.substring(6);
+		    		shouldBe += line.split(" ").length;
+		    		while(!line.endsWith(".")){
+		    			line = br.readLine().trim();
+		    			shouldBe += line.split(" ").length;
+		    		}
+		    		A_StarSolver.optimal_solutions[k++] = shouldBe-1;
+		    	}
 		    	
+		    }
+		    BufferedReader br2 = new BufferedReader(new FileReader("states.txt"));
+		    for(String line; (line = br2.readLine()) != null; ) {
+		    	//System.out.println(line);
 		        automation(line);
+		    	
 		    }
 		    // line is not visible here.
 		} catch (IOException e) {
@@ -223,6 +277,9 @@ public class A_StarSolver {
 		}
 		/*State s = new State();
 		s.initilizeState("ABB..OA.P..OXXP..O..PQQQ....C.RRR.C.");
+		//String st = "A B B . . O A . P . . O X X P . . O . . P Q Q Q . . . . C . R R R . C . ";
+		//st = st.replaceAll("\\s+","");
+		//s.initilizeState(s);
 		s.setParent(null);
 		s.show();
 		A_StarSolver solver = new A_StarSolver(s);
@@ -242,6 +299,11 @@ public class A_StarSolver {
 	}
 	public static int i = 1;
 	public static void automation(String disc){
+		/*if(i != 12 && i != 17 && i != 24 && i!= 33 && i!= 36 && i !=38 ){
+			
+			i++;
+			return;
+		}*/
 		PrintStream out = null;
 		try {
 			out = new PrintStream(new FileOutputStream("results/"+i+".txt"));
@@ -251,6 +313,7 @@ public class A_StarSolver {
 			e.printStackTrace();
 		}
 		System.setOut(out);
+		System.out.println(disc);
 		State s = new State();
 		A_StarSolver solver = new A_StarSolver(s);
 		s.initilizeState(disc);
@@ -258,16 +321,18 @@ public class A_StarSolver {
 		s.show();
 		System.out.print(solver.solve());
 		
-		int u = 1;
+		
+		int si = solver.ops.size();
 		while(!solver.ops.isEmpty()){
 			
 			Op oo = solver.ops.pop();
-			System.out.println(oo.constructOperation() + " ::::"+ (u++) +"\n::::");
+			System.out.println(oo.constructOperation());
 			solver.root.makeMove(oo);
 			solver.root.draw();
 			solver.root.show();
 		}
-		System.out.print("\n\n BF: "+nthroot(A_StarSolver.level, A_StarSolver.branching_factor));
+		System.out.println("\n\n BF: " +nthroot(A_StarSolver.level, A_StarSolver.branching_factor));
+		System.out.println("\nNumber of moves: " + si + "  should be: " + optimal_solutions[i-2]);
 		out.close();
 	}
 }

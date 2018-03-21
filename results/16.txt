@@ -1,0 +1,234 @@
+AABBCOD.EECODFPXXO.FPQQQ..P...GG....
+A A B B C O 
+D . E E C O 
+D F P X X O 
+. F P Q Q Q 
+. . P . . . 
+G G . . . . 
+
+//Debug: 
+Parent: 
+A A P B B O 
+E E P # # O 
+X X P # # O 
+D Q Q Q # # 
+D F # # C # 
+# F G G C # 
+
+Current: 
+A A P B B O 
+E E P # # O 
+X X P # # O 
+D # # Q Q Q 
+D F # # C # 
+# F G G C # 
+
+
+Possible moves: 
+PD1
+PD2
+QL1
+QL2
+DD1
+FU1
+
+END of pm
+
+Solution FOUND!
+truePD1
+A A B B C O 
+D # E E C O 
+D F # X X O 
+# F P Q Q Q 
+# # P # # # 
+G G P # # # 
+
+FD1
+A A B B C O 
+D # E E C O 
+D # # X X O 
+# F P Q Q Q 
+# F P # # # 
+G G P # # # 
+
+DD2
+A A B B C O 
+# # E E C O 
+# # # X X O 
+D F P Q Q Q 
+D F P # # # 
+G G P # # # 
+
+XL3
+A A B B C O 
+# # E E C O 
+X X # # # O 
+D F P Q Q Q 
+D F P # # # 
+G G P # # # 
+
+CD1
+A A B B # O 
+# # E E C O 
+X X # # C O 
+D F P Q Q Q 
+D F P # # # 
+G G P # # # 
+
+BR1
+A A # B B O 
+# # E E C O 
+X X # # C O 
+D F P Q Q Q 
+D F P # # # 
+G G P # # # 
+
+EL2
+A A # B B O 
+E E # # C O 
+X X # # C O 
+D F P Q Q Q 
+D F P # # # 
+G G P # # # 
+
+PU3
+A A P B B O 
+E E P # C O 
+X X P # C O 
+D F # Q Q Q 
+D F # # # # 
+G G # # # # 
+
+QL1
+A A P B B O 
+E E P # C O 
+X X P # C O 
+D F Q Q Q # 
+D F # # # # 
+G G # # # # 
+
+OD3
+A A P B B # 
+E E P # C # 
+X X P # C # 
+D F Q Q Q O 
+D F # # # O 
+G G # # # O 
+
+GR2
+A A P B B # 
+E E P # C # 
+X X P # C # 
+D F Q Q Q O 
+D F # # # O 
+# # G G # O 
+
+FD1
+A A P B B # 
+E E P # C # 
+X X P # C # 
+D # Q Q Q O 
+D F # # # O 
+# F G G # O 
+
+QL1
+A A P B B # 
+E E P # C # 
+X X P # C # 
+D Q Q Q # O 
+D F # # # O 
+# F G G # O 
+
+CD3
+A A P B B # 
+E E P # # # 
+X X P # # # 
+D Q Q Q # O 
+D F # # C O 
+# F G G C O 
+
+OU3
+A A P B B O 
+E E P # # O 
+X X P # # O 
+D Q Q Q # # 
+D F # # C # 
+# F G G C # 
+
+QR2
+A A P B B O 
+E E P # # O 
+X X P # # O 
+D # # Q Q Q 
+D F # # C # 
+# F G G C # 
+
+FU1
+A A P B B O 
+E E P # # O 
+X X P # # O 
+D F # Q Q Q 
+D F # # C # 
+# # G G C # 
+
+GL2
+A A P B B O 
+E E P # # O 
+X X P # # O 
+D F # Q Q Q 
+D F # # C # 
+G G # # C # 
+
+PD3
+A A # B B O 
+E E # # # O 
+X X # # # O 
+D F P Q Q Q 
+D F P # C # 
+G G P # C # 
+
+XR3
+A A # B B O 
+E E # # # O 
+# # # X X O 
+D F P Q Q Q 
+D F P # C # 
+G G P # C # 
+
+PU3
+A A P B B O 
+E E P # # O 
+# # P X X O 
+D F # Q Q Q 
+D F # # C # 
+G G # # C # 
+
+QL1
+A A P B B O 
+E E P # # O 
+# # P X X O 
+D F Q Q Q # 
+D F # # C # 
+G G # # C # 
+
+OD3
+A A P B B # 
+E E P # # # 
+# # P X X # 
+D F Q Q Q O 
+D F # # C O 
+G G # # C O 
+
+XR3
+A A P B B # 
+E E P # # # 
+# # P # # # 
+D F Q Q Q O 
+D F # # C O 
+G G # # C O 
+
+
+
+ BF: 1.3845256346909471
+
+Number of moves: 24  should be: 21

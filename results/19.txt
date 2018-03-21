@@ -1,0 +1,190 @@
+..ABB...A.J..DXXJ..DEEF..OOOF.......
+. . A B B . 
+. . A . J . 
+. D X X J . 
+. D E E F . 
+. O O O F . 
+. . . . . . 
+
+Solution FOUND!
+trueDU2
+# D A B B # 
+# D A # J # 
+# # X X J # 
+# # E E F # 
+# O O O F # 
+# # # # # # 
+
+XL2
+# D A B B # 
+# D A # J # 
+X X # # J # 
+# # E E F # 
+# O O O F # 
+# # # # # # 
+
+AD1
+# D # B B # 
+# D A # J # 
+X X A # J # 
+# # E E F # 
+# O O O F # 
+# # # # # # 
+
+BL1
+# D B B # # 
+# D A # J # 
+X X A # J # 
+# # E E F # 
+# O O O F # 
+# # # # # # 
+
+JU1
+# D B B J # 
+# D A # J # 
+X X A # # # 
+# # E E F # 
+# O O O F # 
+# # # # # # 
+
+EL2
+# D B B J # 
+# D A # J # 
+X X A # # # 
+E E # # F # 
+# O O O F # 
+# # # # # # 
+
+FU1
+# D B B J # 
+# D A # J # 
+X X A # F # 
+E E # # F # 
+# O O O # # 
+# # # # # # 
+
+OR2
+# D B B J # 
+# D A # J # 
+X X A # F # 
+E E # # F # 
+# # # O O O 
+# # # # # # 
+
+AD3
+# D B B J # 
+# D # # J # 
+X X # # F # 
+E E # # F # 
+# # A O O O 
+# # A # # # 
+
+ER2
+# D B B J # 
+# D # # J # 
+X X # # F # 
+# # E E F # 
+# # A O O O 
+# # A # # # 
+
+XR2
+# D B B J # 
+# D # # J # 
+# # X X F # 
+# # E E F # 
+# # A O O O 
+# # A # # # 
+
+DD4
+# # B B J # 
+# # # # J # 
+# # X X F # 
+# # E E F # 
+# D A O O O 
+# D A # # # 
+
+BL2
+B B # # J # 
+# # # # J # 
+# # X X F # 
+# # E E F # 
+# D A O O O 
+# D A # # # 
+
+EL2
+B B # # J # 
+# # # # J # 
+# # X X F # 
+E E # # F # 
+# D A O O O 
+# D A # # # 
+
+XL2
+B B # # J # 
+# # # # J # 
+X X # # F # 
+E E # # F # 
+# D A O O O 
+# D A # # # 
+
+AU4
+B B A # J # 
+# # A # J # 
+X X # # F # 
+E E # # F # 
+# D # O O O 
+# D # # # # 
+
+ER2
+B B A # J # 
+# # A # J # 
+X X # # F # 
+# # E E F # 
+# D # O O O 
+# D # # # # 
+
+XR2
+B B A # J # 
+# # A # J # 
+# # X X F # 
+# # E E F # 
+# D # O O O 
+# D # # # # 
+
+DU3
+B B A # J # 
+# D A # J # 
+# D X X F # 
+# # E E F # 
+# # # O O O 
+# # # # # # 
+
+OL3
+B B A # J # 
+# D A # J # 
+# D X X F # 
+# # E E F # 
+O O O # # # 
+# # # # # # 
+
+FD1
+B B A # J # 
+# D A # J # 
+# D X X # # 
+# # E E F # 
+O O O # F # 
+# # # # # # 
+
+XR4
+B B A # J # 
+# D A # J # 
+# D # # # # 
+# # E E F # 
+O O O # F # 
+# # # # # # 
+
+
+
+ BF: 1.0287396198010674
+
+Number of moves: 22  should be: 22

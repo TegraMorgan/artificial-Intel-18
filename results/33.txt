@@ -1,0 +1,1825 @@
+.AR.BB.AR...XXR...IDDEEPIFFGHPQQQGHP
+. A R . B B 
+. A R . . . 
+X X R . . . 
+I D D E E P 
+I F F G H P 
+Q Q Q G H P 
+
+//Debug: 
+Parent: 
+# A R G B B 
+# A R G # P 
+X X R # # P 
+D D E E H P 
+I F F # H # 
+I Q Q Q # # 
+
+Current: 
+# A R G B B 
+# A R G # P 
+X X R # # P 
+D D E E H P 
+I F F # H # 
+I # # Q Q Q 
+
+
+Possible moves: 
+PD1
+QL1
+QL2
+FR1
+GD1
+HU1
+HU2
+
+END of pm
+
+//Debug: 
+Parent: 
+# A R G B B 
+# A R G # # 
+X X R # # P 
+D D E E H P 
+I F F # H P 
+I Q Q Q # # 
+
+Current: 
+# A R G B B 
+# A R G # # 
+X X R # # P 
+D D E E H P 
+I F F # H P 
+I # # Q Q Q 
+
+
+Possible moves: 
+PU1
+QL1
+QL2
+FR1
+GD1
+HU1
+HU2
+
+END of pm
+
+//Debug: 
+Parent: 
+# A R G B B 
+# A R G # # 
+X X R # # P 
+D D E E H P 
+I # F F H P 
+I Q Q Q # # 
+
+Current: 
+# A R G B B 
+# A R G # # 
+X X R # # P 
+D D E E H P 
+I # F F H P 
+I # # Q Q Q 
+
+
+Possible moves: 
+PU1
+QL1
+QL2
+FL1
+GD1
+HU1
+HU2
+
+END of pm
+
+//Debug: 
+Parent: 
+# A R G B B 
+# A R G # P 
+X X R # # P 
+D D E E H P 
+I # F F H # 
+I Q Q Q # # 
+
+Current: 
+# A R G B B 
+# A R G # P 
+X X R # # P 
+D D E E H P 
+I # F F H # 
+I # # Q Q Q 
+
+
+Possible moves: 
+PD1
+QL1
+QL2
+FL1
+GD1
+HU1
+HU2
+
+END of pm
+
+//Debug: 
+Parent: 
+# A R B B # 
+# A R G # # 
+X X R G # P 
+D D E E H P 
+I F F # H P 
+I Q Q Q # # 
+
+Current: 
+# A R B B # 
+# A R G # # 
+X X R G # P 
+D D E E H P 
+I F F # H P 
+I # # Q Q Q 
+
+
+Possible moves: 
+PU1
+PU2
+QL1
+QL2
+BR1
+FR1
+HU1
+HU2
+
+END of pm
+
+//Debug: 
+Parent: 
+# A R B B P 
+# A R G # P 
+X X R G # P 
+D D E E H # 
+I F F # H # 
+I Q Q Q # # 
+
+Current: 
+# A R B B P 
+# A R G # P 
+X X R G # P 
+D D E E H # 
+I F F # H # 
+I # # Q Q Q 
+
+
+Possible moves: 
+PD1
+PD2
+QL1
+QL2
+FR1
+HU1
+HU2
+
+END of pm
+
+//Debug: 
+Parent: 
+# A R B B # 
+# A R G # P 
+X X R G # P 
+D D E E H P 
+I F F # H # 
+I Q Q Q # # 
+
+Current: 
+# A R B B # 
+# A R G # P 
+X X R G # P 
+D D E E H P 
+I F F # H # 
+I # # Q Q Q 
+
+
+Possible moves: 
+PU1
+PD1
+QL1
+QL2
+BR1
+FR1
+HU1
+HU2
+
+END of pm
+
+//Debug: 
+Parent: 
+# A R G B B 
+# A R G # # 
+X X R # H P 
+D D E E H P 
+I # # F F P 
+I Q Q Q # # 
+
+Current: 
+# A R G B B 
+# A R G # # 
+X X R # H P 
+D D E E H P 
+I # # F F P 
+I # # Q Q Q 
+
+
+Possible moves: 
+PU1
+QL1
+QL2
+FL1
+FL2
+GD1
+HU1
+
+END of pm
+
+//Debug: 
+Parent: 
+# A R G B B 
+# A R G # P 
+X X R # H P 
+D D E E H P 
+I # # F F # 
+I Q Q Q # # 
+
+Current: 
+# A R G B B 
+# A R G # P 
+X X R # H P 
+D D E E H P 
+I # # F F # 
+I # # Q Q Q 
+
+
+Possible moves: 
+PD1
+QL1
+QL2
+FR1
+FL1
+FL2
+GD1
+HU1
+
+END of pm
+
+//Debug: 
+Parent: 
+# A R G B B 
+# A R G # P 
+X X R # H P 
+D D E E H P 
+I # # # F F 
+I Q Q Q # # 
+
+Current: 
+# A R G B B 
+# A R G # P 
+X X R # H P 
+D D E E H P 
+I # # # F F 
+I # # Q Q Q 
+
+
+Possible moves: 
+QL1
+QL2
+FL1
+FL2
+FL3
+GD1
+HU1
+
+END of pm
+
+//Debug: 
+Parent: 
+# A B B H P 
+# A R G H P 
+X X R G # P 
+D D R E E # 
+I F F # # # 
+I Q Q Q # # 
+
+Current: 
+# A B B H P 
+# A R G H P 
+X X R G # P 
+D D R E E # 
+I F F # # # 
+I # # Q Q Q 
+
+
+Possible moves: 
+PD1
+PD2
+QL1
+QL2
+ER1
+FR1
+FR2
+FR3
+HD1
+
+END of pm
+
+//Debug: 
+Parent: 
+# A B B H P 
+# A R # H P 
+X X R # # P 
+D D R G E E 
+I F F G # # 
+I Q Q Q # # 
+
+Current: 
+# A B B H P 
+# A R # H P 
+X X R # # P 
+D D R G E E 
+I F F G # # 
+I # # Q Q Q 
+
+
+Possible moves: 
+QL1
+QL2
+GU1
+GU2
+HD1
+
+END of pm
+
+//Debug: 
+Parent: 
+# A B B H # 
+# A R G H P 
+X X R G # P 
+D D R E E P 
+I F F # # # 
+I Q Q Q # # 
+
+Current: 
+# A B B H # 
+# A R G H P 
+X X R G # P 
+D D R E E P 
+I F F # # # 
+I # # Q Q Q 
+
+
+Possible moves: 
+PU1
+PD1
+QL1
+QL2
+FR1
+FR2
+FR3
+HD1
+
+END of pm
+
+//Debug: 
+Parent: 
+# A B B H # 
+# A R G H # 
+X X R G # P 
+D D R E E P 
+I F F # # P 
+I Q Q Q # # 
+
+Current: 
+# A B B H # 
+# A R G H # 
+X X R G # P 
+D D R E E P 
+I F F # # P 
+I # # Q Q Q 
+
+
+Possible moves: 
+PU1
+PU2
+QL1
+QL2
+FR1
+FR2
+HD1
+
+END of pm
+
+//Debug: 
+Parent: 
+# A B B H P 
+# A R G H P 
+X X R G # P 
+D D R E E # 
+I # # F F # 
+I Q Q Q # # 
+
+Current: 
+# A B B H P 
+# A R G H P 
+X X R G # P 
+D D R E E # 
+I # # F F # 
+I # # Q Q Q 
+
+
+Possible moves: 
+PD1
+PD2
+QL1
+QL2
+RD1
+RD2
+ER1
+FR1
+FL1
+FL2
+HD1
+
+END of pm
+
+//Debug: 
+Parent: 
+# A B B H # 
+# A R G H # 
+X X R G # P 
+D D R E E P 
+I # F F # P 
+I Q Q Q # # 
+
+Current: 
+# A B B H # 
+# A R G H # 
+X X R G # P 
+D D R E E P 
+I # F F # P 
+I # # Q Q Q 
+
+
+Possible moves: 
+PU1
+PU2
+QL1
+QL2
+FR1
+FL1
+HD1
+
+END of pm
+
+//Debug: 
+Parent: 
+# A B B H # 
+# A R G H P 
+X X R G # P 
+D D R E E P 
+I # # F F # 
+I Q Q Q # # 
+
+Current: 
+# A B B H # 
+# A R G H P 
+X X R G # P 
+D D R E E P 
+I # # F F # 
+I # # Q Q Q 
+
+
+Possible moves: 
+PU1
+PD1
+QL1
+QL2
+RD1
+RD2
+FR1
+FL1
+FL2
+HD1
+
+END of pm
+
+//Debug: 
+Parent: 
+# A B B H # 
+# A R G H # 
+X X R G # P 
+D D R E E P 
+I # # F F P 
+I Q Q Q # # 
+
+Current: 
+# A B B H # 
+# A R G H # 
+X X R G # P 
+D D R E E P 
+I # # F F P 
+I # # Q Q Q 
+
+
+Possible moves: 
+PU1
+PU2
+QL1
+QL2
+RD1
+RD2
+FL1
+FL2
+HD1
+
+END of pm
+
+//Debug: 
+Parent: 
+# A B B H P 
+# A R G H P 
+X X R G # P 
+D D R E E # 
+I # # # F F 
+I Q Q Q # # 
+
+Current: 
+# A B B H P 
+# A R G H P 
+X X R G # P 
+D D R E E # 
+I # # # F F 
+I # # Q Q Q 
+
+
+Possible moves: 
+PD1
+QL1
+QL2
+RD1
+RD2
+ER1
+FL1
+FL2
+FL3
+HD1
+
+END of pm
+
+//Debug: 
+Parent: 
+# A B B H # 
+# A R G H P 
+X X R G # P 
+D D R E E P 
+I # F F # # 
+I Q Q Q # # 
+
+Current: 
+# A B B H # 
+# A R G H P 
+X X R G # P 
+D D R E E P 
+I # F F # # 
+I # # Q Q Q 
+
+
+Possible moves: 
+PU1
+PD1
+QL1
+QL2
+FR1
+FR2
+FL1
+HD1
+
+END of pm
+
+//Debug: 
+Parent: 
+# A R G B B 
+# A R G H # 
+X X R # H P 
+I D D E E P 
+I # F F # P 
+# Q Q Q # # 
+
+Current: 
+# A R G B B 
+# A R G H # 
+X X R # H P 
+I D D E E P 
+I # F F # P 
+# # # Q Q Q 
+
+
+Possible moves: 
+PU1
+QL1
+QL2
+QL3
+FR1
+FL1
+GD1
+ID1
+
+END of pm
+
+//Debug: 
+Parent: 
+# A B B H P 
+# A R # H P 
+X X R G # P 
+D D R G E E 
+I # F F # # 
+I Q Q Q # # 
+
+Current: 
+# A B B H P 
+# A R # H P 
+X X R G # P 
+D D R G E E 
+I # F F # # 
+I # # Q Q Q 
+
+
+Possible moves: 
+QL1
+QL2
+FR1
+FR2
+FL1
+GU1
+HD1
+
+END of pm
+
+//Debug: 
+Parent: 
+# A # B B P 
+# A R # H P 
+X X R # H P 
+D D R G E E 
+I F F G # # 
+I Q Q Q # # 
+
+Current: 
+# A # B B P 
+# A R # H P 
+X X R # H P 
+D D R G E E 
+I F F G # # 
+I # # Q Q Q 
+
+
+Possible moves: 
+QL1
+QL2
+RU1
+BL1
+GU1
+GU2
+
+END of pm
+
+//Debug: 
+Parent: 
+# A R B B P 
+# A R # H P 
+X X R # H P 
+I D D G E E 
+I F F G # # 
+# Q Q Q # # 
+
+Current: 
+# A R B B P 
+# A R # H P 
+X X R # H P 
+I D D G E E 
+I F F G # # 
+# # # Q Q Q 
+
+
+Possible moves: 
+QL1
+QL2
+QL3
+GU1
+GU2
+ID1
+
+END of pm
+
+//Debug: 
+Parent: 
+# A R B B P 
+# A R G H P 
+X X R G H P 
+D D # E E # 
+I F F # # # 
+I Q Q Q # # 
+
+Current: 
+# A R B B P 
+# A R G H P 
+X X R G H P 
+D D # E E # 
+I F F # # # 
+I # # Q Q Q 
+
+
+Possible moves: 
+PD1
+PD2
+QL1
+QL2
+RD1
+DR1
+ER1
+EL1
+FR1
+FR2
+FR3
+
+END of pm
+
+//Debug: 
+Parent: 
+# A R B B P 
+# A R G H P 
+X X R G H P 
+D D E E # # 
+I # # F F # 
+I Q Q Q # # 
+
+Current: 
+# A R B B P 
+# A R G H P 
+X X R G H P 
+D D E E # # 
+I # # F F # 
+I # # Q Q Q 
+
+
+Possible moves: 
+PD1
+PD2
+QL1
+QL2
+ER1
+ER2
+FR1
+FL1
+FL2
+HD1
+
+END of pm
+
+//Debug: 
+Parent: 
+# A R B B P 
+# A R G H P 
+X X R G H P 
+D D E E # # 
+I # # # F F 
+I Q Q Q # # 
+
+Current: 
+# A R B B P 
+# A R G H P 
+X X R G H P 
+D D E E # # 
+I # # # F F 
+I # # Q Q Q 
+
+
+Possible moves: 
+PD1
+QL1
+QL2
+ER1
+ER2
+FL1
+FL2
+FL3
+HD1
+
+END of pm
+
+//Debug: 
+Parent: 
+# A R B B # 
+# A R G # # 
+X X R G H P 
+D D E E H P 
+I # # F F P 
+I Q Q Q # # 
+
+Current: 
+# A R B B # 
+# A R G # # 
+X X R G H P 
+D D E E H P 
+I # # F F P 
+I # # Q Q Q 
+
+
+Possible moves: 
+PU1
+PU2
+QL1
+QL2
+BR1
+FL1
+FL2
+HU1
+
+END of pm
+
+//Debug: 
+Parent: 
+# A # B B P 
+# A R G H P 
+X X R G H P 
+D D R E E # 
+I F F # # # 
+I Q Q Q # # 
+
+Current: 
+# A # B B P 
+# A R G H P 
+X X R G H P 
+D D R E E # 
+I F F # # # 
+I # # Q Q Q 
+
+
+Possible moves: 
+PD1
+PD2
+QL1
+QL2
+RU1
+BL1
+ER1
+FR1
+FR2
+FR3
+
+END of pm
+
+//Debug: 
+Parent: 
+# A R B B P 
+# A R G H P 
+X X R G H P 
+D D # E E # 
+I # F F # # 
+I Q Q Q # # 
+
+Current: 
+# A R B B P 
+# A R G H P 
+X X R G H P 
+D D # E E # 
+I # F F # # 
+I # # Q Q Q 
+
+
+Possible moves: 
+PD1
+PD2
+QL1
+QL2
+RD1
+DR1
+ER1
+EL1
+FR1
+FR2
+FL1
+
+END of pm
+
+//Debug: 
+Parent: 
+# A # B B # 
+# A R G H P 
+X X R G H P 
+D D R E E P 
+I F F # # # 
+I Q Q Q # # 
+
+Current: 
+# A # B B # 
+# A R G H P 
+X X R G H P 
+D D R E E P 
+I F F # # # 
+I # # Q Q Q 
+
+
+Possible moves: 
+PU1
+PD1
+QL1
+QL2
+RU1
+BR1
+BL1
+FR1
+FR2
+FR3
+
+END of pm
+
+//Debug: 
+Parent: 
+# A R B B # 
+# A R G H P 
+X X R G H P 
+# D D E E P 
+I F F # # # 
+I Q Q Q # # 
+
+Current: 
+# A R B B # 
+# A R G H P 
+X X R G H P 
+# D D E E P 
+I F F # # # 
+I # # Q Q Q 
+
+
+Possible moves: 
+PU1
+PD1
+QL1
+QL2
+BR1
+DL1
+FR1
+FR2
+FR3
+IU1
+
+END of pm
+
+//Debug: 
+Parent: 
+# A R B B P 
+# A R # H P 
+X X R G H P 
+D D # G E E 
+I # F F # # 
+I Q Q Q # # 
+
+Current: 
+# A R B B P 
+# A R # H P 
+X X R G H P 
+D D # G E E 
+I # F F # # 
+I # # Q Q Q 
+
+
+Possible moves: 
+QL1
+QL2
+RD1
+DR1
+FR1
+FR2
+FL1
+GU1
+
+END of pm
+
+//Debug: 
+Parent: 
+# A R B B # 
+# A R G H P 
+X X R G H P 
+# D D E E P 
+I # # # F F 
+I Q Q Q # # 
+
+Current: 
+# A R B B # 
+# A R G H P 
+X X R G H P 
+# D D E E P 
+I # # # F F 
+I # # Q Q Q 
+
+
+Possible moves: 
+PU1
+QL1
+QL2
+BR1
+DL1
+FL1
+FL2
+FL3
+IU1
+
+END of pm
+
+//Debug: 
+Parent: 
+# A R B B # 
+# A R G H # 
+X X R G H P 
+I D D E E P 
+I F F # # P 
+# Q Q Q # # 
+
+Current: 
+# A R B B # 
+# A R G H # 
+X X R G H P 
+I D D E E P 
+I F F # # P 
+# # # Q Q Q 
+
+
+Possible moves: 
+PU1
+PU2
+QL1
+QL2
+QL3
+BR1
+FR1
+FR2
+ID1
+
+END of pm
+
+//Debug: 
+Parent: 
+# A # B B P 
+# A R G H P 
+X X R G H P 
+D D R E E # 
+I # F F # # 
+I Q Q Q # # 
+
+Current: 
+# A # B B P 
+# A R G H P 
+X X R G H P 
+D D R E E # 
+I # F F # # 
+I # # Q Q Q 
+
+
+Possible moves: 
+PD1
+PD2
+QL1
+QL2
+RU1
+BL1
+ER1
+FR1
+FR2
+FL1
+
+END of pm
+
+//Debug: 
+Parent: 
+# A R B B P 
+# A R G H P 
+X X R G H P 
+I D D E E # 
+I F F # # # 
+# Q Q Q # # 
+
+Current: 
+# A R B B P 
+# A R G H P 
+X X R G H P 
+I D D E E # 
+I F F # # # 
+# # # Q Q Q 
+
+
+Possible moves: 
+PD1
+PD2
+QL1
+QL2
+QL3
+ER1
+FR1
+FR2
+FR3
+ID1
+
+END of pm
+
+//Debug: 
+Parent: 
+# A R B B # 
+# A R G H P 
+X X R G H P 
+I D D E E P 
+I F F # # # 
+# Q Q Q # # 
+
+Current: 
+# A R B B # 
+# A R G H P 
+X X R G H P 
+I D D E E P 
+I F F # # # 
+# # # Q Q Q 
+
+
+Possible moves: 
+PU1
+PD1
+QL1
+QL2
+QL3
+BR1
+FR1
+FR2
+FR3
+ID1
+
+END of pm
+
+//Debug: 
+Parent: 
+# A R B B # 
+# A R G H P 
+X X R G H P 
+# D D E E P 
+I # # F F # 
+I Q Q Q # # 
+
+Current: 
+# A R B B # 
+# A R G H P 
+X X R G H P 
+# D D E E P 
+I # # F F # 
+I # # Q Q Q 
+
+
+Possible moves: 
+PU1
+PD1
+QL1
+QL2
+BR1
+DL1
+FR1
+FL1
+FL2
+IU1
+
+END of pm
+
+//Debug: 
+Parent: 
+# A R B B P 
+# A R G H P 
+X X R G H P 
+I # D D E E 
+I # # F F # 
+# Q Q Q # # 
+
+Current: 
+# A R B B P 
+# A R G H P 
+X X R G H P 
+I # D D E E 
+I # # F F # 
+# # # Q Q Q 
+
+
+Possible moves: 
+QL1
+QL2
+QL3
+DL1
+FR1
+FL1
+FL2
+ID1
+
+END of pm
+
+//Debug: 
+Parent: 
+# A R B B # 
+# A R G H P 
+X X R G H P 
+I D D E E P 
+I # # F F # 
+# Q Q Q # # 
+
+Current: 
+# A R B B # 
+# A R G H P 
+X X R G H P 
+I D D E E P 
+I # # F F # 
+# # # Q Q Q 
+
+
+Possible moves: 
+PU1
+PD1
+QL1
+QL2
+QL3
+BR1
+FR1
+FL1
+FL2
+ID1
+
+END of pm
+
+//Debug: 
+Parent: 
+# A R B B P 
+# A R G H P 
+X X R G H P 
+I D D E E # 
+I # F F # # 
+# Q Q Q # # 
+
+Current: 
+# A R B B P 
+# A R G H P 
+X X R G H P 
+I D D E E # 
+I # F F # # 
+# # # Q Q Q 
+
+
+Possible moves: 
+PD1
+PD2
+QL1
+QL2
+QL3
+ER1
+FR1
+FR2
+FL1
+ID1
+
+END of pm
+
+//Debug: 
+Parent: 
+# A R B B # 
+# A R G H P 
+X X R G H P 
+I D D E E P 
+I # F F # # 
+# Q Q Q # # 
+
+Current: 
+# A R B B # 
+# A R G H P 
+X X R G H P 
+I D D E E P 
+I # F F # # 
+# # # Q Q Q 
+
+
+Possible moves: 
+PU1
+PD1
+QL1
+QL2
+QL3
+BR1
+FR1
+FR2
+FL1
+ID1
+
+END of pm
+
+//Debug: 
+Parent: 
+# A R B B P 
+# A R G H P 
+X X R G H P 
+I # D D E E 
+I # F F # # 
+# Q Q Q # # 
+
+Current: 
+# A R B B P 
+# A R G H P 
+X X R G H P 
+I # D D E E 
+I # F F # # 
+# # # Q Q Q 
+
+
+Possible moves: 
+QL1
+QL2
+QL3
+DL1
+FR1
+FR2
+FL1
+ID1
+
+END of pm
+
+//Debug: 
+Parent: 
+# A R B B P 
+# A R # H P 
+X X R G H P 
+# D D G E E 
+I # F F # # 
+I Q Q Q # # 
+
+Current: 
+# A R B B P 
+# A R # H P 
+X X R G H P 
+# D D G E E 
+I # F F # # 
+I # # Q Q Q 
+
+
+Possible moves: 
+QL1
+QL2
+DL1
+FR1
+FR2
+FL1
+GU1
+IU1
+
+END of pm
+
+//Debug: 
+Parent: 
+# A R B B P 
+# A R G H P 
+X X R G H P 
+I D D # E E 
+I # F F # # 
+# Q Q Q # # 
+
+Current: 
+# A R B B P 
+# A R G H P 
+X X R G H P 
+I D D # E E 
+I # F F # # 
+# # # Q Q Q 
+
+
+Possible moves: 
+QL1
+QL2
+QL3
+DR1
+EL1
+FR1
+FR2
+FL1
+GD1
+ID1
+
+END of pm
+
+//Debug: 
+Parent: 
+# A R B B P 
+# A R # H P 
+X X R G H P 
+I D D G E E 
+I # F F # # 
+# Q Q Q # # 
+
+Current: 
+# A R B B P 
+# A R # H P 
+X X R G H P 
+I D D G E E 
+I # F F # # 
+# # # Q Q Q 
+
+
+Possible moves: 
+QL1
+QL2
+QL3
+FR1
+FR2
+FL1
+GU1
+ID1
+
+END of pm
+
+Solution FOUND!
+trueBL1
+# A R B B # 
+# A R # # # 
+X X R # # # 
+I D D E E P 
+I F F G H P 
+Q Q Q G H P 
+
+PU3
+# A R B B P 
+# A R # # P 
+X X R # # P 
+I D D E E # 
+I F F G H # 
+Q Q Q G H # 
+
+ER1
+# A R B B P 
+# A R # # P 
+X X R # # P 
+I D D # E E 
+I F F G H # 
+Q Q Q G H # 
+
+GU3
+# A R B B P 
+# A R G # P 
+X X R G # P 
+I D D # E E 
+I F F # H # 
+Q Q Q # H # 
+
+EL1
+# A R B B P 
+# A R G # P 
+X X R G # P 
+I D D E E # 
+I F F # H # 
+Q Q Q # H # 
+
+PD3
+# A R B B # 
+# A R G # # 
+X X R G # # 
+I D D E E P 
+I F F # H P 
+Q Q Q # H P 
+
+QR1
+# A R B B # 
+# A R G # # 
+X X R G # # 
+I D D E E P 
+I F F # H P 
+# Q Q Q H P 
+
+ID1
+# A R B B # 
+# A R G # # 
+X X R G # # 
+# D D E E P 
+I F F # H P 
+I Q Q Q H P 
+
+DL1
+# A R B B # 
+# A R G # # 
+X X R G # # 
+D D # E E P 
+I F F # H P 
+I Q Q Q H P 
+
+EL1
+# A R B B # 
+# A R G # # 
+X X R G # # 
+D D E E # P 
+I F F # H P 
+I Q Q Q H P 
+
+HU3
+# A R B B # 
+# A R G H # 
+X X R G H # 
+D D E E # P 
+I F F # # P 
+I Q Q Q # P 
+
+ER1
+# A R B B # 
+# A R G H # 
+X X R G H # 
+D D # E E P 
+I F F # # P 
+I Q Q Q # P 
+
+RD1
+# A # B B # 
+# A R G H # 
+X X R G H # 
+D D R E E P 
+I F F # # P 
+I Q Q Q # P 
+
+BL1
+# A B B # # 
+# A R G H # 
+X X R G H # 
+D D R E E P 
+I F F # # P 
+I Q Q Q # P 
+
+HU1
+# A B B H # 
+# A R G H # 
+X X R G # # 
+D D R E E P 
+I F F # # P 
+I Q Q Q # P 
+
+FR2
+# A B B H # 
+# A R G H # 
+X X R G # # 
+D D R E E P 
+I # # F F P 
+I Q Q Q # P 
+
+PU3
+# A B B H P 
+# A R G H P 
+X X R G # P 
+D D R E E # 
+I # # F F # 
+I Q Q Q # # 
+
+QR2
+# A B B H P 
+# A R G H P 
+X X R G # P 
+D D R E E # 
+I # # F F # 
+I # # Q Q Q 
+
+RD2
+# A B B H P 
+# A # G H P 
+X X # G # P 
+D D R E E # 
+I # R F F # 
+I # R Q Q Q 
+
+ER1
+# A B B H P 
+# A # G H P 
+X X # G # P 
+D D R # E E 
+I # R F F # 
+I # R Q Q Q 
+
+FR1
+# A B B H P 
+# A # G H P 
+X X # G # P 
+D D R # E E 
+I # R # F F 
+I # R Q Q Q 
+
+GD2
+# A B B H P 
+# A # # H P 
+X X # # # P 
+D D R G E E 
+I # R G F F 
+I # R Q Q Q 
+
+XR3
+# A B B H P 
+# A # # H P 
+# # # X X P 
+D D R G E E 
+I # R G F F 
+I # R Q Q Q 
+
+AD1
+# # B B H P 
+# A # # H P 
+# A # X X P 
+D D R G E E 
+I # R G F F 
+I # R Q Q Q 
+
+BL2
+B B # # H P 
+# A # # H P 
+# A # X X P 
+D D R G E E 
+I # R G F F 
+I # R Q Q Q 
+
+RU3
+B B R # H P 
+# A R # H P 
+# A R X X P 
+D D # G E E 
+I # # G F F 
+I # # Q Q Q 
+
+DR1
+B B R # H P 
+# A R # H P 
+# A R X X P 
+# D D G E E 
+I # # G F F 
+I # # Q Q Q 
+
+IU3
+B B R # H P 
+I A R # H P 
+I A R X X P 
+# D D G E E 
+# # # G F F 
+# # # Q Q Q 
+
+DL1
+B B R # H P 
+I A R # H P 
+I A R X X P 
+D D # G E E 
+# # # G F F 
+# # # Q Q Q 
+
+RD3
+B B # # H P 
+I A # # H P 
+I A # X X P 
+D D R G E E 
+# # R G F F 
+# # R Q Q Q 
+
+BR2
+# # B B H P 
+I A # # H P 
+I A # X X P 
+D D R G E E 
+# # R G F F 
+# # R Q Q Q 
+
+IU1
+I # B B H P 
+I A # # H P 
+# A # X X P 
+D D R G E E 
+# # R G F F 
+# # R Q Q Q 
+
+AU1
+I A B B H P 
+I A # # H P 
+# # # X X P 
+D D R G E E 
+# # R G F F 
+# # R Q Q Q 
+
+XL3
+I A B B H P 
+I A # # H P 
+X X # # # P 
+D D R G E E 
+# # R G F F 
+# # R Q Q Q 
+
+RU2
+I A B B H P 
+I A R # H P 
+X X R # # P 
+D D R G E E 
+# # # G F F 
+# # # Q Q Q 
+
+GU2
+I A B B H P 
+I A R G H P 
+X X R G # P 
+D D R # E E 
+# # # # F F 
+# # # Q Q Q 
+
+FL3
+I A B B H P 
+I A R G H P 
+X X R G # P 
+D D R # E E 
+# F F # # # 
+# # # Q Q Q 
+
+GD2
+I A B B H P 
+I A R # H P 
+X X R # # P 
+D D R G E E 
+# F F G # # 
+# # # Q Q Q 
+
+FL1
+I A B B H P 
+I A R # H P 
+X X R # # P 
+D D R G E E 
+F F # G # # 
+# # # Q Q Q 
+
+RD2
+I A B B H P 
+I A # # H P 
+X X # # # P 
+D D R G E E 
+F F R G # # 
+# # R Q Q Q 
+
+XR3
+I A B B H P 
+I A # # H P 
+# # # X X P 
+D D R G E E 
+F F R G # # 
+# # R Q Q Q 
+
+RU2
+I A B B H P 
+I A R # H P 
+# # R X X P 
+D D R G E E 
+F F # G # # 
+# # # Q Q Q 
+
+QL3
+I A B B H P 
+I A R # H P 
+# # R X X P 
+D D R G E E 
+F F # G # # 
+Q Q Q # # # 
+
+GD1
+I A B B H P 
+I A R # H P 
+# # R X X P 
+D D R # E E 
+F F # G # # 
+Q Q Q G # # 
+
+EL1
+I A B B H P 
+I A R # H P 
+# # R X X P 
+D D R E E # 
+F F # G # # 
+Q Q Q G # # 
+
+PD3
+I A B B H # 
+I A R # H # 
+# # R X X # 
+D D R E E P 
+F F # G # P 
+Q Q Q G # P 
+
+XR3
+I A B B H # 
+I A R # H # 
+# # R # # # 
+D D R E E P 
+F F # G # P 
+Q Q Q G # P 
+
+
+
+ BF: 1.6858349261809058
+
+Number of moves: 47  should be: 40

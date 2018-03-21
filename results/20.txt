@@ -1,0 +1,110 @@
+A..OOOABBC..XXDC.P..D..P..EFFP..EQQQ
+A . . O O O 
+A B B C . . 
+X X D C . P 
+. . D . . P 
+. . E F F P 
+. . E Q Q Q 
+
+Solution FOUND!
+trueCD1
+A # # O O O 
+A B B # # # 
+X X D C # P 
+# # D C # P 
+# # E F F P 
+# # E Q Q Q 
+
+BR2
+A # # O O O 
+A # # B B # 
+X X D C # P 
+# # D C # P 
+# # E F F P 
+# # E Q Q Q 
+
+DU2
+A # D O O O 
+A # D B B # 
+X X # C # P 
+# # # C # P 
+# # E F F P 
+# # E Q Q Q 
+
+EU1
+A # D O O O 
+A # D B B # 
+X X # C # P 
+# # E C # P 
+# # E F F P 
+# # # Q Q Q 
+
+QL1
+A # D O O O 
+A # D B B # 
+X X # C # P 
+# # E C # P 
+# # E F F P 
+# # Q Q Q # 
+
+PD1
+A # D O O O 
+A # D B B # 
+X X # C # # 
+# # E C # P 
+# # E F F P 
+# # Q Q Q P 
+
+EU1
+A # D O O O 
+A # D B B # 
+X X E C # # 
+# # E C # P 
+# # # F F P 
+# # Q Q Q P 
+
+FL2
+A # D O O O 
+A # D B B # 
+X X E C # # 
+# # E C # P 
+# F F # # P 
+# # Q Q Q P 
+
+CD1
+A # D O O O 
+A # D B B # 
+X X E # # # 
+# # E C # P 
+# F F C # P 
+# # Q Q Q P 
+
+FL1
+A # D O O O 
+A # D B B # 
+X X E # # # 
+# # E C # P 
+F F # C # P 
+# # Q Q Q P 
+
+ED1
+A # D O O O 
+A # D B B # 
+X X # # # # 
+# # E C # P 
+F F E C # P 
+# # Q Q Q P 
+
+XR6
+A # D O O O 
+A # D B B # 
+# # # # # # 
+# # E C # P 
+F F E C # P 
+# # Q Q Q P 
+
+
+
+ BF: 1.0173749086140078
+
+Number of moves: 12  should be: 10

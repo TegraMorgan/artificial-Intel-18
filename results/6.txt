@@ -1,0 +1,102 @@
+AA.B..CC.BOP.XXQOPDDEQOPF.EQ..F..RRR
+A A . B . . 
+C C . B O P 
+. X X Q O P 
+D D E Q O P 
+F . E Q . . 
+F . . R R R 
+
+Solution FOUND!
+trueRL1
+A A # B # # 
+C C # B O P 
+# X X Q O P 
+D D E Q O P 
+F # E Q # # 
+F # R R R # 
+
+PD2
+A A # B # # 
+C C # B O # 
+# X X Q O # 
+D D E Q O P 
+F # E Q # P 
+F # R R R P 
+
+RL1
+A A # B # # 
+C C # B O # 
+# X X Q O # 
+D D E Q O P 
+F # E Q # P 
+F R R R # P 
+
+OD2
+A A # B # # 
+C C # B # # 
+# X X Q # # 
+D D E Q O P 
+F # E Q O P 
+F R R R O P 
+
+XL1
+A A # B # # 
+C C # B # # 
+X X # Q # # 
+D D E Q O P 
+F # E Q O P 
+F R R R O P 
+
+EU3
+A A E B # # 
+C C E B # # 
+X X # Q # # 
+D D # Q O P 
+F # # Q O P 
+F R R R O P 
+
+DR1
+A A E B # # 
+C C E B # # 
+X X # Q # # 
+# D D Q O P 
+F # # Q O P 
+F R R R O P 
+
+FU1
+A A E B # # 
+C C E B # # 
+X X # Q # # 
+F D D Q O P 
+F # # Q O P 
+# R R R O P 
+
+RL1
+A A E B # # 
+C C E B # # 
+X X # Q # # 
+F D D Q O P 
+F # # Q O P 
+R R R # O P 
+
+QD1
+A A E B # # 
+C C E B # # 
+X X # # # # 
+F D D Q O P 
+F # # Q O P 
+R R R Q O P 
+
+XR6
+A A E B # # 
+C C E B # # 
+# # # # # # 
+F D D Q O P 
+F # # Q O P 
+R R R Q O P 
+
+
+
+ BF: 1.4150143581486556
+
+Number of moves: 11  should be: 9
