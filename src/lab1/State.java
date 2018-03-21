@@ -21,10 +21,12 @@ public class State implements Comparable<State>,Serializable{
 	String carList = "";
 	ArrayList<Op> nextStates = new ArrayList<>();
 	private double h_value;
-	private State parent = null;
+	private State parent;
 	private String op;
+	private Op opp;
 	public String disc;
-	
+	boolean visited = false;
+	int g = -1;
 	//public int state_id;
 	
 	public State(){
@@ -44,6 +46,11 @@ public class State implements Comparable<State>,Serializable{
 		this.setOp(other.getOp());
 	}
 	
+	public char[][] getBoard(){
+		return this.board;
+	}
+	
+	//TODO [test this]
 	public void initilizeState(String disc){
 		final int ROW = 6;
 		final int COL = 6;
@@ -56,9 +63,8 @@ public class State implements Comparable<State>,Serializable{
 					continue;
 				}else{
 					if(carList.indexOf(car) == -1){
-						
 						carList += car;
-						if(j < COL -1 && k < disc.length() -1 ){
+						if(j < COL -1 && k <= disc.length() -1 ){
 							if(disc.charAt(k) == car){
 								direction = true;
 							}
@@ -84,7 +90,7 @@ public class State implements Comparable<State>,Serializable{
 			int x = c.getValue().getPosition().x,y = c.getValue().getPosition().y;
 			char name = c.getValue().name;
 			this.board[x][y] = name;
-			
+			//System.out.println("KKKK      " + name);
 			if(c.getValue().isVertical()){
 				this.board[x+1][y] = name;
 				if(c.getValue().get_size() == 3)
@@ -100,7 +106,7 @@ public class State implements Comparable<State>,Serializable{
 		for(int i = 0; i < ROW; i++){
 			for(int j = 0; j < COL; j++){
 				if(this.board[i][j] < 'A'){
-					this.board[i][j] = '.';
+					this.board[i][j] = '#';
 				}
 			}
 		}
@@ -116,11 +122,11 @@ public class State implements Comparable<State>,Serializable{
 			System.out.println();
 		}
 		System.out.println();
-		for (Entry<String, Car> entry : this.cars.entrySet()) {
+		/*for (Entry<String, Car> entry : this.cars.entrySet()) {
 		    
 		    System.out.println(entry.getValue().status());
 		    
-		}
+		}*/
 		
 	}
 	
@@ -147,10 +153,6 @@ public class State implements Comparable<State>,Serializable{
 						if(c.getValue().getPosition().y + rightRange == 4){
 							nextStates.add(new Op(Move.RIGHT,rightRange + 2,'X'));
 						}
-					}
-				}else{
-					if(c.getValue().name == 'X'){
-						nextStates.add(new Op(Move.RIGHT,2,'X'));
 					}
 				}
 				if(leftRange != 0){
@@ -316,7 +318,6 @@ public class State implements Comparable<State>,Serializable{
 	}
 	
 	public void setParent(State p){
-		if(this.parent != null) System.out.println("WTFF");
 		this.parent = p;
 	}
 	
@@ -324,8 +325,12 @@ public class State implements Comparable<State>,Serializable{
 		return this.parent;
 	}
 	
-	public void setOp(String string){
-		this.op = string;
+	public void setOp(String op2){
+		this.op = op2;
+	}
+	
+	public void setOpp(Op op){
+		this.opp = op;
 	}
 	
 	public String getOp(){
@@ -347,11 +352,14 @@ public class State implements Comparable<State>,Serializable{
 	
 	public static void main(String[] args){
 		State s = new State();
-		s.initilizeState("AA...........XX.....................");
+		s.initilizeState("A.PBBOA.P.COXXP.CO...QQQ......RRR...");
 		s.generatePossibleMoves();
-		State ss = new State();
+		s.show();
+		s.showNextStates();
+		System.out.println(s.carList);
+		/*State ss = new State();
 		ss.initilizeState("AA...........XX.....................");
-		
+		*/
 		/*s.show();
 		s.showNextStates();
 		System.out.println();
@@ -362,6 +370,11 @@ public class State implements Comparable<State>,Serializable{
 		s.show();*/
 		//.out.println(s.compress().equals(ss.compress()));
 		
+	}
+
+	public Op getOpp() {
+		// TODO Auto-generated method stub
+		return this.opp;
 	}
 	
 	

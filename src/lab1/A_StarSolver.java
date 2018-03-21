@@ -1,9 +1,21 @@
 package lab1;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Stack;
 
+/***
+ * 
+ * TODO - test 12,17,24,33,36,38
+ *
+ */
 /* 	(1) Put the start node s on a list, called OPEN, of unexpanded nodes. 
  * 			Calculate f(s) and associate its value with node s.
    	(2) If OPEN is empty, exit with failure, no solution exists.
@@ -13,7 +25,7 @@ import java.util.Map;
 	(5) If i is a goal node, exit with success; a solution has been found.
 	(6) Expand node i, creating nodes for all of its successors. For every successor node j of i:
 	
-		a. Calculate f(j)- DONE!!
+		a. Calculate f(j)- DONE!!!!
 		
 		b. If j is neither in OPEN nor in CLOSED, then add it to OPEN with its f value. 
 				Attach a pointer from j back to its predecessor i 
@@ -28,65 +40,80 @@ import java.util.Map;
 	(7) Go to (2)
 */
 
-//TODO (2) - implement 2 heuristics functions within this context (At least 2)
+
 
 public class A_StarSolver {	
-	static FibonacciHeap<State> OPEN_LIST = new FibonacciHeap<>();
-	static Map<String,FibonacciHeapNode<State> > OPEN_LIST_HELPER = new HashMap<>();
-	static Map<String,FibonacciHeapNode<State>  > CLOSED_LIST = new HashMap<>();
+	static FibonacciHeap<State> OPEN_LIST;
+	static Map<String,FibonacciHeapNode<State> > OPEN_LIST_HELPER;
+	static Map<String,FibonacciHeapNode<State>  > CLOSED_LIST;
 	//private static int id = 1;
 	State root;
-	
+	static int branching_factor;
+	static int level;
+	Stack<Op> ops = new Stack<Op>(); 
 	public A_StarSolver(State initialState){
 		this.root = initialState;
+		OPEN_LIST = new FibonacciHeap<>();
+		OPEN_LIST_HELPER = new HashMap<>();
+		CLOSED_LIST = new HashMap<>();
+		branching_factor = 0;
+		level = 0;
 	}
-	
-	
-	
+
 	/**
 	 * A* algorithm implementation
 	 * @return boolean
 	 */
+	static String voo = "";
 	public boolean solve(){
 		root.setParent(null);
+		root.g = 0;
 		calculate_Heuristics(root);
 		FibonacciHeapNode<State> rootHeapNode = new FibonacciHeapNode<State>(root, root.getHValue());
 		OPEN_LIST.insert(rootHeapNode, root.getHValue());
 		OPEN_LIST_HELPER.put(root.disc, rootHeapNode);
 		
-		
+		//final long startTime = System.currentTimeMillis();
 		while(!OPEN_LIST.isEmpty()){
-			/*System.out.println("###### " + i++);*/
+			level++;
 			FibonacciHeapNode<State> min = OPEN_LIST.min();
-			//min.data.show();System.out.println();
-			//remove min from OPEN_LIST
 			min = remove_min();
-			
 			
 			CLOSED_LIST.put(min.data.disc, min);
 			if(min.data.isGoal()){
-				/*System.out.println(min.data.cars.get('X'+"").status());*/
 				System.out.println("Solution FOUND!");
 				State path = min.data;
-				/**
-				 * TODO - critical bug!
-				 */
+				//int ii = 0;
 				while(path.getParent() != null){
-					System.out.println(path.getOp()+"\n");
-					path.show();
+					/*if(ii > 1 && path.getParent().getOp().equals(path.getOp())){
+						System.out.println("##################");
+						path.show();
+						ii++;
+					}*/
+					ops.push(path.getOpp());
 					path = path.getParent();
 				}
+				branching_factor *= level;
 				return true;
 			}
 			ArrayList<Op> operations = min.data.generatePossibleMoves().getPossibleOperations();
 			for(Op op: operations){
+				/*if(op.constructOperation().equals("QR2") && min.data.getParent().getOpp().constructOperation().equals("QR2")){
+					
+					System.out.println("$#$#$#$#$#$#$\n");
+					min.data.show();
 				
+			}*/
 				State s = new State(min.data);
-				s.setOp(op.constructOperation());
-				s.makeMove(op);
+				s.setOpp(op);
+				s.compress();
+				s.makeMove(op);				
 				s.draw();
 				s.compress();
 				s.setParent(min.data);
+				if(s.g < 0){
+					s.g = min.data.g + 1;
+				}
 				calculate_Heuristics(s);
 				
 				//Checks if the state was opened/closed previously
@@ -95,13 +122,13 @@ public class A_StarSolver {
 						,closed = CLOSED_LIST.containsKey(s.disc);
 				FibonacciHeapNode<State> stateHelper = null;
 				if(closed || opened){
+					//System.out.println(opened? "#opened#\n":"#closed#\n"+ "      lvl: " + level);
 					stateHelper = (closed)? CLOSED_LIST.get(s.disc): OPEN_LIST_HELPER.get(s.disc);
+					
+					//stateHelper.data.show();
 					if(s.getHValue() < stateHelper.key){
 						//stateHelper.setHValue(s.getHValue());
 						if(opened){
-							/**
-							 * TODO - validate that updating in one end causes updates on the other end
-							 */
 							OPEN_LIST.decreaseKey(stateHelper, s.getHValue());
 							stateHelper.data.setHValue(s.getHValue());
 						}else{
@@ -113,70 +140,135 @@ public class A_StarSolver {
 						}
 						stateHelper.data.setParent(min.data);
 					}
-					System.out.println("YEPPE");
+					//System.out.println("YEPPE");
 					continue;
 				}
-				
+				branching_factor++;
 				FibonacciHeapNode<State> new_fbn = new FibonacciHeapNode<State>(s, s.getHValue());
 				insert_opened(new_fbn);
-				/*OPEN_LIST.insert(new_fbn, s.getHValue());
-				OPEN_LIST_HELPER.put(s.disc, new_fbn);*/
+				/*if(TimeUnit.MILLISECONDS.toMinutes(System.currentTimeMillis() - startTime) > 1){
+					System.out.println("SS");
+					return false;
+				}*/
+				
 			}
 		}
-		
 		return false;
 	}
 	
-	private void insert_opened(FibonacciHeapNode<State> fbn) {
+	public void insert_opened(FibonacciHeapNode<State> fbn) {
 		OPEN_LIST.insert(fbn, fbn.data.getHValue());
 		OPEN_LIST_HELPER.put(fbn.data.disc, fbn);
 		
 	}
 
-
-
-	/**
-	 * 
-	 * 
-	TODO - implement F(n) = g(n) + h(n). 
-	#NOTE# h(n) needs to be ADMISSIBLE!
-	
-	this is a sample calculation ONLY!!
-	*
-	*
-	**/
 	private void calculate_Heuristics(State node) {
 		if(node.isGoal()){
-			node.setHValue(-1.0);
+			node.setHValue(-100.0);
 		}else{
-			node.setHValue(0);
+			double count = 0;
+			char[][] board = node.getBoard();
+			int CAR_LENGTH = 2;
+			for(int i = node.cars.get("X").getPosition().y + CAR_LENGTH ; i < 6; i++){
+				char c = board[2][i];
+				if(c != 'X' && c >='A' && c <= 'Z'){
+					count += 10;
+				}
+			}
+			node.setHValue(count + node.g);
 		}
 	}
 	
-	/**
-	 * TODO - needs to be configured to choose goal state if it exists AND handling collisions
-	 * @return
-	 */
 	public State getMin(){
 		return OPEN_LIST.min().data;
 	}
+	
 	public FibonacciHeapNode<State> remove_min(){
 		FibonacciHeapNode<State> min = OPEN_LIST.removeMin();
 		OPEN_LIST_HELPER.remove(min.data.disc);
 		return min;
 	}
 	
+	public static double nthroot(int n, double A) {
+		return nthroot(n, A, .001);
+	}
 	
+	public static double nthroot(int n, double A, double p) {
+		if(A < 0) {
+			System.err.println("A < 0");// we handle only real positive numbers
+			return -1;
+		} else if(A == 0) {
+			return 0;
+		}
+		double x_prev = A;
+		double x = A / n;  // starting "guessed" value...
+		while(Math.abs(x - x_prev) > p) {
+			x_prev = x;
+			x = ((n - 1.0) * x + A / Math.pow(x, n - 1.0)) / n;
+		}
+		return x;
+	}
 	
 	public static void main(String[] args){
-		State s = new State();
-		s.initilizeState("..............XX.......................");
+		
+		try(BufferedReader br = new BufferedReader(new FileReader("states.txt"))) {
+		    for(String line; (line = br.readLine()) != null; ) {
+		    	
+		        automation(line);
+		    }
+		    // line is not visible here.
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		/*State s = new State();
+		s.initilizeState("ABB..OA.P..OXXP..O..PQQQ....C.RRR.C.");
 		s.setParent(null);
 		s.show();
 		A_StarSolver solver = new A_StarSolver(s);
 		System.out.println(solver.solve());
+		
+		int u = 1;
+		while(!solver.ops.isEmpty()){
+			
+			Op oo = solver.ops.pop();
+			System.out.println(oo.constructOperation());
+			System.out.println(oo.constructOperation() + "\n\n"+ (u++) +"\n::::");
+			solver.root.makeMove(oo);
+			solver.root.draw();
+			solver.root.show();
+		}
+		System.out.println("\n\n BF: "+nthroot(A_StarSolver.level, A_StarSolver.branching_factor));*/
 	}
-	
-
+	public static int i = 1;
+	public static void automation(String disc){
+		PrintStream out = null;
+		try {
+			out = new PrintStream(new FileOutputStream("results/"+i+".txt"));
+			i++;
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.setOut(out);
+		State s = new State();
+		A_StarSolver solver = new A_StarSolver(s);
+		s.initilizeState(disc);
+		s.setParent(null);
+		s.show();
+		System.out.print(solver.solve());
+		
+		int u = 1;
+		while(!solver.ops.isEmpty()){
+			
+			Op oo = solver.ops.pop();
+			System.out.println(oo.constructOperation() + " ::::"+ (u++) +"\n::::");
+			solver.root.makeMove(oo);
+			solver.root.draw();
+			solver.root.show();
+		}
+		System.out.print("\n\n BF: "+nthroot(A_StarSolver.level, A_StarSolver.branching_factor));
+		out.close();
+	}
 }
 
