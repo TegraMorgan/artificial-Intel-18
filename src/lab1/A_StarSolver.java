@@ -69,7 +69,7 @@ public class A_StarSolver {
 	public boolean solve(){
 		root.setParent(null);
 		root.g = 0;
-		calculate_Heuristics(root);
+		calculate_Heuristics2(root);
 		FibonacciHeapNode<State> rootHeapNode = new FibonacciHeapNode<State>(root, root.getHValue());
 		OPEN_LIST.insert(rootHeapNode, root.getHValue());
 		OPEN_LIST_HELPER.put(root.disc, rootHeapNode);
@@ -133,7 +133,7 @@ public class A_StarSolver {
 				if(s.g < 0){
 					s.g = min.data.g + 1;
 				}
-				calculate_Heuristics(s);
+				calculate_Heuristics2(s);
 				
 				//Checks if the state was opened/closed previously
 				
@@ -210,6 +210,16 @@ public class A_StarSolver {
 				}
 			}
 			node.setHValue(count + node.g);
+		}
+	}
+	
+	private void calculate_Heuristics2(State node) {
+		if(node.isGoal()){
+			node.setHValue(-100.0);
+		}else{
+			double count = node.nextStates.size();
+			
+			node.setHValue(-count + node.g);
 		}
 	}
 	
@@ -306,7 +316,7 @@ public class A_StarSolver {
 		}*/
 		PrintStream out = null;
 		try {
-			out = new PrintStream(new FileOutputStream("results/"+i+".txt"));
+			out = new PrintStream(new FileOutputStream("results2/"+i+".txt"));
 			i++;
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block

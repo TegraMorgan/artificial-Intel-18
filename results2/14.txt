@@ -1,0 +1,150 @@
+AAB.....B.CCDEXXFGDEHHFG..I.JJKKI...
+A A B . . . 
+. . B . C C 
+D E X X F G 
+D E H H F G 
+. . I . J J 
+K K I . . . 
+
+Solution FOUND!
+trueDU1
+A A B # # # 
+D # B # C C 
+D E X X F G 
+# E H H F G 
+# # I # J J 
+K K I # # # 
+
+EU1
+A A B # # # 
+D E B # C C 
+D E X X F G 
+# # H H F G 
+# # I # J J 
+K K I # # # 
+
+HL2
+A A B # # # 
+D E B # C C 
+D E X X F G 
+H H # # F G 
+# # I # J J 
+K K I # # # 
+
+IU1
+A A B # # # 
+D E B # C C 
+D E X X F G 
+H H I # F G 
+# # I # J J 
+K K # # # # 
+
+KR3
+A A B # # # 
+D E B # C C 
+D E X X F G 
+H H I # F G 
+# # I # J J 
+# # # K K # 
+
+ID1
+A A B # # # 
+D E B # C C 
+D E X X F G 
+H H # # F G 
+# # I # J J 
+# # I K K # 
+
+HR2
+A A B # # # 
+D E B # C C 
+D E X X F G 
+# # H H F G 
+# # I # J J 
+# # I K K # 
+
+DD3
+A A B # # # 
+# E B # C C 
+# E X X F G 
+# # H H F G 
+D # I # J J 
+D # I K K # 
+
+ED3
+A A B # # # 
+# # B # C C 
+# # X X F G 
+# # H H F G 
+D E I # J J 
+D E I K K # 
+
+XL2
+A A B # # # 
+# # B # C C 
+X X # # F G 
+# # H H F G 
+D E I # J J 
+D E I K K # 
+
+HL2
+A A B # # # 
+# # B # C C 
+X X # # F G 
+H H # # F G 
+D E I # J J 
+D E I K K # 
+
+BD2
+A A # # # # 
+# # # # C C 
+X X B # F G 
+H H B # F G 
+D E I # J J 
+D E I K K # 
+
+CL4
+A A # # # # 
+C C # # # # 
+X X B # F G 
+H H B # F G 
+D E I # J J 
+D E I K K # 
+
+FU2
+A A # # F # 
+C C # # F # 
+X X B # # G 
+H H B # # G 
+D E I # J J 
+D E I K K # 
+
+GU2
+A A # # F G 
+C C # # F G 
+X X B # # # 
+H H B # # # 
+D E I # J J 
+D E I K K # 
+
+BU2
+A A B # F G 
+C C B # F G 
+X X # # # # 
+H H # # # # 
+D E I # J J 
+D E I K K # 
+
+XR6
+A A B # F G 
+C C B # F G 
+# # # # # # 
+H H # # # # 
+D E I # J J 
+D E I K K # 
+
+
+
+ BF: 6.08726912193232
+
+Number of moves: 17  should be: 17

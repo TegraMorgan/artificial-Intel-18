@@ -1,0 +1,78 @@
+AA...OP..Q.OPXXQ.OP..Q..B...CCB.RRR.
+A A . . . O 
+P . . Q . O 
+P X X Q . O 
+P . . Q . . 
+B . . . C C 
+B . R R R . 
+
+Solution FOUND!
+trueCL3
+A A # # # O 
+P # # Q # O 
+P X X Q # O 
+P # # Q # # 
+B C C # # # 
+B # R R R # 
+
+OD3
+A A # # # # 
+P # # Q # # 
+P X X Q # # 
+P # # Q # O 
+B C C # # O 
+B # R R R O 
+
+AR4
+# # # # A A 
+P # # Q # # 
+P X X Q # # 
+P # # Q # O 
+B C C # # O 
+B # R R R O 
+
+PU1
+P # # # A A 
+P # # Q # # 
+P X X Q # # 
+# # # Q # O 
+B C C # # O 
+B # R R R O 
+
+BU1
+P # # # A A 
+P # # Q # # 
+P X X Q # # 
+B # # Q # O 
+B C C # # O 
+# # R R R O 
+
+RL2
+P # # # A A 
+P # # Q # # 
+P X X Q # # 
+B # # Q # O 
+B C C # # O 
+R R R # # O 
+
+QD2
+P # # # A A 
+P # # # # # 
+P X X # # # 
+B # # Q # O 
+B C C Q # O 
+R R R Q # O 
+
+XR5
+P # # # A A 
+P # # # # # 
+P # # # # # 
+B # # Q # O 
+B C C Q # O 
+R R R Q # O 
+
+
+
+ BF: 1.0157685689995792
+
+Number of moves: 8  should be: 8

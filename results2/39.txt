@@ -1,0 +1,414 @@
+..AOOO..AB..XXCB.RDDCEERFGHH.RFGII..
+. . A O O O 
+. . A B . . 
+X X C B . R 
+D D C E E R 
+F G H H . R 
+F G I I . . 
+
+Solution FOUND!
+trueHR1
+# # A O O O 
+# # A B # # 
+X X C B # R 
+D D C E E R 
+F G # H H R 
+F G I I # # 
+
+IR2
+# # A O O O 
+# # A B # # 
+X X C B # R 
+D D C E E R 
+F G # H H R 
+F G # # I I 
+
+CD2
+# # A O O O 
+# # A B # # 
+X X # B # R 
+D D # E E R 
+F G C H H R 
+F G C # I I 
+
+AD2
+# # # O O O 
+# # # B # # 
+X X A B # R 
+D D A E E R 
+F G C H H R 
+F G C # I I 
+
+OL3
+O O O # # # 
+# # # B # # 
+X X A B # R 
+D D A E E R 
+F G C H H R 
+F G C # I I 
+
+RU2
+O O O # # R 
+# # # B # R 
+X X A B # R 
+D D A E E # 
+F G C H H # 
+F G C # I I 
+
+HR1
+O O O # # R 
+# # # B # R 
+X X A B # R 
+D D A E E # 
+F G C # H H 
+F G C # I I 
+
+ER1
+O O O # # R 
+# # # B # R 
+X X A B # R 
+D D A # E E 
+F G C # H H 
+F G C # I I 
+
+BD3
+O O O # # R 
+# # # # # R 
+X X A # # R 
+D D A # E E 
+F G C B H H 
+F G C B I I 
+
+EL1
+O O O # # R 
+# # # # # R 
+X X A # # R 
+D D A E E # 
+F G C B H H 
+F G C B I I 
+
+RD1
+O O O # # # 
+# # # # # R 
+X X A # # R 
+D D A E E R 
+F G C B H H 
+F G C B I I 
+
+OR3
+# # # O O O 
+# # # # # R 
+X X A # # R 
+D D A E E R 
+F G C B H H 
+F G C B I I 
+
+AU2
+# # A O O O 
+# # A # # R 
+X X # # # R 
+D D # E E R 
+F G C B H H 
+F G C B I I 
+
+XR3
+# # A O O O 
+# # A # # R 
+# # # X X R 
+D D # E E R 
+F G C B H H 
+F G C B I I 
+
+AD1
+# # # O O O 
+# # A # # R 
+# # A X X R 
+D D # E E R 
+F G C B H H 
+F G C B I I 
+
+OL1
+# # O O O # 
+# # A # # R 
+# # A X X R 
+D D # E E R 
+F G C B H H 
+F G C B I I 
+
+RU1
+# # O O O R 
+# # A # # R 
+# # A X X R 
+D D # E E # 
+F G C B H H 
+F G C B I I 
+
+ER1
+# # O O O R 
+# # A # # R 
+# # A X X R 
+D D # # E E 
+F G C B H H 
+F G C B I I 
+
+DR2
+# # O O O R 
+# # A # # R 
+# # A X X R 
+# # D D E E 
+F G C B H H 
+F G C B I I 
+
+GU4
+# G O O O R 
+# G A # # R 
+# # A X X R 
+# # D D E E 
+F # C B H H 
+F # C B I I 
+
+FU4
+F G O O O R 
+F G A # # R 
+# # A X X R 
+# # D D E E 
+# # C B H H 
+# # C B I I 
+
+DL2
+F G O O O R 
+F G A # # R 
+# # A X X R 
+D D # # E E 
+# # C B H H 
+# # C B I I 
+
+EL2
+F G O O O R 
+F G A # # R 
+# # A X X R 
+D D E E # # 
+# # C B H H 
+# # C B I I 
+
+RD1
+F G O O O # 
+F G A # # R 
+# # A X X R 
+D D E E # R 
+# # C B H H 
+# # C B I I 
+
+OR1
+F G # O O O 
+F G A # # R 
+# # A X X R 
+D D E E # R 
+# # C B H H 
+# # C B I I 
+
+AU1
+F G A O O O 
+F G A # # R 
+# # # X X R 
+D D E E # R 
+# # C B H H 
+# # C B I I 
+
+XL3
+F G A O O O 
+F G A # # R 
+X X # # # R 
+D D E E # R 
+# # C B H H 
+# # C B I I 
+
+AD1
+F G # O O O 
+F G A # # R 
+X X A # # R 
+D D E E # R 
+# # C B H H 
+# # C B I I 
+
+OL1
+F G O O O # 
+F G A # # R 
+X X A # # R 
+D D E E # R 
+# # C B H H 
+# # C B I I 
+
+RU1
+F G O O O R 
+F G A # # R 
+X X A # # R 
+D D E E # # 
+# # C B H H 
+# # C B I I 
+
+ER2
+F G O O O R 
+F G A # # R 
+X X A # # R 
+D D # # E E 
+# # C B H H 
+# # C B I I 
+
+BU3
+F G O O O R 
+F G A B # R 
+X X A B # R 
+D D # # E E 
+# # C # H H 
+# # C # I I 
+
+EL1
+F G O O O R 
+F G A B # R 
+X X A B # R 
+D D # E E # 
+# # C # H H 
+# # C # I I 
+
+RD1
+F G O O O # 
+F G A B # R 
+X X A B # R 
+D D # E E R 
+# # C # H H 
+# # C # I I 
+
+OR1
+F G # O O O 
+F G A B # R 
+X X A B # R 
+D D # E E R 
+# # C # H H 
+# # C # I I 
+
+AU1
+F G A O O O 
+F G A B # R 
+X X # B # R 
+D D # E E R 
+# # C # H H 
+# # C # I I 
+
+CU2
+F G A O O O 
+F G A B # R 
+X X C B # R 
+D D C E E R 
+# # # # H H 
+# # # # I I 
+
+HL4
+F G A O O O 
+F G A B # R 
+X X C B # R 
+D D C E E R 
+H H # # # # 
+# # # # I I 
+
+CD1
+F G A O O O 
+F G A B # R 
+X X # B # R 
+D D C E E R 
+H H C # # # 
+# # # # I I 
+
+AD1
+F G # O O O 
+F G A B # R 
+X X A B # R 
+D D C E E R 
+H H C # # # 
+# # # # I I 
+
+OL1
+F G O O O # 
+F G A B # R 
+X X A B # R 
+D D C E E R 
+H H C # # # 
+# # # # I I 
+
+RU1
+F G O O O R 
+F G A B # R 
+X X A B # R 
+D D C E E # 
+H H C # # # 
+# # # # I I 
+
+ER1
+F G O O O R 
+F G A B # R 
+X X A B # R 
+D D C # E E 
+H H C # # # 
+# # # # I I 
+
+IL4
+F G O O O R 
+F G A B # R 
+X X A B # R 
+D D C # E E 
+H H C # # # 
+I I # # # # 
+
+BD3
+F G O O O R 
+F G A # # R 
+X X A # # R 
+D D C # E E 
+H H C B # # 
+I I # B # # 
+
+EL1
+F G O O O R 
+F G A # # R 
+X X A # # R 
+D D C E E # 
+H H C B # # 
+I I # B # # 
+
+RD3
+F G O O O # 
+F G A # # # 
+X X A # # # 
+D D C E E R 
+H H C B # R 
+I I # B # R 
+
+OR1
+F G # O O O 
+F G A # # # 
+X X A # # # 
+D D C E E R 
+H H C B # R 
+I I # B # R 
+
+AU1
+F G A O O O 
+F G A # # # 
+X X # # # # 
+D D C E E R 
+H H C B # R 
+I I # B # R 
+
+XR6
+F G A O O O 
+F G A # # # 
+# # # # # # 
+D D C E E R 
+H H C B # R 
+I I # B # R 
+
+
+
+ BF: 3.542315318549557
+
+Number of moves: 50  should be: 50

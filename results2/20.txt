@@ -1,0 +1,94 @@
+A..OOOABBC..XXDC.P..D..P..EFFP..EQQQ
+A . . O O O 
+A B B C . . 
+X X D C . P 
+. . D . . P 
+. . E F F P 
+. . E Q Q Q 
+
+Solution FOUND!
+trueCD1
+A # # O O O 
+A B B # # # 
+X X D C # P 
+# # D C # P 
+# # E F F P 
+# # E Q Q Q 
+
+BR3
+A # # O O O 
+A # # # B B 
+X X D C # P 
+# # D C # P 
+# # E F F P 
+# # E Q Q Q 
+
+DU2
+A # D O O O 
+A # D # B B 
+X X # C # P 
+# # # C # P 
+# # E F F P 
+# # E Q Q Q 
+
+EU2
+A # D O O O 
+A # D # B B 
+X X E C # P 
+# # E C # P 
+# # # F F P 
+# # # Q Q Q 
+
+FL3
+A # D O O O 
+A # D # B B 
+X X E C # P 
+# # E C # P 
+F F # # # P 
+# # # Q Q Q 
+
+QL3
+A # D O O O 
+A # D # B B 
+X X E C # P 
+# # E C # P 
+F F # # # P 
+Q Q Q # # # 
+
+ED1
+A # D O O O 
+A # D # B B 
+X X # C # P 
+# # E C # P 
+F F E # # P 
+Q Q Q # # # 
+
+PD1
+A # D O O O 
+A # D # B B 
+X X # C # # 
+# # E C # P 
+F F E # # P 
+Q Q Q # # P 
+
+CD1
+A # D O O O 
+A # D # B B 
+X X # # # # 
+# # E C # P 
+F F E C # P 
+Q Q Q # # P 
+
+XR6
+A # D O O O 
+A # D # B B 
+# # # # # # 
+# # E C # P 
+F F E C # P 
+Q Q Q # # P 
+
+
+
+ BF: 1.016791045316928
+
+Number of moves: 10  should be: 10

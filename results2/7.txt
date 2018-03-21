@@ -1,0 +1,118 @@
+.ABBCD.A.ECD.XXE.F..II.F...H.....H..
+. A B B C D 
+. A . E C D 
+. X X E . F 
+. . I I . F 
+. . . H . . 
+. . . H . . 
+
+Solution FOUND!
+trueFD1
+# A B B C D 
+# A # E C D 
+# X X E # # 
+# # I I # F 
+# # # H # F 
+# # # H # # 
+
+DD1
+# A B B C # 
+# A # E C D 
+# X X E # D 
+# # I I # F 
+# # # H # F 
+# # # H # # 
+
+CD3
+# A B B # # 
+# A # E # D 
+# X X E # D 
+# # I I C F 
+# # # H C F 
+# # # H # # 
+
+BR2
+# A # # B B 
+# A # E # D 
+# X X E # D 
+# # I I C F 
+# # # H C F 
+# # # H # # 
+
+EU1
+# A # E B B 
+# A # E # D 
+# X X # # D 
+# # I I C F 
+# # # H C F 
+# # # H # # 
+
+XR1
+# A # E B B 
+# A # E # D 
+# # X X # D 
+# # I I C F 
+# # # H C F 
+# # # H # # 
+
+AD4
+# # # E B B 
+# # # E # D 
+# # X X # D 
+# # I I C F 
+# A # H C F 
+# A # H # # 
+
+XL1
+# # # E B B 
+# # # E # D 
+# X X # # D 
+# # I I C F 
+# A # H C F 
+# A # H # # 
+
+ED1
+# # # # B B 
+# # # E # D 
+# X X E # D 
+# # I I C F 
+# A # H C F 
+# A # H # # 
+
+BL3
+# B B # # # 
+# # # E # D 
+# X X E # D 
+# # I I C F 
+# A # H C F 
+# A # H # # 
+
+DU1
+# B B # # D 
+# # # E # D 
+# X X E # # 
+# # I I C F 
+# A # H C F 
+# A # H # # 
+
+EU1
+# B B E # D 
+# # # E # D 
+# X X # # # 
+# # I I C F 
+# A # H C F 
+# A # H # # 
+
+XR5
+# B B E # D 
+# # # E # D 
+# # # # # # 
+# # I I C F 
+# A # H C F 
+# A # H # # 
+
+
+
+ BF: 3.3666488397514462
+
+Number of moves: 13  should be: 13
