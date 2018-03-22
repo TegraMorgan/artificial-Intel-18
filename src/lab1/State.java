@@ -50,7 +50,7 @@ public class State implements Comparable<State>,Serializable{
 		return this.board;
 	}
 	
-	//TODO [test this]
+	
 	public void initilizeState(String disc){
 		final int ROW = 6;
 		final int COL = 6;
@@ -373,7 +373,7 @@ public class State implements Comparable<State>,Serializable{
 	}
 
 	public Op getOpp() {
-		// TODO Auto-generated method stub
+		// 
 		return this.opp;
 	}
 	

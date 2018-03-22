@@ -2,7 +2,7 @@ package lab1;
 
 import java.util.ArrayList;
 
-//TODO implement Iterative Deepening with DLS
+//implement Iterative Deepening with DLS
 
 	/*Pseudo Code:
 		

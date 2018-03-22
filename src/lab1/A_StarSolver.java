@@ -93,7 +93,7 @@ public class A_StarSolver {
 			min = remove_min();
 			CLOSED_LIST.put(min.data.disc, min);
 			if(min.data.isGoal()){
-				System.out.println("Solution FOUND!");
+				//System.out.println("Solution FOUND!");
 				State path = min.data;
 				while(path.getParent() != null){
 					ops.push(path.getOpp());
@@ -320,8 +320,8 @@ public class A_StarSolver {
 	public static void automation(String disc){
 		
 		
-		System.out.println(disc);
-		State s = new State();
+/*TODO		System.out.println(disc);
+*/		State s = new State();
 		A_StarSolver solver = new A_StarSolver(s);
 		s.initilizeState(disc);
 		s.setParent(null);
@@ -339,12 +339,12 @@ public class A_StarSolver {
 		while(!solver.ops.isEmpty()){
 			
 			Op oo = solver.ops.pop();
-			System.out.print(oo.constructOperation() + " ");
+			//TODO System.out.print(oo.constructOperation() + " ");
 		}
-		System.out.println("");
-		System.out.println("\n\nBranching Factor: " +nthroot(A_StarSolver.level, A_StarSolver.branching_factor));
-		System.out.println("\nNumber of moves: " + si + "  vs. Provided solution: " + (i-2 <= 39?optimal_solutions[i-2]: 0));
-		//System.out.println("Total Runtime: " + A_StarSolver.RUNTIME/(1000000.0) + " Sec");
+/*TODO		System.out.println("");
+*/		System.out.print(/*"\n\nBranching Factor: " +*/nthroot(A_StarSolver.level, A_StarSolver.branching_factor));
+/*TODO		System.out.println("\nNumber of moves: " + si + "  vs. Provided solution: " + (i-2 <= 39?optimal_solutions[i-2]: 0));
+*/		//System.out.println("Total Runtime: " + A_StarSolver.RUNTIME/(1000000.0) + " Sec");
 		i++;
 		System.out.println();
 		if(i == 42){
