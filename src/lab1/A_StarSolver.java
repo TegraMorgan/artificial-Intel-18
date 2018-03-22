@@ -1,5 +1,6 @@
 package lab1;
 
+
 import java.io.BufferedReader;
 
 import java.io.FileNotFoundException;
@@ -10,6 +11,7 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.Stack;
 import java.util.concurrent.TimeUnit;
 
@@ -54,6 +56,10 @@ public class A_StarSolver {
 	static int[] optimal_solutions = new int[40];
 	static Long max = Long.MIN_VALUE,min = Long.MAX_VALUE;
 	static Long accumelated = (long) 0;
+	public static int i = 1;
+	public static int countt = 0;
+	public long total_time;
+	public double heuristic_avg = 0;
 	
 	public A_StarSolver(State initialState){
 		max_level = 0;
@@ -71,17 +77,24 @@ public class A_StarSolver {
 	 * @return boolean
 	 */
 	
-	public boolean solve(char h){
-		
+	public boolean solve(char h , long bound){
+		final long start = System.currentTimeMillis();
 		root.setParent(null);
 		root.g = 0;
 		if(h =='1'){
 			calculate_Fn(root);
-		}
-		else if(h == '2'){
+		}else if(h == '2'){
 			calculate_Fn2(root);
-		}else{
+		}else if(h == '3'){
 			calculate_Fn3(root);
+		}else if(h == '4'){
+			calculate_Fn4(root);
+		}else if(h == '5'){
+			calculate_Fn5(root);
+		}else if(h == '6'){
+			calculate_Fn6(root);
+		}else{
+			calculate_Fn0(root);
 		}
 		root.generatePossibleMoves();
 		FibonacciHeapNode<State> rootHeapNode = new FibonacciHeapNode<State>(root, root.getFValue());
@@ -89,21 +102,23 @@ public class A_StarSolver {
 		OPEN_LIST_HELPER.put(root.disc, rootHeapNode);
 		
 		while(!OPEN_LIST.isEmpty()){
-			//System.out.println(OPEN_LIST.toString());
-			level++;
+			//System.out.println(TimeUnit.MILLISECONDS.toMicros(System.currentTimeMillis() - start));
+			if(TimeUnit.MILLISECONDS.toMicros(System.currentTimeMillis() - start) > bound){
+				total_time = bound;
+				return false;
+			}
 			FibonacciHeapNode<State> min = OPEN_LIST.min();
 			min = remove_min();
 			CLOSED_LIST.put(min.data.disc, min);
 			if(min.data.isGoal()){
+				total_time = TimeUnit.MILLISECONDS.toMicros(System.currentTimeMillis() - start);
 				level = min.data.g;
-				//System.out.println("Solution FOUND!");
 				State path = min.data;
 				while(path.getParent() != null){
 					ops.push(path.getOpp());
 					path = path.getParent();
 				}
 				
-				//branching_factor*;
 				return true;
 			}
 			
@@ -124,15 +139,20 @@ public class A_StarSolver {
 				}
 				if(h =='1'){
 					calculate_Fn(s);
-				}
-				else if(h == '2'){
+				}else if(h == '2'){
 					calculate_Fn2(s);
-				}else{
+				}else if(h == '3'){
 					calculate_Fn3(s);
+				}else if(h == '4'){
+					calculate_Fn4(s);
+				}else if(h == '5'){
+					calculate_Fn5(s);
+				}else if(h == '6'){
+					calculate_Fn6(s);
+				}else{
+					calculate_Fn0(s);
 				}
-				
-				//Checks if the state was opened/closed previously
-				
+				heuristic_avg += s.getFValue();
 				boolean opened = OPEN_LIST_HELPER.containsKey(s.disc)
 						,closed = CLOSED_LIST.containsKey(s.disc);
 				FibonacciHeapNode<State> stateHelper = null;
@@ -172,6 +192,14 @@ public class A_StarSolver {
 		
 	}
 
+	private void calculate_Fn0(State node) {
+		if(node.isGoal()){
+			node.setFValue(-100.0);
+		}else{
+			node.setFValue( node.g);
+		}
+	}
+	
 	private void calculate_Fn(State node) {
 		if(node.isGoal()){
 			node.setFValue(-100.0);
@@ -194,17 +222,12 @@ public class A_StarSolver {
 		if(node.isGoal()){
 			node.setFValue(-100.0);
 		}else{
+			node.generatePossibleMoves();
 			double count = node.nextStates.size();
-			//System.out.println("VALUE: " + (-count + node.g) + " - " + level);
 			node.setFValue(-count + node.g);
 		}
 	}
 	
-	
-	// default: .5:.5
-	// case 4 : .8:.2
-	// case 5 : .2:.8
-	// case 6 : .01:.99 (plus level)
 	private void calculate_Fn3(State node) {
 		if(node.isGoal()){
 			node.setFValue(-100.0);
@@ -212,7 +235,42 @@ public class A_StarSolver {
 			calculate_Fn(node);
 			double count = node.nextStates.size();
 			//System.out.println("VALUE: " + (-count + node.g) + " - " + level);
-			node.setFValue(0.01*(-count + node.g) + 0.8*(node.getFValue() +level));
+			node.setFValue(0.5*(-count + node.g) + 0.5*(node.getFValue()));
+		}
+	}
+	
+	
+	private void calculate_Fn4(State node) {
+		if(node.isGoal()){
+			node.setFValue(-100.0);
+		}else{
+			calculate_Fn(node);
+			double count = node.nextStates.size();
+			//System.out.println("VALUE: " + (-count + node.g) + " - " + level);
+			node.setFValue(0.8*(-count + node.g) + 0.2*(node.getFValue()));
+		}
+	}
+	
+	private void calculate_Fn5(State node) {
+		if(node.isGoal()){
+			node.setFValue(-100.0);
+		}else{
+			calculate_Fn(node);
+			double count = node.nextStates.size();
+			//System.out.println("VALUE: " + (-count + node.g) + " - " + level);
+			node.setFValue(0.2*(-count + node.g) + 0.8*(node.getFValue()));
+		}
+	}
+	
+	
+	private void calculate_Fn6(State node) {
+		if(node.isGoal()){
+			node.setFValue(-100.0);
+		}else{
+			calculate_Fn(node);
+			double count = node.nextStates.size();
+			//System.out.println("VALUE: " + (-count + node.g) + " - " + level);
+			node.setFValue(0.01*(-count + node.g) + 0.99*(node.getFValue()));
 		}
 	}
 	
@@ -225,9 +283,11 @@ public class A_StarSolver {
 		
 	}
 	
+	
 	public static double nthroot(int n, double A) {
 		return nthroot(n, A, .001);
 	}
+	
 	
 	public static double nthroot(int n, double A, double p) {
 		if(A < 0) {
@@ -245,8 +305,16 @@ public class A_StarSolver {
 		return x;
 	}
 	
+	
 	public static void main(String[] args){
-		solveAll();
+		System.out.println("Enter time limit in seconds");
+		Scanner sc = new Scanner(System.in);
+		double i = sc.nextDouble();		
+		System.out.println(i);
+		System.out.println("Choose a heuristic function:\n1. Distance(recommended)\n2. Possible Moves\n3.Distance + Possible Moves\n..>");
+		char h = sc.next().charAt(0);
+		solveAll((int)(i*1000000),h);
+		sc.close();
 		/*State s = new State();
 		s.initilizeState("ABB..OA.P..OXXP..O..PQQQ....C.RRR.C.");
 		//String st = "A B B . . O A . P . . O X X P . . O . . P Q Q Q . . . . C . R R R . C . ";
@@ -270,7 +338,8 @@ public class A_StarSolver {
 		System.out.println("\n\n BF: "+nthroot(A_StarSolver.level, A_StarSolver.branching_factor));*/
 	}
 	
-	public static void solveAll(){
+	
+	public static void solveAll(long bound,char h){
 		try(BufferedReader br = new BufferedReader(new FileReader("states2.txt"))) {
 			int k = 0;
 		    for(String line; (line = br.readLine()) != null; ) {
@@ -294,7 +363,7 @@ public class A_StarSolver {
 			BufferedReader br2 = new BufferedReader(new FileReader("states.txt"));
 		    PrintStream out = null;
 			try {
-				out = new PrintStream(new FileOutputStream("final_results/SOLS6.txt"));
+				out = new PrintStream(new FileOutputStream("final_results/SOLS8.txt"));
 				i++;
 			} catch (FileNotFoundException e) {
 				
@@ -306,7 +375,7 @@ public class A_StarSolver {
 		    int num = 0;
 		    for(String line; (line = br2.readLine()) != null; ) {
 		    	//System.out.println(line);
-		        automation(line);
+		        automation(line,bound,h);
 		        num++;
 		        if(TimeUnit.MILLISECONDS.toMicros(System.currentTimeMillis() - startTime) > MAX_RUN_TIME){
 		        	System.out.println("Statistics: ");
@@ -317,7 +386,7 @@ public class A_StarSolver {
 		        }
 		    	
 		    }
-		    System.out.println("All problems were solved successfully!!");
+		    
 		    System.out.println("Total Runtime: " + TimeUnit.MILLISECONDS.toMicros(System.currentTimeMillis() - startTime)/1000000.0 + " Sec.");
 		    // line is not visible here.
 		    br2.close();
@@ -326,18 +395,21 @@ public class A_StarSolver {
 		}
 		
 	}
-	public static int i = 1;
-	public static int countt = 0;
-	public static void automation(String disc){
+	
+	
+	public static void automation(String disc, long bound,char h){
 		
 		
-/*TODO		System.out.println(disc);
-*/		State s = new State();
+		System.out.println("Problem "+ (++countt)+":");
+		State s = new State();
 		A_StarSolver solver = new A_StarSolver(s);
 		s.initilizeState(disc);
 		s.setParent(null);
 		
-		solver.solve('3');
+		if(!solver.solve(h,bound)){
+			System.out.println("Failed.");
+		}
+			
 		int num_opened = OPEN_LIST_HELPER.size();
 		if(num_opened < A_StarSolver.min){
 			A_StarSolver.min = (long) num_opened;
@@ -345,18 +417,21 @@ public class A_StarSolver {
 			A_StarSolver.max = (long) num_opened;
 		}
 		A_StarSolver.accumelated += num_opened;
-		//System.setOut(out);
 		int si = solver.ops.size();
 		while(!solver.ops.isEmpty()){
 			
 			Op oo = solver.ops.pop();
-			//TODO System.out.print(oo.constructOperation() + " ");
+			System.out.print(oo.constructOperation() + " ");
 		}
-/*TODO		System.out.println("");
-*/		System.out.print(/*"\n\nBranching Factor: " +*/nthroot(A_StarSolver.level, A_StarSolver.branching_factor));
-		//System.out.println("Penetration Rate: " + A_StarSolver.level/(double)A_StarSolver.branching_factor);
-/*TODO		System.out.println("\nNumber of moves: " + si + "  vs. Provided solution: " + (i-2 <= 39?optimal_solutions[i-2]: 0));
-*/		//System.out.println("Total Runtime: " + A_StarSolver.RUNTIME/(1000000.0) + " Sec");
+		System.out.println("");
+		System.out.printf("\n\nBranching Factor: %.4f",nthroot(A_StarSolver.level, A_StarSolver.branching_factor));
+		System.out.println();
+		System.out.printf("Penetrance Rate: %.4f" , A_StarSolver.level/(double)A_StarSolver.branching_factor);
+		System.out.println();
+		System.out.println("\nNumber of moves: " + si + "  vs. Provided solution: " + (i-2 <= 39?optimal_solutions[i-2]: 0));
+		System.out.printf("Heuristic average value assigned: %.2f" , (double)solver.heuristic_avg/branching_factor);
+		System.out.println();
+		System.out.println("finished in: " + solver.total_time/1000000.0 + " sec.");
 		i++;
 		System.out.println();
 		if(i == 42){
@@ -364,9 +439,6 @@ public class A_StarSolver {
 			System.out.println("Statistics: ");
 			System.out.println("Min opened nodes: " + min + " Max opened nodes: " + max + " Average: " + accumelated/40);
 		}
-		if(i == 43)
-			s.show();
-		//out.close();
 	}
 }
 

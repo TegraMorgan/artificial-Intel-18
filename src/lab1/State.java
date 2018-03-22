@@ -1,5 +1,8 @@
 package lab1;
 
+import java.awt.GraphicsEnvironment;
+import java.io.Console;
+import java.io.IOException;
 /*import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutput;
@@ -351,25 +354,38 @@ public class State implements Comparable<State>,Serializable{
 	}
 	
 	public static void main(String[] args){
-		State s = new State();
+		/*State s = new State();
 		s.initilizeState("A.PBBOA.P.COXXP.CO...QQQ......RRR...");
 		s.generatePossibleMoves();
 		s.show();
 		s.showNextStates();
 		System.out.println(s.carList);
-		/*State ss = new State();
+		State ss = new State();
 		ss.initilizeState("AA...........XX.....................");
-		*/
-		/*s.show();
+		
+		s.show();
 		s.showNextStates();
 		System.out.println();
 		s.makeMove(s.nextStates.get(2));
 		s.show();
 		
 		s.showNextStates();
-		s.show();*/
+		s.show();
 		//.out.println(s.compress().equals(ss.compress()));
-		
+*/		
+		Console console = System.console();
+        if(console == null && !GraphicsEnvironment.isHeadless()){
+            //String filename = A_StarSolver.class.getProtectionDomain().getCodeSource().getLocation().toString().substring(6);
+            try {
+				Runtime.getRuntime().exec(new String[]{"cmd","/c","start","cmd","/k","java -jar aiv1.jar"});
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        }else{
+            A_StarSolver.main(new String[0]);
+            System.out.println("Program has ended");
+        }
 	}
 
 	public Op getOpp() {
