@@ -48,6 +48,7 @@ public class A_StarSolver {
 	State root;
 	static int branching_factor;
 	static int level;
+	int max_level;
 	Stack<Op> ops; 
 	static String voo = "";
 	static int[] optimal_solutions = new int[40];
@@ -55,6 +56,7 @@ public class A_StarSolver {
 	static Long accumelated = (long) 0;
 	
 	public A_StarSolver(State initialState){
+		max_level = 0;
 		this.root = initialState;
 		OPEN_LIST = new FibonacciHeap<>();
 		OPEN_LIST_HELPER = new HashMap<>();
@@ -99,6 +101,7 @@ public class A_StarSolver {
 					ops.push(path.getOpp());
 					path = path.getParent();
 				}
+				level = max_level;
 				branching_factor *= level;
 				return true;
 			}
@@ -114,6 +117,9 @@ public class A_StarSolver {
 				s.setParent(min.data);
 				if(s.g < 0){
 					s.g = min.data.g + 1;
+					if(s.g > max_level){
+						max_level = s.g;
+					}
 				}
 				if(h =='1'){
 					calculate_Fn(s);
@@ -142,6 +148,10 @@ public class A_StarSolver {
 							fbn.data.setFValue(s.getFValue());
 							insert_opened(fbn);
 							
+						}
+						stateHelper.data.g = s.g+1;
+						if(s.g+1 > max_level){
+							max_level = s.g + 1;
 						}
 					}
 					continue;
@@ -201,7 +211,7 @@ public class A_StarSolver {
 			calculate_Fn(node);
 			double count = node.nextStates.size();
 			//System.out.println("VALUE: " + (-count + node.g) + " - " + level);
-			node.setFValue(0.01*(-count + node.g) + 0.99*(node.getFValue() + level));
+			node.setFValue(0.5*(-count + node.g) + 0.5*(node.getFValue()));
 		}
 	}
 	
@@ -283,7 +293,7 @@ public class A_StarSolver {
 			BufferedReader br2 = new BufferedReader(new FileReader("states.txt"));
 		    PrintStream out = null;
 			try {
-				out = new PrintStream(new FileOutputStream("final_results/SOLS6.txt"));
+				out = new PrintStream(new FileOutputStream("final_results/SOLS.txt"));
 				i++;
 			} catch (FileNotFoundException e) {
 				
@@ -326,7 +336,7 @@ public class A_StarSolver {
 		s.initilizeState(disc);
 		s.setParent(null);
 		
-		solver.solve('3');
+		solver.solve('1');
 		int num_opened = OPEN_LIST_HELPER.size();
 		if(num_opened < A_StarSolver.min){
 			A_StarSolver.min = (long) num_opened;
