@@ -40,7 +40,7 @@ public class State implements Comparable<State>,Serializable{
 		for (Entry<String, Car> c : other.cars.entrySet()) {
 			this.cars.put(c.getKey(), new Car(c.getValue()));
 		}
-		this.setHValue(other.getHValue());
+		this.setFValue(other.getFValue());
 		//this.nextStates = new ArrayList<>(other.nextStates);
 		this.setParent(other.getParent());
 		this.setOp(other.getOp());
@@ -244,11 +244,11 @@ public class State implements Comparable<State>,Serializable{
 		}
 	}
 	
-	public void setHValue(double h2_value){
+	public void setFValue(double h2_value){
 		this.h_value = h2_value;
 	}
 	
-	public double getHValue(){
+	public double getFValue(){
 		return this.h_value;
 	}
 	
@@ -305,7 +305,7 @@ public class State implements Comparable<State>,Serializable{
 	
 	@Override
 	public int compareTo(State other) {
-		double h2_value = other.getHValue();
+		double h2_value = other.getFValue();
 		if(this.h_value > h2_value)
 			return 1;
 		if(this.h_value < h2_value)

@@ -31,16 +31,15 @@ import java.util.ArrayList;
 */
 public class IDDLSolver {
 	
-	public boolean IDDLS(State root, int depth){
-		for(int i = 0; i <= depth; i++){
+	public boolean IDDLS(State root){
+		int i = 0;
+		for(i = 0; ; i++){
 			//root.show();
 			if(DLS(root,i)){
 				System.out.println("Found solution at depth: " + i);
 				return true;
 			}
 		}
-		System.out.println("Solution wasn't found within depth: " + depth);
-		return false;
 	}
 
 	public boolean DLS(State current, int depth) {
@@ -72,10 +71,10 @@ public class IDDLSolver {
 	
 	public static void main(String[] args){
 		State s = new State();
-		s.initilizeState(".............XXO...AAO.P.B.O.P.BCC.P");
+		s.initilizeState("AA...OP..Q.OPXXQ.OP..Q..B...CCB.RRR.");
 		IDDLSolver solver = new IDDLSolver();
 		s.show();
-		System.out.println(solver.IDDLS(s, 14));
+		System.out.println(solver.IDDLS(s));
 	}
 
 }
