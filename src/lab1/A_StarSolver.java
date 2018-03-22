@@ -95,14 +95,15 @@ public class A_StarSolver {
 			min = remove_min();
 			CLOSED_LIST.put(min.data.disc, min);
 			if(min.data.isGoal()){
+				level = min.data.g;
 				//System.out.println("Solution FOUND!");
 				State path = min.data;
 				while(path.getParent() != null){
 					ops.push(path.getOpp());
 					path = path.getParent();
 				}
-				level = max_level;
-				branching_factor *= level;
+				
+				//branching_factor*;
 				return true;
 			}
 			
@@ -211,7 +212,7 @@ public class A_StarSolver {
 			calculate_Fn(node);
 			double count = node.nextStates.size();
 			//System.out.println("VALUE: " + (-count + node.g) + " - " + level);
-			node.setFValue(0.5*(-count + node.g) + 0.5*(node.getFValue()));
+			node.setFValue(0.01*(-count + node.g) + 0.8*(node.getFValue() +level));
 		}
 	}
 	
@@ -293,7 +294,7 @@ public class A_StarSolver {
 			BufferedReader br2 = new BufferedReader(new FileReader("states.txt"));
 		    PrintStream out = null;
 			try {
-				out = new PrintStream(new FileOutputStream("final_results/SOLS.txt"));
+				out = new PrintStream(new FileOutputStream("final_results/SOLS6.txt"));
 				i++;
 			} catch (FileNotFoundException e) {
 				
@@ -336,7 +337,7 @@ public class A_StarSolver {
 		s.initilizeState(disc);
 		s.setParent(null);
 		
-		solver.solve('1');
+		solver.solve('3');
 		int num_opened = OPEN_LIST_HELPER.size();
 		if(num_opened < A_StarSolver.min){
 			A_StarSolver.min = (long) num_opened;
@@ -353,6 +354,7 @@ public class A_StarSolver {
 		}
 /*TODO		System.out.println("");
 */		System.out.print(/*"\n\nBranching Factor: " +*/nthroot(A_StarSolver.level, A_StarSolver.branching_factor));
+		//System.out.println("Penetration Rate: " + A_StarSolver.level/(double)A_StarSolver.branching_factor);
 /*TODO		System.out.println("\nNumber of moves: " + si + "  vs. Provided solution: " + (i-2 <= 39?optimal_solutions[i-2]: 0));
 */		//System.out.println("Total Runtime: " + A_StarSolver.RUNTIME/(1000000.0) + " Sec");
 		i++;
