@@ -13,32 +13,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Stack;
+import java.util.Map.Entry;
 import java.util.concurrent.TimeUnit;
 
-
-/* 	(1) Put the start node s on a list, called OPEN, of unexpanded nodes. 
- * 			Calculate f(s) and associate its value with node s.
-   	(2) If OPEN is empty, exit with failure, no solution exists.
-	(3) Select from OPEN a node i at which f is minimum. If several nodes qualify, 
-				choose a goal node if there is one, otherwise choose among them arbitrarily.
-	(4) Remove node i from OPEN and place it on a list called CLOSED, of expanded nodes.
-	(5) If i is a goal node, exit with success; a solution has been found.
-	(6) Expand node i, creating nodes for all of its successors. For every successor node j of i:
-	
-		a. Calculate f(j)- DONE!!!!
-		
-		b. If j is neither in OPEN nor in CLOSED, then add it to OPEN with its f value. 
-				Attach a pointer from j back to its predecessor i 
-					(in order to track back a solution path once a goal node is found). DONE
-					
-		c. If j was already on either OPEN or CLOSED, compare the f value just calculated for j with 
-						the value previously associated with the node. If the new value is lower:
-			i.   Substitute it for the old value.
-			ii.  Point j back to i instead of to its previously found predecessor.
-			iii. If node j was on the CLOSED list, move it back to OPEN
-			
-	(7) Go to (2)
-*/
 
 
 
@@ -60,7 +37,9 @@ public class A_StarSolver {
 	public static int countt = 0;
 	public long total_time;
 	public double heuristic_avg = 0;
+	public int ignored_nodes = 0;
 	
+	//constructor, initializes the solver with appropriate parameters
 	public A_StarSolver(State initialState){
 		max_level = 0;
 		this.root = initialState;
@@ -76,7 +55,7 @@ public class A_StarSolver {
 	 * A* algorithm implementation
 	 * @return boolean
 	 */
-	
+
 	public boolean solve(char h , long bound){
 		final long start = System.currentTimeMillis();
 		root.setParent(null);
@@ -86,13 +65,7 @@ public class A_StarSolver {
 		}else if(h == '2'){
 			calculate_Fn2(root);
 		}else if(h == '3'){
-			calculate_Fn3(root);
-		}else if(h == '4'){
 			calculate_Fn4(root);
-		}else if(h == '5'){
-			calculate_Fn5(root);
-		}else if(h == '6'){
-			calculate_Fn6(root);
 		}else{
 			calculate_Fn0(root);
 		}
@@ -102,7 +75,6 @@ public class A_StarSolver {
 		OPEN_LIST_HELPER.put(root.disc, rootHeapNode);
 		
 		while(!OPEN_LIST.isEmpty()){
-			//System.out.println(TimeUnit.MILLISECONDS.toMicros(System.currentTimeMillis() - start));
 			if(TimeUnit.MILLISECONDS.toMicros(System.currentTimeMillis() - start) > bound){
 				total_time = bound;
 				return false;
@@ -142,17 +114,11 @@ public class A_StarSolver {
 				}else if(h == '2'){
 					calculate_Fn2(s);
 				}else if(h == '3'){
-					calculate_Fn3(s);
-				}else if(h == '4'){
 					calculate_Fn4(s);
-				}else if(h == '5'){
-					calculate_Fn5(s);
-				}else if(h == '6'){
-					calculate_Fn6(s);
 				}else{
 					calculate_Fn0(s);
 				}
-				heuristic_avg += s.getFValue();
+				
 				boolean opened = OPEN_LIST_HELPER.containsKey(s.disc)
 						,closed = CLOSED_LIST.containsKey(s.disc);
 				FibonacciHeapNode<State> stateHelper = null;
@@ -175,6 +141,7 @@ public class A_StarSolver {
 							max_level = s.g + 1;
 						}
 					}
+					ignored_nodes++;
 					continue;
 				}
 				branching_factor++;
@@ -186,20 +153,35 @@ public class A_StarSolver {
 		return false;
 	}
 	
+	/**
+	 * insert fbn into the open list
+	 * @param fbn
+	 */
 	public void insert_opened(FibonacciHeapNode<State> fbn) {
 		OPEN_LIST.insert(fbn, fbn.data.getFValue());
 		OPEN_LIST_HELPER.put(fbn.data.disc, fbn);
 		
 	}
 
+	/**
+	 * (Null Function) heuristic function that gives every node the 
+	 * g value  
+	 * @param node
+	 */
 	private void calculate_Fn0(State node) {
 		if(node.isGoal()){
 			node.setFValue(-100.0);
 		}else{
 			node.setFValue( node.g);
+			
 		}
 	}
 	
+	/**
+	 * (Distance Function) heuristic function that gives every node the 
+	 * number of cars that blocks car XX from exit 
+	 * @param node
+	 */
 	private void calculate_Fn(State node) {
 		if(node.isGoal()){
 			node.setFValue(-100.0);
@@ -214,67 +196,88 @@ public class A_StarSolver {
 				}
 			}
 			//System.out.println("VALUE: " + (count + node.g) + " - " + i);
+			heuristic_avg += count;
 			node.setFValue(count + node.g);
 		}
 	}
 	
+	/**
+	 * (Contra-Mobility Function) heuristic function that gives every node 
+	 * the number of the possible moves on the board   
+	 * @param node
+	 */
 	private void calculate_Fn2(State node) {
 		if(node.isGoal()){
 			node.setFValue(-100.0);
 		}else{
 			node.generatePossibleMoves();
 			double count = node.nextStates.size();
+			heuristic_avg += -count;
 			node.setFValue(-count + node.g);
 		}
 	}
 	
-	private void calculate_Fn3(State node) {
+	/*private void calculate_Fn3(State node) {
 		if(node.isGoal()){
 			node.setFValue(-100.0);
 		}else{
 			calculate_Fn(node);
+			node.generatePossibleMoves();
 			double count = node.nextStates.size();
 			//System.out.println("VALUE: " + (-count + node.g) + " - " + level);
 			node.setFValue(0.5*(-count + node.g) + 0.5*(node.getFValue()));
 		}
-	}
+	}*/
 	
 	
+	/**
+	 * (Contra-Mobility + Distance Function) heuristic function that gives every node the 
+	 * a mixture value of 0.8*Contra-Mobility value + 0.2*Distance value 
+	 * @param node
+	 */
 	private void calculate_Fn4(State node) {
 		if(node.isGoal()){
 			node.setFValue(-100.0);
 		}else{
 			calculate_Fn(node);
+			node.generatePossibleMoves();
 			double count = node.nextStates.size();
 			//System.out.println("VALUE: " + (-count + node.g) + " - " + level);
+			heuristic_avg += (0.8*(-count) + 0.2*(node.getFValue() - node.g));
 			node.setFValue(0.8*(-count + node.g) + 0.2*(node.getFValue()));
 		}
 	}
 	
-	private void calculate_Fn5(State node) {
+	/*private void calculate_Fn5(State node) {
 		if(node.isGoal()){
 			node.setFValue(-100.0);
 		}else{
 			calculate_Fn(node);
+			node.generatePossibleMoves();
 			double count = node.nextStates.size();
 			//System.out.println("VALUE: " + (-count + node.g) + " - " + level);
 			node.setFValue(0.2*(-count + node.g) + 0.8*(node.getFValue()));
 		}
-	}
+	}*/
 	
 	
-	private void calculate_Fn6(State node) {
+	/*private void calculate_Fn6(State node) {
 		if(node.isGoal()){
 			node.setFValue(-100.0);
 		}else{
 			calculate_Fn(node);
+			node.generatePossibleMoves();
 			double count = node.nextStates.size();
 			//System.out.println("VALUE: " + (-count + node.g) + " - " + level);
 			node.setFValue(0.01*(-count + node.g) + 0.99*(node.getFValue()));
 		}
-	}
+	}*/
 	
 	
+	/**
+	 * Delete minimum in fibonacci heap
+	 * @return
+	 */
 	public FibonacciHeapNode<State> remove_min(){
 		FibonacciHeapNode<State> min = OPEN_LIST.removeMin();	
 		OPEN_LIST_HELPER.remove(min.data.disc);
@@ -284,11 +287,23 @@ public class A_StarSolver {
 	}
 	
 	
+	/**
+	 * calculate the nth root of number A
+	 * @param n
+	 * @param A
+	 * @return
+	 */
 	public static double nthroot(int n, double A) {
 		return nthroot(n, A, .001);
 	}
 	
 	
+	/**
+	 * calculate the nth root of number A
+	 * @param n
+	 * @param A
+	 * @return
+	 */
 	public static double nthroot(int n, double A, double p) {
 		if(A < 0) {
 			System.err.println("A < 0");// we handle only real positive numbers
@@ -307,38 +322,24 @@ public class A_StarSolver {
 	
 	
 	public static void main(String[] args){
-		System.out.println("Enter time limit in seconds");
+		System.out.println("## Red Car agent ##");
+		System.out.println("Make sure that you provided the input problem inside the 'states.txt' file.\n");
+		System.out.print("Enter time limit in seconds (float/integer): ");
 		Scanner sc = new Scanner(System.in);
 		double i = sc.nextDouble();		
-		System.out.println(i);
-		System.out.println("Choose a heuristic function:\n1. Distance(recommended)\n2. Possible Moves\n3.Distance + Possible Moves\n..>");
+		System.out.print("Choose a heuristic function(1-4):\n1. Distance\n2. Contra-Mobility\n3. Distance + Contra-Mobility (Our chosen solution)\n4. Null Function(Best Solution)\n..> ");
 		char h = sc.next().charAt(0);
+		System.out.println("The solution of the provided problem will appear in a new file named 'Sols.txt' in this directory.");
 		solveAll((int)(i*1000000),h);
 		sc.close();
-		/*State s = new State();
-		s.initilizeState("ABB..OA.P..OXXP..O..PQQQ....C.RRR.C.");
-		//String st = "A B B . . O A . P . . O X X P . . O . . P Q Q Q . . . . C . R R R . C . ";
-		//st = st.replaceAll("\\s+","");
-		//s.initilizeState(s);
-		s.setParent(null);
-		s.show();
-		A_StarSolver solver = new A_StarSolver(s);
-		System.out.println(solver.solve());
 		
-		int u = 1;
-		while(!solver.ops.isEmpty()){
-			
-			Op oo = solver.ops.pop();
-			System.out.println(oo.constructOperation());
-			System.out.println(oo.constructOperation() + "\n\n"+ (u++) +"\n::::");
-			solver.root.makeMove(oo);
-			solver.root.draw();
-			solver.root.show();
-		}
-		System.out.println("\n\n BF: "+nthroot(A_StarSolver.level, A_StarSolver.branching_factor));*/
 	}
 	
-	
+	/**
+	 * solve all the tests and print it to .txt file into the project in final_result document 
+	 * @param bound
+	 * @param h
+	 */
 	public static void solveAll(long bound,char h){
 		try(BufferedReader br = new BufferedReader(new FileReader("states2.txt"))) {
 			int k = 0;
@@ -359,46 +360,38 @@ public class A_StarSolver {
 		    	}
 		    	
 		    }
-		    @SuppressWarnings("resource")
-			BufferedReader br2 = new BufferedReader(new FileReader("states.txt"));
+		    BufferedReader br2 = new BufferedReader(new FileReader("states.txt"));
 		    PrintStream out = null;
 			try {
-				out = new PrintStream(new FileOutputStream("final_results/SOLS8.txt"));
+				out = new PrintStream(new FileOutputStream("SOLS.txt"));
 				i++;
 			} catch (FileNotFoundException e) {
 				
-				e.printStackTrace();
 			}
 			System.setOut(out);
 		    long startTime = System.currentTimeMillis();
-		    long MAX_RUN_TIME = 388000000;
-		    int num = 0;
 		    for(String line; (line = br2.readLine()) != null; ) {
 		    	//System.out.println(line);
 		        automation(line,bound,h);
-		        num++;
-		        if(TimeUnit.MILLISECONDS.toMicros(System.currentTimeMillis() - startTime) > MAX_RUN_TIME){
-		        	System.out.println("Statistics: ");
-					System.out.println("Min opened nodes: " + min + " Max opened nodes: " + max + " Average: " + accumelated/num);
-		        	System.out.println("Max Time reached, number of solved problems: " + num);
-		        	out.close();
-		        	return;
-		        }
-		    	
 		    }
 		    
 		    System.out.println("Total Runtime: " + TimeUnit.MILLISECONDS.toMicros(System.currentTimeMillis() - startTime)/1000000.0 + " Sec.");
 		    // line is not visible here.
 		    br2.close();
+		    out.close();
 		} catch (IOException e){
 			e.printStackTrace();
 		}
 		
 	}
 	
-	
+	/**
+	 * automation function that runs all the tests
+	 * @param disc
+	 * @param bound
+	 * @param h
+	 */
 	public static void automation(String disc, long bound,char h){
-		
 		
 		System.out.println("Problem "+ (++countt)+":");
 		State s = new State();
@@ -429,7 +422,21 @@ public class A_StarSolver {
 		System.out.printf("Penetrance Rate: %.4f" , A_StarSolver.level/(double)A_StarSolver.branching_factor);
 		System.out.println();
 		System.out.println("\nNumber of moves: " + si + "  vs. Provided solution: " + (i-2 <= 39?optimal_solutions[i-2]: 0));
-		System.out.printf("Heuristic average value assigned: %.2f" , (double)solver.heuristic_avg/branching_factor);
+		System.out.printf("Heuristic average value assigned: %.2f" , (double)solver.heuristic_avg/(branching_factor + solver.ignored_nodes));
+		System.out.println();
+		int max_depth = Integer.MIN_VALUE,min_depth = Integer.MAX_VALUE,accumelated_depth = 0;
+		for (Entry<String, FibonacciHeapNode<State>> fpn : A_StarSolver.OPEN_LIST_HELPER.entrySet()) {
+			int depth = fpn.getValue().data.g;
+			if(depth < min_depth){
+				min_depth = depth;
+			}else if(depth > max_depth){
+				max_depth = depth;
+			}
+			accumelated_depth += depth;
+		}
+		System.out.println("Max Depth before cutoff: " + max_depth);
+		System.out.println("Min Depth before cutoff: " + min_depth);
+		System.out.printf("Average Depth before cutoff: %.2f" , accumelated_depth/(double)A_StarSolver.OPEN_LIST_HELPER.size());
 		System.out.println();
 		System.out.println("finished in: " + solver.total_time/1000000.0 + " sec.");
 		i++;
@@ -437,7 +444,7 @@ public class A_StarSolver {
 		if(i == 42){
 			
 			System.out.println("Statistics: ");
-			System.out.println("Min opened nodes: " + min + " Max opened nodes: " + max + " Average: " + accumelated/40);
+			System.out.println("Min opened nodes after solution was found: " + min + " || Max opened nodes: " + max + " || Average: " + accumelated/40);
 		}
 	}
 }

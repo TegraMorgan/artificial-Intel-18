@@ -1,6 +1,7 @@
 package lab1;
 
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 //implement Iterative Deepening with DLS
 
@@ -30,14 +31,28 @@ import java.util.ArrayList;
 		    return false
 */
 public class IDDLSolver {
-	
+	static long start_time = (long) 0;
+	static long bound;
+	public long total_time = (long) 0;
+	public IDDLSolver(long b){
+		bound = b;
+		start_time = System.currentTimeMillis();
+	}
 	public boolean IDDLS(State root){
 		int i = 0;
 		for(i = 0; ; i++){
-			//root.show();
+			if(TimeUnit.MILLISECONDS.toMicros(System.currentTimeMillis() - start_time) > bound){
+				total_time = bound;
+				return false;
+			}
 			if(DLS(root,i)){
 				System.out.println("Found solution at depth: " + i);
+				total_time = TimeUnit.MILLISECONDS.toMicros(System.currentTimeMillis() - start_time);
 				return true;
+			}else{
+				if(!(total_time == 0)){
+					return false;
+				}
 			}
 		}
 	}
@@ -51,6 +66,9 @@ public class IDDLSolver {
 		}
 		if(depth <= 0){
 			return false;
+		}else if(TimeUnit.MILLISECONDS.toMicros(System.currentTimeMillis() - start_time) > bound){
+			total_time = bound;
+			return false;
 		}
 		
 		ArrayList<Op> operations = current.generatePossibleMoves().getPossibleOperations();
@@ -61,7 +79,7 @@ public class IDDLSolver {
 			s.makeMove(op);
 			s.draw();
 			if(DLS(s,depth-1)){
-				System.out.println(op.constructOperation() + " $$");
+				System.out.println(op.constructOperation() + " ");
 				
 				return true;
 			}
@@ -71,10 +89,12 @@ public class IDDLSolver {
 	
 	public static void main(String[] args){
 		State s = new State();
-		s.initilizeState("AA...OP..Q.OPXXQ.OP..Q..B...CCB.RRR.");
-		IDDLSolver solver = new IDDLSolver();
+		s.initilizeState("AABO..P.BO..PXXO..PQQQ...........RRR");
+		IDDLSolver solver = new IDDLSolver(100000000);
 		s.show();
+		
 		System.out.println(solver.IDDLS(s));
+		System.out.println("finished in: " + solver.total_time/1000000.0 + " sec.");
 	}
 
 }

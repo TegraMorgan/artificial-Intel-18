@@ -93,7 +93,6 @@ public class State implements Comparable<State>,Serializable{
 			int x = c.getValue().getPosition().x,y = c.getValue().getPosition().y;
 			char name = c.getValue().name;
 			this.board[x][y] = name;
-			//System.out.println("KKKK      " + name);
 			if(c.getValue().isVertical()){
 				this.board[x+1][y] = name;
 				if(c.getValue().get_size() == 3)
@@ -353,33 +352,13 @@ public class State implements Comparable<State>,Serializable{
 		this.disc = quatized_state;
 	}
 	
-	public static void main(String[] args){
-		/*State s = new State();
-		s.initilizeState("A.PBBOA.P.COXXP.CO...QQQ......RRR...");
-		s.generatePossibleMoves();
-		s.show();
-		s.showNextStates();
-		System.out.println(s.carList);
-		State ss = new State();
-		ss.initilizeState("AA...........XX.....................");
-		
-		s.show();
-		s.showNextStates();
-		System.out.println();
-		s.makeMove(s.nextStates.get(2));
-		s.show();
-		
-		s.showNextStates();
-		s.show();
-		//.out.println(s.compress().equals(ss.compress()));
-*/		
+	public static void main(String[] args){	
 		Console console = System.console();
         if(console == null && !GraphicsEnvironment.isHeadless()){
             //String filename = A_StarSolver.class.getProtectionDomain().getCodeSource().getLocation().toString().substring(6);
             try {
-				Runtime.getRuntime().exec(new String[]{"cmd","/c","start","cmd","/k","java -jar aiv1.jar"});
+				Runtime.getRuntime().exec(new String[]{"cmd","/c","start","cmd","/k","java -jar lab1.jar"});
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
         }else{
