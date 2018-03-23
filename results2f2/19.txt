@@ -1,0 +1,9 @@
+..ABB...A.J..DXXJ..DEEF..OOOF.......
+Failure
+
+
+
+Branching Factor: 1.082662870813989
+
+Number of moves: 0  vs. Provided solution: 22
+Total Runtime: 0.007 Sec

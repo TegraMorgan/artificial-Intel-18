@@ -1,0 +1,9 @@
+AAB.CCDDB..OPXX..OPQQQ.OP..EFFGG.EHH
+Failure
+
+
+
+Branching Factor: 1.0843351697218373
+
+Number of moves: 0  vs. Provided solution: 17
+Total Runtime: 0.007 Sec

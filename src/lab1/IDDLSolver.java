@@ -1,8 +1,9 @@
 package lab1;
 
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
-//TODO implement Iterative Deepening with DLS
+//implement Iterative Deepening with DLS
 
 	/*Pseudo Code:
 		
@@ -30,17 +31,30 @@ import java.util.ArrayList;
 		    return false
 */
 public class IDDLSolver {
-	
-	public boolean IDDLS(State root, int depth){
-		for(int i = 0; i <= depth; i++){
-			//root.show();
+	static long start_time = (long) 0;
+	static long bound;
+	public long total_time = (long) 0;
+	public IDDLSolver(long b){
+		bound = b;
+		start_time = System.currentTimeMillis();
+	}
+	public boolean IDDLS(State root){
+		int i = 0;
+		for(i = 0; ; i++){
+			if(TimeUnit.MILLISECONDS.toMicros(System.currentTimeMillis() - start_time) > bound){
+				total_time = bound;
+				return false;
+			}
 			if(DLS(root,i)){
 				System.out.println("Found solution at depth: " + i);
+				total_time = TimeUnit.MILLISECONDS.toMicros(System.currentTimeMillis() - start_time);
 				return true;
+			}else{
+				if(!(total_time == 0)){
+					return false;
+				}
 			}
 		}
-		System.out.println("Solution wasn't found within depth: " + depth);
-		return false;
 	}
 
 	public boolean DLS(State current, int depth) {
@@ -52,6 +66,9 @@ public class IDDLSolver {
 		}
 		if(depth <= 0){
 			return false;
+		}else if(TimeUnit.MILLISECONDS.toMicros(System.currentTimeMillis() - start_time) > bound){
+			total_time = bound;
+			return false;
 		}
 		
 		ArrayList<Op> operations = current.generatePossibleMoves().getPossibleOperations();
@@ -62,7 +79,7 @@ public class IDDLSolver {
 			s.makeMove(op);
 			s.draw();
 			if(DLS(s,depth-1)){
-				System.out.println(op.constructOperation() + " $$");
+				System.out.println(op.constructOperation() + " ");
 				
 				return true;
 			}
@@ -72,10 +89,12 @@ public class IDDLSolver {
 	
 	public static void main(String[] args){
 		State s = new State();
-		s.initilizeState(".............XXO...AAO.P.B.O.P.BCC.P");
-		IDDLSolver solver = new IDDLSolver();
+		s.initilizeState("AABO..P.BO..PXXO..PQQQ...........RRR");
+		IDDLSolver solver = new IDDLSolver(100000000);
 		s.show();
-		System.out.println(solver.IDDLS(s, 14));
+		
+		System.out.println(solver.IDDLS(s));
+		System.out.println("finished in: " + solver.total_time/1000000.0 + " sec.");
 	}
 
 }

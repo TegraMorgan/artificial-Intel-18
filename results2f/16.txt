@@ -1,0 +1,9 @@
+AABBCOD.EECODFPXXO.FPQQQ..P...GG....
+Solution FOUND!
+GR4 FD2 DD2 PD1 XL3 EL2 CD1 BR1 PU3 QL2 GL2 CD3 QR2 FU1 GL2 PD3 XR3 PU3 QL1 OD3 XR3 
+
+
+Branching Factor: 2.1337922733848558
+
+Number of moves: 21  vs. Provided solution: 21
+Total Runtime: 0.355 Sec

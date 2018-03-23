@@ -1,0 +1,104 @@
+O..P..O..P..OXXP....AQQQ..A..B..RRRB
+O . . P . . 
+O . . P . . 
+O X X P . . 
+. . A Q Q Q 
+. . A . . B 
+. . R R R B 
+
+Solution FOUND!
+trueOD3
+
+OD3
+# # # P # # 
+# # # P # # 
+# X X P # # 
+O # A Q Q Q 
+O # A # # B 
+O # R R R B 
+
+XL1
+
+XL1
+# # # P # # 
+# # # P # # 
+X X # P # # 
+O # A Q Q Q 
+O # A # # B 
+O # R R R B 
+
+AU3
+
+AU3
+# # A P # # 
+# # A P # # 
+X X # P # # 
+O # # Q Q Q 
+O # # # # B 
+O # R R R B 
+
+XR1
+
+XR1
+# # A P # # 
+# # A P # # 
+# X X P # # 
+O # # Q Q Q 
+O # # # # B 
+O # R R R B 
+
+OU3
+
+OU3
+O # A P # # 
+O # A P # # 
+O X X P # # 
+# # # Q Q Q 
+# # # # # B 
+# # R R R B 
+
+RL2
+
+RL2
+O # A P # # 
+O # A P # # 
+O X X P # # 
+# # # Q Q Q 
+# # # # # B 
+R R R # # B 
+
+QL3
+
+QL3
+O # A P # # 
+O # A P # # 
+O X X P # # 
+Q Q Q # # # 
+# # # # # B 
+R R R # # B 
+
+PD3
+
+PD3
+O # A # # # 
+O # A # # # 
+O X X # # # 
+Q Q Q P # # 
+# # # P # B 
+R R R P # B 
+
+XR5
+
+XR5
+O # A # # # 
+O # A # # # 
+O # # # # # 
+Q Q Q P # # 
+# # # P # B 
+R R R P # B 
+
+
+
+ BF: 1.042251238418777
+
+Number of moves: 9  should be: 9

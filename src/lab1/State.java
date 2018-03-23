@@ -1,5 +1,8 @@
 package lab1;
 
+import java.awt.GraphicsEnvironment;
+import java.io.Console;
+import java.io.IOException;
 /*import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutput;
@@ -40,7 +43,7 @@ public class State implements Comparable<State>,Serializable{
 		for (Entry<String, Car> c : other.cars.entrySet()) {
 			this.cars.put(c.getKey(), new Car(c.getValue()));
 		}
-		this.setHValue(other.getHValue());
+		this.setFValue(other.getFValue());
 		//this.nextStates = new ArrayList<>(other.nextStates);
 		this.setParent(other.getParent());
 		this.setOp(other.getOp());
@@ -50,7 +53,7 @@ public class State implements Comparable<State>,Serializable{
 		return this.board;
 	}
 	
-	//TODO [test this]
+	
 	public void initilizeState(String disc){
 		final int ROW = 6;
 		final int COL = 6;
@@ -90,7 +93,6 @@ public class State implements Comparable<State>,Serializable{
 			int x = c.getValue().getPosition().x,y = c.getValue().getPosition().y;
 			char name = c.getValue().name;
 			this.board[x][y] = name;
-			//System.out.println("KKKK      " + name);
 			if(c.getValue().isVertical()){
 				this.board[x+1][y] = name;
 				if(c.getValue().get_size() == 3)
@@ -244,11 +246,11 @@ public class State implements Comparable<State>,Serializable{
 		}
 	}
 	
-	public void setHValue(double h2_value){
+	public void setFValue(double h2_value){
 		this.h_value = h2_value;
 	}
 	
-	public double getHValue(){
+	public double getFValue(){
 		return this.h_value;
 	}
 	
@@ -305,7 +307,7 @@ public class State implements Comparable<State>,Serializable{
 	
 	@Override
 	public int compareTo(State other) {
-		double h2_value = other.getHValue();
+		double h2_value = other.getFValue();
 		if(this.h_value > h2_value)
 			return 1;
 		if(this.h_value < h2_value)
@@ -350,30 +352,23 @@ public class State implements Comparable<State>,Serializable{
 		this.disc = quatized_state;
 	}
 	
-	public static void main(String[] args){
-		State s = new State();
-		s.initilizeState("A.PBBOA.P.COXXP.CO...QQQ......RRR...");
-		s.generatePossibleMoves();
-		s.show();
-		s.showNextStates();
-		System.out.println(s.carList);
-		/*State ss = new State();
-		ss.initilizeState("AA...........XX.....................");
-		*/
-		/*s.show();
-		s.showNextStates();
-		System.out.println();
-		s.makeMove(s.nextStates.get(2));
-		s.show();
-		
-		s.showNextStates();
-		s.show();*/
-		//.out.println(s.compress().equals(ss.compress()));
-		
+	public static void main(String[] args){	
+		Console console = System.console();
+        if(console == null && !GraphicsEnvironment.isHeadless()){
+            //String filename = A_StarSolver.class.getProtectionDomain().getCodeSource().getLocation().toString().substring(6);
+            try {
+				Runtime.getRuntime().exec(new String[]{"cmd","/c","start","cmd","/k","java -jar lab1.jar"});
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+        }else{
+            A_StarSolver.main(new String[0]);
+            System.out.println("Program has ended");
+        }
 	}
 
 	public Op getOpp() {
-		// TODO Auto-generated method stub
+		// 
 		return this.opp;
 	}
 	

@@ -1,0 +1,15 @@
+Problem 1:
+CL3 OD3 AR4 PU1 BU1 RL2 QD2 XR5 
+
+
+Branching Factor: 2.3870
+Penetrance Rate: 0.0076
+
+Number of moves: 8  vs. Provided solution: 8
+Heuristic average value assigned: 54.57
+Max Depth before cutoff: 8
+Min Depth before cutoff: 7
+Average Depth before cutoff: 7.03
+finished in: 0.185 sec.
+
+Total Runtime: 0.194 Sec.

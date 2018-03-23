@@ -1,0 +1,9 @@
+..OOOP..ABBP..AXXP..CDEE..CDFF..QQQ.
+Failure
+
+
+
+Branching Factor: 1.0328617004310396
+
+Number of moves: 0  vs. Provided solution: 29
+Total Runtime: 0.007 Sec

@@ -1,0 +1,134 @@
+...AAO..BBCOXXDECOFFDEGGHHIPPPKKIQQQ
+. . . A A O 
+. . B B C O 
+X X D E C O 
+F F D E G G 
+H H I P P P 
+K K I Q Q Q 
+
+Solution FOUND!
+trueAL3
+
+AL3
+A A # # # O 
+# # B B C O 
+X X D E C O 
+F F D E G G 
+H H I P P P 
+K K I Q Q Q 
+
+BL2
+
+BL2
+A A # # # O 
+B B # # C O 
+X X D E C O 
+F F D E G G 
+H H I P P P 
+K K I Q Q Q 
+
+EU2
+
+EU2
+A A # E # O 
+B B # E C O 
+X X D # C O 
+F F D # G G 
+H H I P P P 
+K K I Q Q Q 
+
+CU1
+
+CU1
+A A # E C O 
+B B # E C O 
+X X D # # O 
+F F D # G G 
+H H I P P P 
+K K I Q Q Q 
+
+DU2
+
+DU2
+A A D E C O 
+B B D E C O 
+X X # # # O 
+F F # # G G 
+H H I P P P 
+K K I Q Q Q 
+
+XR3
+
+XR3
+A A D E C O 
+B B D E C O 
+# # # X X O 
+F F # # G G 
+H H I P P P 
+K K I Q Q Q 
+
+IU2
+
+IU2
+A A D E C O 
+B B D E C O 
+# # I X X O 
+F F I # G G 
+H H # P P P 
+K K # Q Q Q 
+
+GL1
+
+GL1
+A A D E C O 
+B B D E C O 
+# # I X X O 
+F F I G G # 
+H H # P P P 
+K K # Q Q Q 
+
+PL1
+
+PL1
+A A D E C O 
+B B D E C O 
+# # I X X O 
+F F I G G # 
+H H P P P # 
+K K # Q Q Q 
+
+QL1
+
+QL1
+A A D E C O 
+B B D E C O 
+# # I X X O 
+F F I G G # 
+H H P P P # 
+K K Q Q Q # 
+
+OD3
+
+OD3
+A A D E C # 
+B B D E C # 
+# # I X X # 
+F F I G G O 
+H H P P P O 
+K K Q Q Q O 
+
+XR3
+
+XR3
+A A D E C # 
+B B D E C # 
+# # I # # # 
+F F I G G O 
+H H P P P O 
+K K Q Q Q O 
+
+
+
+ BF: 1.016393355613924
+
+Number of moves: 12  should be: 12

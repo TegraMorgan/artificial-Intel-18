@@ -1,0 +1,262 @@
+OOOA....PABBXXP...CDPEEQCDRRRQFFGG.Q
+O O O A . . 
+. . P A B B 
+X X P . . . 
+C D P E E Q 
+C D R R R Q 
+F F G G . Q 
+
+Solution FOUND!
+trueQU1
+O O O A # # 
+# # P A B B 
+X X P # # Q 
+C D P E E Q 
+C D R R R Q 
+F F G G # # 
+
+GR2
+O O O A # # 
+# # P A B B 
+X X P # # Q 
+C D P E E Q 
+C D R R R Q 
+F F # # G G 
+
+FR2
+O O O A # # 
+# # P A B B 
+X X P # # Q 
+C D P E E Q 
+C D R R R Q 
+# # F F G G 
+
+DD1
+O O O A # # 
+# # P A B B 
+X X P # # Q 
+C # P E E Q 
+C D R R R Q 
+# D F F G G 
+
+AD1
+O O O # # # 
+# # P A B B 
+X X P A # Q 
+C # P E E Q 
+C D R R R Q 
+# D F F G G 
+
+OR3
+# # # O O O 
+# # P A B B 
+X X P A # Q 
+C # P E E Q 
+C D R R R Q 
+# D F F G G 
+
+CD1
+# # # O O O 
+# # P A B B 
+X X P A # Q 
+# # P E E Q 
+C D R R R Q 
+C D F F G G 
+
+PU1
+# # P O O O 
+# # P A B B 
+X X P A # Q 
+# # # E E Q 
+C D R R R Q 
+C D F F G G 
+
+EL3
+# # P O O O 
+# # P A B B 
+X X P A # Q 
+E E # # # Q 
+C D R R R Q 
+C D F F G G 
+
+AD1
+# # P O O O 
+# # P # B B 
+X X P A # Q 
+E E # A # Q 
+C D R R R Q 
+C D F F G G 
+
+BL1
+# # P O O O 
+# # P B B # 
+X X P A # Q 
+E E # A # Q 
+C D R R R Q 
+C D F F G G 
+
+QU1
+# # P O O O 
+# # P B B Q 
+X X P A # Q 
+E E # A # Q 
+C D R R R # 
+C D F F G G 
+
+RR1
+# # P O O O 
+# # P B B Q 
+X X P A # Q 
+E E # A # Q 
+C D # R R R 
+C D F F G G 
+
+PD2
+# # # O O O 
+# # # B B Q 
+X X P A # Q 
+E E P A # Q 
+C D P R R R 
+C D F F G G 
+
+BL3
+# # # O O O 
+B B # # # Q 
+X X P A # Q 
+E E P A # Q 
+C D P R R R 
+C D F F G G 
+
+PU2
+# # P O O O 
+B B P # # Q 
+X X P A # Q 
+E E # A # Q 
+C D # R R R 
+C D F F G G 
+
+AU1
+# # P O O O 
+B B P A # Q 
+X X P A # Q 
+E E # # # Q 
+C D # R R R 
+C D F F G G 
+
+ER3
+# # P O O O 
+B B P A # Q 
+X X P A # Q 
+# # # E E Q 
+C D # R R R 
+C D F F G G 
+
+PD2
+# # # O O O 
+B B # A # Q 
+X X P A # Q 
+# # P E E Q 
+C D P R R R 
+C D F F G G 
+
+OL3
+O O O # # # 
+B B # A # Q 
+X X P A # Q 
+# # P E E Q 
+C D P R R R 
+C D F F G G 
+
+AU1
+O O O A # # 
+B B # A # Q 
+X X P # # Q 
+# # P E E Q 
+C D P R R R 
+C D F F G G 
+
+CU1
+O O O A # # 
+B B # A # Q 
+X X P # # Q 
+C # P E E Q 
+C D P R R R 
+# D F F G G 
+
+DU1
+O O O A # # 
+B B # A # Q 
+X X P # # Q 
+C D P E E Q 
+C D P R R R 
+# # F F G G 
+
+FL2
+O O O A # # 
+B B # A # Q 
+X X P # # Q 
+C D P E E Q 
+C D P R R R 
+F F # # G G 
+
+PD1
+O O O A # # 
+B B # A # Q 
+X X # # # Q 
+C D P E E Q 
+C D P R R R 
+F F P # G G 
+
+XR3
+O O O A # # 
+B B # A # Q 
+# # # X X Q 
+C D P E E Q 
+C D P R R R 
+F F P # G G 
+
+PU2
+O O O A # # 
+B B P A # Q 
+# # P X X Q 
+C D P E E Q 
+C D # R R R 
+F F # # G G 
+
+RL1
+O O O A # # 
+B B P A # Q 
+# # P X X Q 
+C D P E E Q 
+C D R R R # 
+F F # # G G 
+
+GL1
+O O O A # # 
+B B P A # Q 
+# # P X X Q 
+C D P E E Q 
+C D R R R # 
+F F # G G # 
+
+QD2
+O O O A # # 
+B B P A # # 
+# # P X X # 
+C D P E E Q 
+C D R R R Q 
+F F # G G Q 
+
+XR3
+O O O A # # 
+B B P A # # 
+# # P # # # 
+C D P E E Q 
+C D R R R Q 
+F F # G G Q 
+
+
+
+ BF: 1.0311653869540962
+
+Number of moves: 31  should be: 30

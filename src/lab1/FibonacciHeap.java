@@ -362,7 +362,7 @@ public class FibonacciHeap<T>
         // do a simple breadth-first traversal on the tree
         while (!stack.empty()) {
             FibonacciHeapNode<T> curr = stack.pop();
-            buf.append(curr);
+            buf.append(curr.key);
             buf.append(", ");
 
             if (curr.child != null) {
@@ -373,7 +373,7 @@ public class FibonacciHeap<T>
             curr = curr.right;
 
             while (curr != start) {
-                buf.append(curr);
+                buf.append(curr.key);
                 buf.append(", ");
 
                 if (curr.child != null) {

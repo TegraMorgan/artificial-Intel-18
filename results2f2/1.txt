@@ -1,0 +1,9 @@
+AA...OP..Q.OPXXQ.OP..Q..B...CCB.RRR.
+Failure
+
+
+
+Branching Factor: 1.4314275169591735
+
+Number of moves: 0  vs. Provided solution: 8
+Total Runtime: 0.007 Sec

@@ -1,0 +1,9 @@
+..AOOOB.APCCBXXP...D.PEEFDGG.HFQQQ.H
+Solution FOUND!
+BU1 GR1 XL1 AD3 XR1 BD1 OL3 PU1 EL1 HU2 QR2 AD1 DD1 GR1 EL2 PD2 CL3 PU2 HU2 ER3 AU1 DU1 FU1 QL3 PD3 XR5 
+
+
+Branching Factor: 3.033735105225799
+
+Number of moves: 26  vs. Provided solution: 26
+Total Runtime: 0.355 Sec

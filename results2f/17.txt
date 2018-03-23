@@ -1,0 +1,9 @@
+AOOO..A.BBCCXXD...EEDP..QQQPFGRRRPFG
+Solution FOUND!
+BL1 PU2 FU2 GU2 QR3 RR3 DD2 ER1 XR1 AD4 EL1 XL1 BL1 OR2 DU4 ER1 XR1 AU2 RL3 QL3 GD2 FD1 PD2 XR5 
+
+
+Branching Factor: 2.0365818850939106
+
+Number of moves: 24  vs. Provided solution: 24
+Total Runtime: 0.355 Sec

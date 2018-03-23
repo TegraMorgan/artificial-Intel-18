@@ -1,0 +1,443 @@
+Problem 1:
+CL3 AR1 OD1 PU1 BU1 RL2 OD2 QD2 XR5 
+
+
+Branching Factor: 2.1508
+Penetrance Rate: 0.0091
+
+Number of moves: 9  vs. Provided solution: 8
+Heuristic average value assigned: -43.64
+finished in: 0.344 sec.
+
+Problem 2:
+OL2 EL1 XR1 AD1 OL1 CU2 BU1 PD2 XR5 
+
+
+Branching Factor: 2.5397
+Penetrance Rate: 0.0020
+
+Number of moves: 9  vs. Provided solution: 8
+Heuristic average value assigned: -20.66
+finished in: 0.179 sec.
+
+Problem 3:
+OU2 PU3 CR2 AR3 OD3 XR2 BU4 XL2 OU3 AL4 CL3 PD3 OD3 XR5 
+
+
+Branching Factor: 1.5986
+Penetrance Rate: 0.0197
+
+Number of moves: 14  vs. Provided solution: 14
+Heuristic average value assigned: -15.06
+finished in: 0.012 sec.
+
+Problem 4:
+OD3 XL1 AU3 QL1 XR1 BU4 OU3 QL2 RL2 BD4 PD3 XR5 
+
+
+Branching Factor: 1.7010
+Penetrance Rate: 0.0319
+
+Number of moves: 12  vs. Provided solution: 9
+Heuristic average value assigned: -12.86
+finished in: 0.008 sec.
+
+Problem 5:
+EL2 FL3 AR1 PU1 QU1 GD2 EL1 RL1 GU2 QD1 OD1 GD2 QD2 OD2 XR5 
+
+
+Branching Factor: 1.8576
+Penetrance Rate: 0.0071
+
+Number of moves: 15  vs. Provided solution: 9
+Heuristic average value assigned: -25.22
+finished in: 0.048 sec.
+
+Problem 6:
+XL1 RL2 EU3 DR1 FU1 RL1 QD1 OD2 PD2 XR6 
+
+
+Branching Factor: 2.0355
+Penetrance Rate: 0.0082
+
+Number of moves: 10  vs. Provided solution: 9
+Heuristic average value assigned: -37.99
+finished in: 0.044 sec.
+
+Problem 7:
+FD2 IL2 CD4 DD1 BR2 EU1 IR2 XR1 AD4 XL1 ED1 BL3 IL2 DU1 EU1 XR5 
+
+
+Branching Factor: 1.5811
+Penetrance Rate: 0.0105
+
+Number of moves: 16  vs. Provided solution: 13
+Heuristic average value assigned: -33.98
+finished in: 0.124 sec.
+
+Problem 8:
+BL2 AL3 DU1 EU2 DU1 CU1 GL1 XR3 IU2 PL1 QL1 OD3 XR3 
+
+
+Branching Factor: 1.6946
+Penetrance Rate: 0.0137
+
+Number of moves: 13  vs. Provided solution: 12
+Heuristic average value assigned: 6.50
+finished in: 0.036 sec.
+
+Problem 9:
+XR1 PU3 QL1 DD3 EL2 QR1 XR1 OD1 AD1 BL1 CL1 FU2 XR4 
+
+
+Branching Factor: 1.5592
+Penetrance Rate: 0.0404
+
+Number of moves: 13  vs. Provided solution: 12
+Heuristic average value assigned: -2.27
+finished in: 0.004 sec.
+
+Problem 10:
+CL1 XR2 OU1 QR2 BD4 DR3 AR1 PU2 XL2 QL3 DL2 OD1 CR1 EU4 QR1 FL1 HL1 OD2 XR5 
+
+
+Branching Factor: 1.4778
+Penetrance Rate: 0.0114
+
+Number of moves: 19  vs. Provided solution: 17
+Heuristic average value assigned: 14.21
+finished in: 0.056 sec.
+
+Problem 11:
+OD3 AL1 XL1 BU2 QL2 EU4 AR1 QR2 BD2 XR1 RR1 BD1 QL1 OU3 QL2 ED1 PD2 AR3 PU2 QR3 BU1 OD3 XL1 BU3 QL1 XR1 OU3 RL3 QL2 ED2 PD3 XR5 
+
+
+Branching Factor: 1.2302
+Penetrance Rate: 0.0423
+
+Number of moves: 32  vs. Provided solution: 25
+Heuristic average value assigned: 56.49
+finished in: 0.028 sec.
+
+Problem 12:
+BR2 PU1 QL2 CU3 RR3 QR2 PD3 XR1 AD3 BL1 CU1 XR2 BL2 PU3 QL1 RL2 OD3 XR3 
+
+
+Branching Factor: 1.4782
+Penetrance Rate: 0.0159
+
+Number of moves: 18  vs. Provided solution: 17
+Heuristic average value assigned: 17.18
+finished in: 0.024 sec.
+
+Problem 13:
+OU1 PU1 FR1 GU1 DD2 ED1 PD1 XL3 GU2 CD1 BR1 DU3 XR1 FL2 HL2 OD1 BR1 GU1 KL1 OD2 CD2 XR5 
+
+
+Branching Factor: 1.5433
+Penetrance Rate: 0.0023
+
+Number of moves: 22  vs. Provided solution: 16
+Heuristic average value assigned: 32.99
+finished in: 0.452 sec.
+
+Problem 14:
+CL1 JL1 ED1 DD1 XL2 BD1 AR3 BU1 XR2 EU3 DU3 HL2 XL2 IU2 JL3 ID1 FD1 GD1 XR6 
+
+
+Branching Factor: 1.4860
+Penetrance Rate: 0.0102
+
+Number of moves: 19  vs. Provided solution: 17
+Heuristic average value assigned: -2.82
+finished in: 0.028 sec.
+
+Problem 15:
+IR1 HR1 RD1 QD1 AL1 XL2 FU1 EU1 GL2 OD1 DR1 PD1 BR1 DR1 EU2 FU2 XR2 QU1 RU1 HL2 IL2 OD1 PD1 XR4 
+
+
+Branching Factor: 1.2980
+Penetrance Rate: 0.0459
+
+Number of moves: 24  vs. Provided solution: 23
+Heuristic average value assigned: 19.17
+finished in: 0.016 sec.
+
+Problem 16:
+GR4 PD1 FD2 DD3 EL2 XL3 CD1 BR1 GL1 PU3 QL2 GL1 CD3 QR2 PD2 FU1 DU1 GL2 PD1 XR3 ER3 FU2 PU3 DU2 GR2 QL1 OD3 XR3 
+
+
+Branching Factor: 1.3225
+Penetrance Rate: 0.0112
+
+Number of moves: 28  vs. Provided solution: 21
+Heuristic average value assigned: 13.28
+finished in: 0.084 sec.
+
+Problem 17:
+BL1 PU1 FU2 GU2 PU1 RR3 QR3 DD1 XR1 DD1 ER1 AD4 OL1 EL1 XL1 DU2 BL1 OR3 DU2 ER1 XR1 AU2 QL3 RL3 GD1 FD1 PD2 XR5 
+
+
+Branching Factor: 1.3116
+Penetrance Rate: 0.0141
+
+Number of moves: 28  vs. Provided solution: 24
+Heuristic average value assigned: 58.51
+finished in: 0.092 sec.
+
+Problem 18:
+RR1 PD1 XL1 QR2 DR3 RR2 BD4 CR1 XR1 AR1 PU3 QL3 OD2 AR3 CR3 OU2 QR3 PD3 XL1 BU4 XR1 PU3 RL3 QL3 DL3 OD3 XR5 
+
+
+Branching Factor: 1.3136
+Penetrance Rate: 0.0171
+
+Number of moves: 27  vs. Provided solution: 25
+Heuristic average value assigned: 83.04
+finished in: 0.056 sec.
+
+Problem 19:
+DU2 FD1 XL2 EL2 AD1 BL1 JU1 FU2 OR2 AD3 XR2 ER2 DD4 XL2 EL2 BL2 AU4 ER2 XR2 DU3 OL3 FD2 XR4 
+
+
+Branching Factor: 1.3079
+Penetrance Rate: 0.0479
+
+Number of moves: 23  vs. Provided solution: 22
+Heuristic average value assigned: 3.86
+finished in: 0.012 sec.
+
+Problem 20:
+CD1 BR2 DU2 EU2 FL3 QL3 ED1 CD1 PD1 XR6 
+
+
+Branching Factor: 1.7611
+Penetrance Rate: 0.0348
+
+Number of moves: 10  vs. Provided solution: 10
+Heuristic average value assigned: -6.78
+finished in: 0.004 sec.
+
+Problem 21:
+PD2 QR2 XL1 BD4 XR1 AR1 PU3 QL3 OD1 AR3 OU1 QR3 PD3 XL1 BU4 XR1 PU3 QL3 RL3 OD3 XR5 
+
+
+Branching Factor: 1.3010
+Penetrance Rate: 0.0837
+
+Number of moves: 21  vs. Provided solution: 21
+Heuristic average value assigned: 27.36
+finished in: 0.004 sec.
+
+Problem 22:
+BU1 GR1 XL1 AD3 XR1 BD1 OL3 PU1 EL1 HU2 QR2 AD1 DD1 EL2 PD1 GR1 PD1 CL3 HU2 PU2 ER3 PD2 AU1 DU1 FU1 QL3 PD1 XR5 
+
+
+Branching Factor: 1.3323
+Penetrance Rate: 0.0091
+
+Number of moves: 28  vs. Provided solution: 26
+Heuristic average value assigned: 66.39
+finished in: 0.1 sec.
+
+Problem 23:
+QL2 DD1 EL1 PD1 OR1 AU1 XL3 AD1 OL1 PU1 ER1 DU2 QR3 CD1 AD1 BL3 DU1 AU1 EL4 PD1 OR1 AU1 CU2 FL4 QL3 CD1 DD2 PD2 XR6 
+
+
+Branching Factor: 1.2769
+Penetrance Rate: 0.0242
+
+Number of moves: 29  vs. Provided solution: 29
+Heuristic average value assigned: 74.57
+finished in: 0.028 sec.
+
+Problem 24:
+EU1 CU1 DU2 FL1 XL2 AD1 BL1 EU1 GU2 OR3 HR4 AD3 XR2 FR2 CD4 DD4 XL2 FL2 BL2 AU4 FR2 XR2 CU3 DU3 HL2 OL2 GD2 XR4 
+
+
+Branching Factor: 1.3434
+Penetrance Rate: 0.0072
+
+Number of moves: 28  vs. Provided solution: 25
+Heuristic average value assigned: -16.61
+finished in: 0.132 sec.
+
+Problem 25:
+CL1 EU1 PD1 OU1 XL1 QR2 BD4 XR2 DR1 AR1 XL1 PU3 QL3 GU3 QR3 PD3 AL1 DL1 XL1 BU3 HL1 IL1 QL2 HL1 IL1 OD2 BU1 CR1 GU1 ED2 OD1 XR6 
+
+
+Branching Factor: 1.3362
+Penetrance Rate: 0.0039
+
+Number of moves: 32  vs. Provided solution: 27
+Heuristic average value assigned: 96.26
+finished in: 0.308 sec.
+
+Problem 26:
+ED1 RL1 CD2 XR1 AD1 OL2 DU2 GU1 HR1 CD1 RR1 PU1 RR1 AD3 RL1 XL1 RL1 CU3 HL1 GD1 RR3 AU1 FU1 EU1 HL3 FD1 RL1 OL1 CU1 XR1 AU2 RL1 PD3 XR4 
+
+
+Branching Factor: 1.2820
+Penetrance Rate: 0.0073
+
+Number of moves: 34  vs. Provided solution: 28
+Heuristic average value assigned: 105.16
+finished in: 0.168 sec.
+
+Problem 27:
+PU2 ER1 OD2 BR2 CR2 DU2 FU1 XR1 AD4 FD1 XL1 DD2 CL3 BL3 DU1 OU2 EL4 PD1 OD2 DD1 BR3 CR3 DU2 ER1 XR1 PD1 AU4 EL1 FU1 RL3 OD1 PD1 XR5 
+
+
+Branching Factor: 1.2768
+Penetrance Rate: 0.0129
+
+Number of moves: 33  vs. Provided solution: 28
+Heuristic average value assigned: 92.89
+finished in: 0.076 sec.
+
+Problem 28:
+AD1 QU1 GR2 FR2 OR3 CD1 DD1 PU1 EL3 PD1 AD1 BL1 QU1 RR1 PD1 BL3 AU1 PU2 ER3 PD1 DU1 CU1 FL2 OL3 QU1 AU1 PD2 XR3 PU2 DU1 CU1 RL1 GL1 QD3 XR3 
+
+
+Branching Factor: 1.2436
+Penetrance Rate: 0.0170
+
+Number of moves: 35  vs. Provided solution: 30
+Heuristic average value assigned: 122.18
+finished in: 0.048 sec.
+
+Problem 29:
+BU2 ER1 GU3 RR1 CD1 DL1 FR2 EL1 HU1 RR2 AD3 XR1 DR1 OR1 CU4 DL1 XL1 AU3 RL1 HD1 RL2 FL3 ER1 BD1 GD3 EL2 PD3 OR2 AU1 XR3 AD1 OL1 BU1 XR3 
+
+
+Branching Factor: 1.2790
+Penetrance Rate: 0.0079
+
+Number of moves: 34  vs. Provided solution: 31
+Heuristic average value assigned: 78.69
+finished in: 0.208 sec.
+
+Problem 30:
+QU2 DR1 CR1 FR2 ER1 OD3 XL1 AD1 PL3 QU1 DR1 BD3 DL1 QD2 PR3 AU1 XR3 OU3 CL1 EL1 AD4 PL2 QU2 DR1 XL2 CR1 OD2 PL1 BU4 FL1 DL1 QD3 XR5 
+
+
+Branching Factor: 1.2378
+Penetrance Rate: 0.0289
+
+Number of moves: 33  vs. Provided solution: 32
+Heuristic average value assigned: 108.47
+finished in: 0.048 sec.
+
+Problem 31:
+AR1 DU2 XL1 QU2 FR3 QD2 XR1 DD3 AL1 XL1 QU3 DD1 EL3 QD1 BD1 QD2 CL1 PU1 FR1 BD1 XR3 QU3 ER1 DU3 EL1 QD3 AR1 DU1 XL3 QU1 BU1 QU1 FL4 PD1 BD1 QD2 XR3 DD1 QU1 RL3 PD1 XR3 
+
+
+Branching Factor: 1.2170
+Penetrance Rate: 0.0110
+
+Number of moves: 42  vs. Provided solution: 37
+Heuristic average value assigned: 125.42
+finished in: 0.24 sec.
+
+Problem 32:
+BD1 CL1 PU3 FR1 KU1 HR4 DD1 EL1 KD1 OD3 FL1 PD2 CR1 BU1 XR3 OU3 ER1 DU3 EL1 OD3 AR1 DU1 XL3 BD1 CL1 PU2 FR1 OU2 KU1 HL4 KD1 FL1 PD1 CR1 PD2 OD2 BU1 XR6 
+
+
+Branching Factor: 1.1797
+Penetrance Rate: 0.0712
+
+Number of moves: 38  vs. Provided solution: 37
+Heuristic average value assigned: 50.78
+finished in: 0.02 sec.
+
+Problem 33:
+BL1 PU3 ER1 GU3 QR1 ID1 DL1 EL2 HU3 ER2 FR3 QR2 RD1 BL1 RD2 GD2 HU1 XR3 AD1 RU1 BL2 RU2 DR1 IU3 DL1 RD2 BR2 IU1 AU1 RD1 XL3 RU1 GU2 RU1 FL4 GD2 RD2 XR3 RU2 AD1 ID1 QL3 GD1 EL1 PD3 XR3 
+
+
+Branching Factor: 1.1968
+Penetrance Rate: 0.0118
+
+Number of moves: 46  vs. Provided solution: 40
+Heuristic average value assigned: 194.63
+finished in: 0.212 sec.
+
+Problem 34:
+RL2 XR1 HR1 DD1 CU1 PU1 QR1 AD3 QR2 XL1 EU3 IR1 AD1 QL3 RL1 BU1 DU2 FL3 DD2 BD1 PD1 QR1 RR3 EU1 XR1 AU4 QL1 XL1 ED1 RL2 FL1 IL1 PU1 QR3 ED3 QL3 XR1 AD1 RL1 BU1 CD2 DU1 HL1 PD3 XR5 
+
+
+Branching Factor: 1.2033
+Penetrance Rate: 0.0109
+
+Number of moves: 45  vs. Provided solution: 43
+Heuristic average value assigned: 140.67
+finished in: 0.12 sec.
+
+Problem 35:
+QR2 OD1 AL3 OU1 QL2 GR1 KD1 QL1 BU1 FU3 EU2 GR3 DR3 ED2 QR3 BD1 OD3 XR1 AR3 KU4 XL1 OU3 QL3 PD1 EU1 AR1 BU1 EU1 DL3 GL4 ED2 BD1 AL1 PU1 FD3 DL1 QR3 OD3 AL2 BU1 XR3 KD2 AL1 OU3 QL2 PD3 XR3 
+
+
+Branching Factor: 1.1914
+Penetrance Rate: 0.0125
+
+Number of moves: 47  vs. Provided solution: 43
+Heuristic average value assigned: 116.09
+finished in: 0.116 sec.
+
+Problem 36:
+DD1 RR2 OD1 PL1 AL1 QU1 RR1 XR1 CR1 EU3 RL1 QD1 AR1 PR1 OU1 RL2 DU1 GR4 DD1 RR2 OD2 PL1 AL1 QU1 RR1 ED3 BD3 OD1 RL1 QD1 AR1 PR1 CL2 XL2 OU3 RL2 DU3 RR2 OD3 PL1 FL1 GL1 DU1 QD2 XR5 
+
+
+Branching Factor: 1.1837
+Penetrance Rate: 0.0228
+
+Number of moves: 45  vs. Provided solution: 44
+Heuristic average value assigned: 136.11
+finished in: 0.06 sec.
+
+Problem 37:
+GR1 QD1 XL1 BD1 CL2 OU1 PU1 RR2 BD2 XR2 QU1 GL1 BD1 RL2 DR1 OD1 CR1 AR1 XL1 QU2 RL1 EU3 RR1 FL1 QD2 AL1 CL1 OU1 FR1 RR2 BU1 GR1 QD1 XL1 DL1 BU2 RL2 FL2 PD1 OD1 CR2 BU1 XR1 QU1 GL1 HL2 EU1 PD2 OD2 XR5 
+
+
+Branching Factor: 1.1669
+Penetrance Rate: 0.0255
+
+Number of moves: 50  vs. Provided solution: 47
+Heuristic average value assigned: 217.90
+finished in: 0.052 sec.
+
+Problem 38:
+OL1 RU2 ER1 CD1 GR1 BR2 DU1 FU1 QL3 CD2 EL1 RD1 OR1 DU1 XR3 AD3 XL3 DD1 OL1 RU1 ER1 CU2 QR3 FD1 DD1 BL3 CU1 DU1 AD1 OL2 EL4 CD1 DD1 RD1 OR2 CD1 OR1 BR3 DU2 XR3 ER1 AU4 EL1 XL3 CU1 FU2 GL4 QL3 RD1 FD1 CD1 RD1 XR6 
+
+
+Branching Factor: 1.1693
+Penetrance Rate: 0.0175
+
+Number of moves: 53  vs. Provided solution: 48
+Heuristic average value assigned: 187.76
+finished in: 0.068 sec.
+
+Problem 39:
+HR1 IR1 CD2 AD1 OL3 RU2 ER1 HR1 IR1 BD3 EL1 RD1 OR3 AU1 XR3 DR1 AD1 OL1 RU1 ER1 DR1 GU3 DL1 EL1 RD1 OR1 AU1 GU1 FU4 DL1 XL3 AD1 OL1 RU1 ER1 BU3 IL1 HL1 EL1 RD1 OR1 AU1 IR1 HR1 CU2 HL4 CD2 AD1 OL1 RU1 ER1 CU1 IL4 CD1 BD3 EL1 RD3 OR1 AU1 XR6 
+
+
+Branching Factor: 1.1547
+Penetrance Rate: 0.0157
+
+Number of moves: 60  vs. Provided solution: 50
+Heuristic average value assigned: 132.49
+finished in: 0.088 sec.
+
+Problem 40:
+IR1 ED1 QR2 PU1 QR1 OD1 AL1 DU1 CD2 FU1 HR1 OD2 XL1 BD1 XL2 DD1 AR3 DU1 XR2 OU3 HL1 CU3 FD1 QL3 XL1 EU3 IL1 GL1 QR1 PD1 AR1 EU1 XR1 QR1 IR1 GR1 CD3 XL1 ED1 AL1 PU1 QR1 FU1 HR2 OD3 XL1 DD1 AL3 DU1 EU1 BU1 XR3 OU1 HL2 IL1 FD1 GL1 QL1 PD3 XR3 
+
+
+Branching Factor: 1.1530
+Penetrance Rate: 0.0194
+
+Number of moves: 60  vs. Provided solution: 51
+Heuristic average value assigned: 209.82
+finished in: 0.084 sec.
+
+Statistics: 
+Min opened nodes: 5 Max opened nodes: 3045 Average: 476
+Total Runtime: 3.939 Sec.

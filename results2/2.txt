@@ -1,0 +1,94 @@
+A..OOOA..B.PXX.BCPQQQ.CP..D.EEFFDGG.
+A . . O O O 
+A . . B . P 
+X X . B C P 
+Q Q Q . C P 
+. . D . E E 
+F F D G G . 
+
+Solution FOUND!
+trueXR1
+
+XR1
+A # # O O O 
+A # # B # P 
+# X X B C P 
+Q Q Q # C P 
+# # D # E E 
+F F D G G # 
+
+AD1
+
+AD1
+# # # O O O 
+A # # B # P 
+A X X B C P 
+Q Q Q # C P 
+# # D # E E 
+F F D G G # 
+
+OL3
+
+OL3
+O O O # # # 
+A # # B # P 
+A X X B C P 
+Q Q Q # C P 
+# # D # E E 
+F F D G G # 
+
+BU1
+
+BU1
+O O O B # # 
+A # # B # P 
+A X X # C P 
+Q Q Q # C P 
+# # D # E E 
+F F D G G # 
+
+CU2
+
+CU2
+O O O B C # 
+A # # B C P 
+A X X # # P 
+Q Q Q # # P 
+# # D # E E 
+F F D G G # 
+
+EL1
+
+EL1
+O O O B C # 
+A # # B C P 
+A X X # # P 
+Q Q Q # # P 
+# # D E E # 
+F F D G G # 
+
+PD2
+
+PD2
+O O O B C # 
+A # # B C # 
+A X X # # # 
+Q Q Q # # P 
+# # D E E P 
+F F D G G P 
+
+XR5
+
+XR5
+O O O B C # 
+A # # B C # 
+A # # # # # 
+Q Q Q # # P 
+# # D E E P 
+F F D G G P 
+
+
+
+ BF: 2.068677389313834
+
+Number of moves: 8  should be: 8

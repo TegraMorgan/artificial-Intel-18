@@ -1,0 +1,9 @@
+...AAO..BBCOXXDECOFFDEGGHHIPPPKKIQQQ
+Solution FOUND!
+AL3 BL2 EU2 CU1 DU2 XR3 IU2 GL1 PL1 QL1 OD3 XR3 
+
+
+Branching Factor: 1.016393355613924
+
+Number of moves: 12  vs. Provided solution: 12
+Total Runtime: 0.355 Sec
