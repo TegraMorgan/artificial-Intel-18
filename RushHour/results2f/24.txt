@@ -1,9 +1,0 @@
-..ABB..CA...DCXXE.DFF.E.OOO.G.HH..G.
-Solution FOUND!
-CU1 DU2 XL2 AD1 BL1 EU2 FL1 GU2 OR3 HR3 AD3 FR2 XR2 CD4 DD4 BL2 FL2 XL2 AU4 FR2 XR2 CU2 OL2 GD1 XR4 
-
-
-Branching Factor: 4.080330277362264
-
-Number of moves: 25  vs. Provided solution: 25
-Total Runtime: 0.355 Sec

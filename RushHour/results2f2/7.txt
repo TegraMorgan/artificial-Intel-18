@@ -1,9 +1,0 @@
-.ABBCD.A.ECD.XXE.F..II.F...H.....H..
-Failure
-
-
-
-Branching Factor: 1.1019594141902858
-
-Number of moves: 0  vs. Provided solution: 13
-Total Runtime: 0.007 Sec

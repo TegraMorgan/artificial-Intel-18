@@ -1,9 +1,0 @@
-AABBCOD.EECODFPXXO.FPQQQ..P...GG....
-Failure
-
-
-
-Branching Factor: 1.2334092891975366
-
-Number of moves: 0  vs. Provided solution: 21
-Total Runtime: 0.007 Sec

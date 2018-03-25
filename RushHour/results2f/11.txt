@@ -1,9 +1,0 @@
-OAAP..O..P..OXXP....BQQQ..B..E..RRRE
-Solution FOUND!
-OD3 XL1 BU2 QL2 EU3 RR1 QR2 BD3 XR1 OU3 QL3 PD2 AR3 PU2 QR3 OD3 XL1 BU4 XR1 OU3 QL3 RL3 PD3 ED2 XR5 
-
-
-Branching Factor: 1.0179122652564008
-
-Number of moves: 25  vs. Provided solution: 25
-Total Runtime: 0.355 Sec
