@@ -1,0 +1,563 @@
+Problem 1:
+CL3 OD3 AR1 PU1 BU1 RL2 QD2 XR5 
+
+
+Branching Factor: 2.2138
+Penetrance Rate: 0.0139
+
+Number of moves: 8  vs. Provided solution: 8
+Heuristic average value assigned: 11.42
+Max Depth before cutoff: 8
+Min Depth before cutoff: 1
+Average Depth before cutoff: 4.68
+finished in: 0.072 sec.
+
+Problem 2:
+OL2 BD2 CU2 XR1 AD1 OL1 BU3 EL1 PD2 XR5 
+
+
+Branching Factor: 1.8892
+Penetrance Rate: 0.0173
+
+Number of moves: 10  vs. Provided solution: 8
+Heuristic average value assigned: 17.75
+Max Depth before cutoff: 10
+Min Depth before cutoff: 1
+Average Depth before cutoff: 5.88
+finished in: 0.057 sec.
+
+Problem 3:
+OU2 PU3 CR2 AR3 OD3 XR2 BU4 XL2 OU3 AL4 CL3 PD3 OD3 XR5 
+
+
+Branching Factor: 1.5459
+Penetrance Rate: 0.0315
+
+Number of moves: 14  vs. Provided solution: 14
+Heuristic average value assigned: 13.48
+Max Depth before cutoff: 14
+Min Depth before cutoff: 8
+Average Depth before cutoff: 11.27
+finished in: 0.069 sec.
+
+Problem 4:
+OD3 XL1 AU3 QL1 XR1 OU3 RL2 QL2 PD3 XR5 
+
+
+Branching Factor: 1.6926
+Penetrance Rate: 0.0518
+
+Number of moves: 10  vs. Provided solution: 9
+Heuristic average value assigned: 6.09
+Max Depth before cutoff: 10
+Min Depth before cutoff: 2
+Average Depth before cutoff: 7.39
+finished in: 0.005 sec.
+
+Problem 5:
+EL2 GD1 FL3 AR1 PU1 EL1 RL1 OD3 QD2 XR5 
+
+
+Branching Factor: 1.9840
+Penetrance Rate: 0.0106
+
+Number of moves: 10  vs. Provided solution: 9
+Heuristic average value assigned: 17.18
+Max Depth before cutoff: 10
+Min Depth before cutoff: 1
+Average Depth before cutoff: 7.14
+finished in: 0.04 sec.
+
+Problem 6:
+XL1 RL2 PD2 OD2 EU3 DR1 FU1 RL1 QD1 XR6 
+
+
+Branching Factor: 1.9710
+Penetrance Rate: 0.0113
+
+Number of moves: 10  vs. Provided solution: 9
+Heuristic average value assigned: 25.53
+Max Depth before cutoff: 10
+Min Depth before cutoff: 3
+Average Depth before cutoff: 5.57
+finished in: 0.052 sec.
+
+Problem 7:
+FD2 IL2 CD4 DD1 BR2 EU1 IR2 XR1 AD4 XL1 ED1 BL3 DU1 EU1 XR5 
+
+
+Branching Factor: 1.6800
+Penetrance Rate: 0.0098
+
+Number of moves: 15  vs. Provided solution: 13
+Heuristic average value assigned: 12.26
+Max Depth before cutoff: 14
+Min Depth before cutoff: 3
+Average Depth before cutoff: 8.02
+finished in: 0.078 sec.
+
+Problem 8:
+BL2 AL3 CU1 DU2 EU2 GL1 XR3 IU2 PL1 QL1 OD3 XR3 
+
+
+Branching Factor: 1.7379
+Penetrance Rate: 0.0158
+
+Number of moves: 12  vs. Provided solution: 12
+Heuristic average value assigned: 23.78
+Max Depth before cutoff: 12
+Min Depth before cutoff: 4
+Average Depth before cutoff: 8.29
+finished in: 0.021 sec.
+
+Problem 9:
+XR1 OD1 PU3 QL1 DD3 EL2 QR1 XR1 AD1 BL1 CL1 FU2 XR4 
+
+
+Branching Factor: 1.5757
+Penetrance Rate: 0.0352
+
+Number of moves: 13  vs. Provided solution: 12
+Heuristic average value assigned: 6.57
+Max Depth before cutoff: 13
+Min Depth before cutoff: 2
+Average Depth before cutoff: 10.08
+finished in: 0.005 sec.
+
+Problem 10:
+CL1 XR2 OU1 QR2 BD4 DR1 AR1 PU2 XL2 QL3 OD1 CR1 EU4 HL1 FL1 OD2 XR5 
+
+
+Branching Factor: 1.5313
+Penetrance Rate: 0.0121
+
+Number of moves: 17  vs. Provided solution: 17
+Heuristic average value assigned: 4.88
+Max Depth before cutoff: 17
+Min Depth before cutoff: 10
+Average Depth before cutoff: 13.92
+finished in: 0.073 sec.
+
+Problem 11:
+OD3 XL1 BU2 QL1 EU4 QR1 BD2 RR1 XR1 BD1 OU3 QL3 PD1 ED3 AR3 PU1 EU2 QR3 OD3 XL1 BU4 XR1 QL1 ED2 OU3 RL3 QL2 PD3 XR5 
+
+
+Branching Factor: 1.2540
+Penetrance Rate: 0.0409
+
+Number of moves: 29  vs. Provided solution: 25
+Heuristic average value assigned: 12.62
+Max Depth before cutoff: 29
+Min Depth before cutoff: 20
+Average Depth before cutoff: 25.53
+finished in: 0.024 sec.
+
+Problem 12:
+BR2 PU1 QL3 CU3 RR3 QR3 PD3 XR2 BL1 CU1 XR1 AD1 BL2 PU3 RL1 QL1 OD3 XR3 
+
+
+Branching Factor: 1.4229
+Penetrance Rate: 0.0315
+
+Number of moves: 18  vs. Provided solution: 17
+Heuristic average value assigned: 16.00
+Max Depth before cutoff: 18
+Min Depth before cutoff: 8
+Average Depth before cutoff: 14.10
+finished in: 0.014 sec.
+
+Problem 13:
+DD2 ED1 OU1 FR1 XL3 GU3 FL1 OD1 CD1 BR2 GU1 DU3 HL2 FL1 XR2 CD2 KL1 OD2 XR4 
+
+
+Branching Factor: 1.5586
+Penetrance Rate: 0.0041
+
+Number of moves: 19  vs. Provided solution: 16
+Heuristic average value assigned: 17.55
+Max Depth before cutoff: 19
+Min Depth before cutoff: 8
+Average Depth before cutoff: 13.28
+finished in: 0.138 sec.
+
+Problem 14:
+CL1 JL1 GU2 EU1 DU1 HL2 IU1 KR3 ID1 HR2 ED3 DD3 XL2 HL2 BD2 CL3 BU2 FU2 XR6 
+
+
+Branching Factor: 1.5217
+Penetrance Rate: 0.0065
+
+Number of moves: 19  vs. Provided solution: 17
+Heuristic average value assigned: 8.30
+Max Depth before cutoff: 21
+Min Depth before cutoff: 8
+Average Depth before cutoff: 15.99
+finished in: 0.067 sec.
+
+Problem 15:
+IR1 HR1 RD1 QD1 XL2 FU1 EU1 GL2 OD1 DR1 AL1 PD1 DR1 BR1 FU2 EU2 XR2 RU1 QU1 HL2 IL2 OD1 PD1 XR4 
+
+
+Branching Factor: 1.2980
+Penetrance Rate: 0.0459
+
+Number of moves: 24  vs. Provided solution: 23
+Heuristic average value assigned: 28.99
+Max Depth before cutoff: 24
+Min Depth before cutoff: 21
+Average Depth before cutoff: 23.00
+finished in: 0.013 sec.
+
+Problem 16:
+GR3 DD3 FD1 PD1 EL2 XL3 CD1 BR1 FD1 PU3 QL2 OD3 CD2 GL1 CD1 OU3 QR2 PD2 FU1 DU1 GL2 PD1 XR3 ER3 FU2 PU3 DU2 GR2 QL1 OD3 XR3 
+
+
+Branching Factor: 1.3101
+Penetrance Rate: 0.0115
+
+Number of moves: 31  vs. Provided solution: 21
+Heuristic average value assigned: 13.50
+Max Depth before cutoff: 29
+Min Depth before cutoff: 17
+Average Depth before cutoff: 24.64
+finished in: 0.102 sec.
+
+Problem 17:
+BL1 FU2 PU2 GU2 RR3 QR3 DD1 XR1 DD1 ER1 AD4 EL1 XL1 DU2 QL2 RL2 GD1 FD1 BL1 OR2 DU2 RR2 ER1 XR1 AU2 RL3 QL1 PD2 XR5 
+
+
+Branching Factor: 1.3216
+Penetrance Rate: 0.0145
+
+Number of moves: 29  vs. Provided solution: 24
+Heuristic average value assigned: 25.90
+Max Depth before cutoff: 27
+Min Depth before cutoff: 16
+Average Depth before cutoff: 21.62
+finished in: 0.099 sec.
+
+Problem 18:
+RR3 PD1 XL1 QR2 DR3 BD4 XR1 CR1 AR1 PU3 QL3 OD2 AR3 CR3 OU2 QR3 PD3 XL1 BU4 XR1 PU3 RL3 QL3 OD3 XR5 
+
+
+Branching Factor: 1.3378
+Penetrance Rate: 0.0173
+
+Number of moves: 25  vs. Provided solution: 25
+Heuristic average value assigned: 6.63
+Max Depth before cutoff: 25
+Min Depth before cutoff: 18
+Average Depth before cutoff: 22.35
+finished in: 0.043 sec.
+
+Problem 19:
+DU2 FD1 XL2 AD1 BL1 JU1 EL2 FU2 OR2 AD3 XR2 ER2 DD4 XL2 EL2 BL2 AU4 ER2 XR2 DU3 OL2 FD2 XR4 
+
+
+Branching Factor: 1.3074
+Penetrance Rate: 0.0483
+
+Number of moves: 23  vs. Provided solution: 22
+Heuristic average value assigned: 8.92
+Max Depth before cutoff: 23
+Min Depth before cutoff: 17
+Average Depth before cutoff: 20.43
+finished in: 0.011 sec.
+
+Problem 20:
+CD1 BR2 DU2 EU2 FL3 ED1 CD1 QL3 PD1 XR6 
+
+
+Branching Factor: 1.6864
+Penetrance Rate: 0.0538
+
+Number of moves: 10  vs. Provided solution: 10
+Heuristic average value assigned: 15.74
+Max Depth before cutoff: 10
+Min Depth before cutoff: 1
+Average Depth before cutoff: 6.81
+finished in: 0.001 sec.
+
+Problem 21:
+PD2 QR2 XL1 BD4 XR1 AR1 PU3 QL3 OD1 AR3 OU1 QR3 PD3 XL1 BU4 XR1 PU3 RL3 QL3 OD3 XR5 
+
+
+Branching Factor: 1.2990
+Penetrance Rate: 0.0864
+
+Number of moves: 21  vs. Provided solution: 21
+Heuristic average value assigned: 8.09
+Max Depth before cutoff: 21
+Min Depth before cutoff: 15
+Average Depth before cutoff: 18.54
+finished in: 0.01 sec.
+
+Problem 22:
+BU1 GR1 XL1 AD3 XR1 BD1 OL3 PU1 EL1 HU1 QR2 DD1 AD1 HU1 GR1 EL2 PD2 CL3 HU2 PU2 ER3 PD2 AU1 DU1 FU1 QL3 PD1 XR5 
+
+
+Branching Factor: 1.3237
+Penetrance Rate: 0.0109
+
+Number of moves: 28  vs. Provided solution: 26
+Heuristic average value assigned: 11.17
+Max Depth before cutoff: 28
+Min Depth before cutoff: 20
+Average Depth before cutoff: 25.18
+finished in: 0.079 sec.
+
+Problem 23:
+QL2 DD1 EL1 PD1 OR1 AU1 XL3 AD1 OL1 PU1 ER1 DU1 QR3 CD1 AD1 BL3 AU1 DU2 EL4 PD1 OR1 AU1 CU2 FL4 CD2 DD2 CU1 QL3 PD2 XR6 
+
+
+Branching Factor: 1.2572
+Penetrance Rate: 0.0313
+
+Number of moves: 30  vs. Provided solution: 29
+Heuristic average value assigned: 22.80
+Max Depth before cutoff: 30
+Min Depth before cutoff: 20
+Average Depth before cutoff: 24.20
+finished in: 0.023 sec.
+
+Problem 24:
+EU1 CU1 DU2 XL2 AD1 BL1 EU1 FL1 GU2 OR3 HR4 AD3 XR2 FR2 CD4 DD4 XL2 FL2 BL2 AU4 FR2 XR2 CU3 DU3 OL2 GD1 XR4 
+
+
+Branching Factor: 1.3579
+Penetrance Rate: 0.0070
+
+Number of moves: 27  vs. Provided solution: 25
+Heuristic average value assigned: 4.94
+Max Depth before cutoff: 27
+Min Depth before cutoff: 17
+Average Depth before cutoff: 22.90
+finished in: 0.151 sec.
+
+Problem 25:
+CL1 EU1 PD1 OU1 XL1 QR2 BD4 XR2 DR1 XL1 AR1 PU3 QL3 GU3 QR3 PD3 XL1 DL1 AL1 BU4 HL2 QL2 IL2 OD3 CR1 GU1 ED2 XR6 
+
+
+Branching Factor: 1.3628
+Penetrance Rate: 0.0048
+
+Number of moves: 28  vs. Provided solution: 27
+Heuristic average value assigned: 19.03
+Max Depth before cutoff: 28
+Min Depth before cutoff: 18
+Average Depth before cutoff: 22.77
+finished in: 0.254 sec.
+
+Problem 26:
+BU1 ED1 OL1 DU2 RL1 CD2 BD1 XR1 AD1 OL1 GU1 HR1 CD1 PU1 RR2 AD3 RL2 XL1 OL1 CU4 HL1 GD1 RR3 AU1 FU1 EU1 HL3 FD1 RL1 XR1 AU2 RL1 PD3 XR4 
+
+
+Branching Factor: 1.2957
+Penetrance Rate: 0.0080
+
+Number of moves: 34  vs. Provided solution: 28
+Heuristic average value assigned: 18.09
+Max Depth before cutoff: 32
+Min Depth before cutoff: 23
+Average Depth before cutoff: 27.34
+finished in: 0.118 sec.
+
+Problem 27:
+PU2 ER1 OD2 BR2 CR2 DU2 XR1 AD4 XL1 DD2 CL3 BL3 DU2 OU2 EL4 PD2 OD2 DD2 BR3 CR3 DU2 ER1 XR1 AU4 EL1 FU1 RL3 PD1 OD1 XR5 
+
+
+Branching Factor: 1.2942
+Penetrance Rate: 0.0131
+
+Number of moves: 30  vs. Provided solution: 28
+Heuristic average value assigned: 22.47
+Max Depth before cutoff: 30
+Min Depth before cutoff: 21
+Average Depth before cutoff: 25.16
+finished in: 0.057 sec.
+
+Problem 28:
+QU1 GR2 AD1 FR2 OR3 CD1 DD1 PU1 EL3 PD1 AD1 BL1 QU1 RR1 PD1 BL3 AU1 PU2 ER3 PD1 DU1 CU1 FL2 OL3 PD2 AU1 XR3 PU2 RL1 GL1 QD2 XR3 
+
+
+Branching Factor: 1.2594
+Penetrance Rate: 0.0199
+
+Number of moves: 32  vs. Provided solution: 30
+Heuristic average value assigned: 22.78
+Max Depth before cutoff: 33
+Min Depth before cutoff: 22
+Average Depth before cutoff: 28.98
+finished in: 0.029 sec.
+
+Problem 29:
+BU2 ER1 GU4 RR2 CD1 DL1 EL1 FR2 HU1 RR1 AD3 XR1 DR1 GD1 OR1 CU4 DL1 XL1 AU3 RL3 HD1 FL3 ER1 GD3 EL2 PD3 BD1 OR2 AU1 XR3 AD1 OL2 BU1 XR3 
+
+
+Branching Factor: 1.2788
+Penetrance Rate: 0.0079
+
+Number of moves: 34  vs. Provided solution: 31
+Heuristic average value assigned: 29.74
+Max Depth before cutoff: 34
+Min Depth before cutoff: 26
+Average Depth before cutoff: 30.38
+finished in: 0.136 sec.
+
+Problem 30:
+DR1 CR1 QU2 FR2 ER1 OD3 XL1 AD1 PL3 QU1 DR1 BD3 DL1 QD2 PR3 AU1 XR3 OU3 CL1 EL1 AD4 PL2 QU2 DR1 XL2 CR1 OD2 PL1 BU4 FL1 DL1 QD3 XR5 
+
+
+Branching Factor: 1.2359
+Penetrance Rate: 0.0304
+
+Number of moves: 33  vs. Provided solution: 32
+Heuristic average value assigned: 9.39
+Max Depth before cutoff: 33
+Min Depth before cutoff: 27
+Average Depth before cutoff: 29.74
+finished in: 0.021 sec.
+
+Problem 31:
+AR1 DU2 XL1 QU2 FR3 QD2 XR1 DD3 AL1 XL1 QU3 DD1 EL3 BD1 QD3 CL4 PU1 FR1 BD1 CR3 XR3 QU3 ER1 DU3 EL1 QD3 AR1 DU1 XL3 BU1 QU2 FL4 BD1 QD2 XR3 QU1 RL3 PD2 XR3 
+
+
+Branching Factor: 1.2334
+Penetrance Rate: 0.0109
+
+Number of moves: 39  vs. Provided solution: 37
+Heuristic average value assigned: 21.11
+Max Depth before cutoff: 39
+Min Depth before cutoff: 29
+Average Depth before cutoff: 34.98
+finished in: 0.144 sec.
+
+Problem 32:
+BD1 CL1 PU3 FR1 KU1 HR4 DD1 EL1 OD3 KD1 FL1 PD1 CR1 BU1 XR3 OU3 ER1 DU3 EL1 OD3 AR1 DU1 XL3 BD1 CL1 PU1 FR1 KU1 OU1 HL4 OD1 KD1 FL1 PD3 CR1 BU1 XR6 
+
+
+Branching Factor: 1.1824
+Penetrance Rate: 0.0752
+
+Number of moves: 37  vs. Provided solution: 37
+Heuristic average value assigned: 22.74
+Max Depth before cutoff: 37
+Min Depth before cutoff: 29
+Average Depth before cutoff: 34.15
+finished in: 0.017 sec.
+
+Problem 33:
+BL1 PU3 ER1 GU3 QR1 ID1 DL1 EL2 HU3 ER2 FR3 QR2 RD3 GD2 BL1 HU1 XR3 AD1 BL2 RU3 DR1 IU3 DL1 RD1 BR2 IU1 AU1 RD2 XL3 RU2 GU2 FL4 GD2 RD2 XR3 RU2 QL3 GD1 EL1 PD3 XR3 
+
+
+Branching Factor: 1.2182
+Penetrance Rate: 0.0125
+
+Number of moves: 41  vs. Provided solution: 40
+Heuristic average value assigned: 30.87
+Max Depth before cutoff: 43
+Min Depth before cutoff: 34
+Average Depth before cutoff: 38.42
+finished in: 0.172 sec.
+
+Problem 34:
+RL2 XR1 AD1 RL1 BU1 CU2 HR1 DD1 PU1 QR3 EU1 IR1 AD3 XL1 EU2 QL3 DU2 FL3 DD2 PD2 CD3 BD1 RR3 EU1 XR1 QR1 AU4 QL1 XL1 ED1 RL2 PU2 CU3 FL1 IL1 QR3 ED3 QL3 XR1 AD1 RL1 BU1 DU1 HL1 PD3 XR5 
+
+
+Branching Factor: 1.1960
+Penetrance Rate: 0.0122
+
+Number of moves: 46  vs. Provided solution: 43
+Heuristic average value assigned: 29.12
+Max Depth before cutoff: 46
+Min Depth before cutoff: 35
+Average Depth before cutoff: 41.97
+finished in: 0.145 sec.
+
+Problem 35:
+QR2 OD1 AL3 BU1 OU1 QL2 PD3 GR1 KD1 QL1 PU3 FU4 EU2 GR3 DR3 ED2 QR3 OD3 FD1 BD1 AR3 XR1 KU4 XL1 OU3 QL3 PD1 AR1 BU1 EU2 DL4 ED2 BD1 AL1 PU1 QR3 OD3 AL2 BU1 FU1 XR3 KD1 AL1 OU3 QL3 EU1 GL3 PD3 XR3 
+
+
+Branching Factor: 1.1957
+Penetrance Rate: 0.0124
+
+Number of moves: 49  vs. Provided solution: 43
+Heuristic average value assigned: 28.00
+Max Depth before cutoff: 46
+Min Depth before cutoff: 35
+Average Depth before cutoff: 41.49
+finished in: 0.113 sec.
+
+Problem 36:
+DD1 RR2 OD1 PL1 XR1 AL1 QU1 RR1 CR1 EU3 RL1 QD1 AR1 PR1 OU1 RL2 DU1 GR4 DD1 RR2 OD3 PL1 AL1 QU1 RR1 ED3 BD3 RL1 QD1 AR1 PR1 CL2 XL2 OU3 RL2 DU3 RR2 OD3 PL1 DU1 FL1 GL1 QD2 XR5 
+
+
+Branching Factor: 1.1857
+Penetrance Rate: 0.0245
+
+Number of moves: 44  vs. Provided solution: 44
+Heuristic average value assigned: 4.58
+Max Depth before cutoff: 44
+Min Depth before cutoff: 33
+Average Depth before cutoff: 39.85
+finished in: 0.073 sec.
+
+Problem 37:
+GR1 QD1 XL1 BD1 CL2 PU1 OU1 RR2 BD2 XR1 QU1 GL1 BD1 RL2 DR1 OD1 CR1 AR1 QU2 RL1 EU3 RR1 QD2 AL1 CL1 OU1 RR2 BU1 GR1 QD1 XL1 DL1 BU2 RL2 FL2 OD1 PD1 CR2 BU1 EU1 XR1 QU1 GL1 HL2 PD2 OD2 XR5 
+
+
+Branching Factor: 1.1711
+Penetrance Rate: 0.0280
+
+Number of moves: 47  vs. Provided solution: 47
+Heuristic average value assigned: 27.63
+Max Depth before cutoff: 47
+Min Depth before cutoff: 37
+Average Depth before cutoff: 42.14
+finished in: 0.037 sec.
+
+Problem 38:
+OL2 RU2 ER1 GR1 CD2 BR2 DU1 FU1 QL3 CD1 EL1 RD1 OR2 DU1 XR3 AD3 XL3 DD1 OL1 RU1 ER1 CU1 QR3 FD1 DD1 BL3 DU1 CU2 AD1 EL4 CD2 DD1 CU1 GL1 RD2 OR1 BR3 DU2 ER1 XR1 AU4 EL1 XL1 FU2 GL3 FD1 CD1 QL3 RD1 XR6 
+
+
+Branching Factor: 1.1731
+Penetrance Rate: 0.0170
+
+Number of moves: 50  vs. Provided solution: 48
+Heuristic average value assigned: 20.94
+Max Depth before cutoff: 50
+Min Depth before cutoff: 41
+Average Depth before cutoff: 45.31
+finished in: 0.072 sec.
+
+Problem 39:
+RD1 HR1 CD1 IR1 CD1 AD1 OL3 RU3 ER1 HR1 IR1 BD3 EL1 RD1 OR3 AU1 XR3 AD1 OL1 RU1 ER1 DR2 FU4 GU4 DL2 EL1 RD1 OR1 AU1 XL3 AD1 OL1 RU1 ER1 BU3 EL1 RD1 OR1 AU1 CU2 HL4 IL4 RD2 CD1 AD1 OL1 RU3 ER1 CD1 BD3 EL1 RD3 OR1 AU1 XR6 
+
+
+Branching Factor: 1.1606
+Penetrance Rate: 0.0152
+
+Number of moves: 55  vs. Provided solution: 50
+Heuristic average value assigned: 18.40
+Max Depth before cutoff: 56
+Min Depth before cutoff: 45
+Average Depth before cutoff: 52.49
+finished in: 0.089 sec.
+
+Problem 40:
+IR1 ED1 QR2 PU1 QR1 OD2 AL1 DU1 CD2 FU1 HR1 OD1 XL3 BD1 DD1 AR3 DU1 XR2 OU3 HL1 CU3 FD1 QL3 XL1 PD1 AR1 EU4 QR2 XR1 CD3 XL1 ED1 AL1 PU1 QR1 FU1 HR2 OD3 XL1 DD1 AL3 BU1 DU1 EU1 XR3 OU2 HL2 FD1 IL1 GL1 QL1 PD3 XR3 
+
+
+Branching Factor: 1.1576
+Penetrance Rate: 0.0227
+
+Number of moves: 53  vs. Provided solution: 51
+Heuristic average value assigned: 14.81
+Max Depth before cutoff: 53
+Min Depth before cutoff: 40
+Average Depth before cutoff: 49.11
+finished in: 0.053 sec.
+
+Statistics: 
+Min opened nodes after solution was found: 5 || Max opened nodes: 1851 || Average: 419
+Total Runtime: 2.848 Sec.
