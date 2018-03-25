@@ -1,9 +1,0 @@
-AABO..P.BO..PXXO..PQQQ...........RRR
-Failure
-
-
-
-Branching Factor: 1.0643012584024685
-
-Number of moves: 0  vs. Provided solution: 21
-Total Runtime: 0.007 Sec

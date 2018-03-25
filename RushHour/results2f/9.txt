@@ -1,9 +1,0 @@
-.ABBCC.A.DEEXX.DOFPQQQOFP.G.OHP.G..H
-Solution FOUND!
-XR1 PU3 QL1 DD2 XR1 AD1 BL1 CL1 EL1 OD1 FU2 XR4 
-
-
-Branching Factor: 1.0256591684047636
-
-Number of moves: 12  vs. Provided solution: 12
-Total Runtime: 0.355 Sec

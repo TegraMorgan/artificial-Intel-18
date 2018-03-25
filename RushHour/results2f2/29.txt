@@ -1,9 +1,0 @@
-OOO.P...A.P.XXA.PBCDDEEBCFFG.HRRRG.H
-Failure
-
-
-
-Branching Factor: 1.050577005581176
-
-Number of moves: 0  vs. Provided solution: 31
-Total Runtime: 0.007 Sec

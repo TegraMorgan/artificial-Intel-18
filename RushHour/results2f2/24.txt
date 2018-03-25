@@ -1,9 +1,0 @@
-..ABB..CA...DCXXE.DFF.E.OOO.G.HH..G.
-Failure
-
-
-
-Branching Factor: 1.0587828787795226
-
-Number of moves: 0  vs. Provided solution: 25
-Total Runtime: 0.007 Sec

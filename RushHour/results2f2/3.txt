@@ -1,9 +1,0 @@
-.............XXO...AAO.P.B.O.P.BCC.P
-Failure
-
-
-
-Branching Factor: 1.115148105826096
-
-Number of moves: 0  vs. Provided solution: 14
-Total Runtime: 0.007 Sec

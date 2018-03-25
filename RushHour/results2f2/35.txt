@@ -1,9 +1,0 @@
-..OAAP..OB.PXXOB.PKQQQ..KDDEF.GG.EF.
-Failure
-
-
-
-Branching Factor: 1.0530705363498796
-
-Number of moves: 0  vs. Provided solution: 43
-Total Runtime: 0.007 Sec
