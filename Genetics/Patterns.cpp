@@ -29,7 +29,7 @@ int main(int argc, char* argv[])
 #define GA_MUTATION		RAND_MAX * GA_MUTATIONRATE
 #define GA_TARGET		std::string("Hello world!")
 #define AT 0
-#define MAX_AGE 100
+#define MAX_AGE 2
 //#define AT GA_POPSIZE-1
 using namespace std;				// polluting global namespace, but hey...
 
@@ -92,7 +92,7 @@ void calc_fitness(ga_vector &population)
 		for (int j=0; j<tsize; j++) {
 			fitness += abs(int(population[i].str[j] - target[j]));
 		}
-        if(population[i].age == MAX_AGE){
+        if(population[i].age >= MAX_AGE){
             fitness = 5000;
         }
 		population[i].fitness = fitness;
@@ -126,6 +126,7 @@ void calc_b_fitness(ga_vector &population){
     if(!flag)
         initilize_alpha_beta();
     array<char,90> _alpha_beta = alpha_beta;
+    array<char,90> __alpha_beta = alpha_beta;
     //print(_alpha_beta);
     string target = GA_TARGET;
 	int tsize = target.size(), bol = 0,_bol = 0;
@@ -145,8 +146,9 @@ void calc_b_fitness(ga_vector &population){
                     //fitness -= bol;
 
                     _alpha_beta[population[i].str[j] % 90]--;
-                }else{
+                }else if(__alpha_beta[population[i].str[j] % 90] > 0){
                     _bol++;
+                    __alpha_beta[population[i].str[j] % 90]--;
                 }
 
 			}else{
@@ -154,9 +156,18 @@ void calc_b_fitness(ga_vector &population){
 			}
 
 		}
-        double total = fitness - _bol/2 - bol;
-        if(population[i].age == MAX_AGE){
-            total = 10*GA_TARGET.size();
+		double total;
+
+		if(abs(bol - GA_TARGET.size()) <= 3){
+            //cout << "WTFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" << endl;
+            total = bol;
+            //system("pause");
+		}else{
+            total = fitness - _bol/2 - bol;
+		}
+
+        if(population[i].age >= MAX_AGE){
+            total = 10*GA_TARGET.size() + 10*fitness;
         }
 		population[i].fitness = total;
 		//population[i].invert_fitness = 1.0/(fitness == 0? 1 : total);
@@ -197,8 +208,10 @@ inline void sort_by_b_fitness(ga_vector &population){
 
 void elitism(ga_vector &population,ga_vector &buffer, int esize ){
 	for (int i=0; i<esize; i++) {
-            if(buffer[i].age == MAX_AGE)
+            if(buffer[i].age == MAX_AGE){
                 cout << "We're fucked up!";
+
+            }
 		buffer[i].str = population[i].str;
 		buffer[i].fitness = population[i].fitness;
 		buffer[i].invert_fitness = population[i].invert_fitness;
@@ -206,21 +219,21 @@ void elitism(ga_vector &population,ga_vector &buffer, int esize ){
 	}
 }
 
-void elitism2(ga_vector &population,ga_vector &buffer, int esize ){
-	for (int i=GA_POPSIZE - esize; i<GA_POPSIZE; i++) {
-		buffer[i].str = population[i].str;
-		buffer[i].fitness = population[i].fitness;
-		buffer[i].invert_fitness = population[i].invert_fitness;
-		buffer[i].age = population[i].age + 1;
-	}
-}
+//void elitism2(ga_vector &population,ga_vector &buffer, int esize ){
+//	for (int i=GA_POPSIZE - esize; i<GA_POPSIZE; i++) {
+//		buffer[i].str = population[i].str;
+//		buffer[i].fitness = population[i].fitness;
+//		buffer[i].invert_fitness = population[i].invert_fitness;
+//		buffer[i].age = population[i].age + 1;
+//	}
+//}
 
 void mutate(ga_struct &member){
 	int tsize = GA_TARGET.size();
 	int ipos = rand() % tsize;
 	int delta = (rand() % 90) + 32;
 
-	member.str[ipos] = ((member.str[ipos] + delta) % 122);
+	member.str[ipos] = ((member.str[ipos] + delta) % 90)+32;
 }
 
 int tournament_select(ga_vector& population, int k){
@@ -291,33 +304,34 @@ void mate(ga_vector &population, ga_vector &buffer){
 		i2 = tournament_select(population,500);//rand() % (GA_POPSIZE / 2);
 		spos = rand() % tsize;
 
-		buffer[i].str = //two_pts_cross_over(population[i1].str,population[i2].str);
-		 uniform_cross_over(population[i1].str,population[i2].str,
+		buffer[i].str = two_pts_cross_over(population[i1].str,population[i2].str);
+		 /*uniform_cross_over(population[i1].str,population[i2].str,
                                       population[i1].invert_fitness,population[i2].invert_fitness,0.4); //population[i1].str.substr(0, spos) +
 			            //population[i2].str.substr(spos, tsize - spos);
-
+*/
+        buffer[i].age = 0;
 		if (rand() < GA_MUTATION) mutate(buffer[i]);
 	}
 }
 
-void mate2(ga_vector &population, ga_vector &buffer){
-	int esize = GA_POPSIZE * GA_ELITRATE;
-	int tsize = GA_TARGET.size(), spos, i1, i2;
-
-	elitism2(population , buffer , esize);
-
-	// Mate the rest
-	for (int i=0; i<GA_POPSIZE - esize; i++) {
-		i1 = rand() % (GA_POPSIZE / 2);
-		i2 = rand() % (GA_POPSIZE / 2);
-		spos = rand() % tsize;
-
-		buffer[i].str = population[i1].str.substr(0, spos) +
-			            population[i2].str.substr(spos, tsize - spos);
-
-		if (rand() < GA_MUTATION) mutate(buffer[i]);
-	}
-}
+//void mate2(ga_vector &population, ga_vector &buffer){
+//	int esize = GA_POPSIZE * GA_ELITRATE;
+//	int tsize = GA_TARGET.size(), spos, i1, i2;
+//
+//	elitism2(population , buffer , esize);
+//
+//	// Mate the rest
+//	for (int i=0; i<GA_POPSIZE - esize; i++) {
+//		i1 = rand() % (GA_POPSIZE / 2);
+//		i2 = rand() % (GA_POPSIZE / 2);
+//		spos = rand() % tsize;
+//
+//		buffer[i].str = population[i1].str.substr(0, spos) +
+//			            population[i2].str.substr(spos, tsize - spos);
+//
+//		if (rand() < GA_MUTATION) mutate(buffer[i]);
+//	}
+//}
 
 void printo(ga_vector& p)
 {
@@ -338,7 +352,7 @@ int roulate_wheel_select(ga_vector& population){
     double p;
     int right,left,mid, i = 0;
     p = (rand() % (int)max_invert_fit);
-    p = p/((double)invert_fitness_sum);
+    p = sqrt(p/((double)invert_fitness_sum));
     //p /= 1000;
 
     right = GA_POPSIZE-1;
@@ -347,12 +361,12 @@ int roulate_wheel_select(ga_vector& population){
 
     //printo(population);
     while(right > 1 && left < GA_POPSIZE - 2){
-        double pr = (population[mid].invert_fitness/(double)(invert_fitness_sum ));
-        double next_pr = (population[mid + 1].invert_fitness/(double)(invert_fitness_sum ));
+        double pr = sqrt(population[mid].invert_fitness/(double)(invert_fitness_sum ));
+        double next_pr = sqrt(population[mid + 1].invert_fitness/(double)(invert_fitness_sum ));
         if((p <= pr && p >= next_pr)){
             //cout << mid << "  was selected" << endl;
             if(population[mid].age > MAX_AGE){
-                pp(population);
+                //pp(population);
                 system("pause");
             }
             if(p == next_pr)
@@ -377,16 +391,21 @@ int roulate_wheel_select(ga_vector& population){
 }
 
 int roulate(ga_vector& pop){
-    double p = sqrt((double)(rand()%invert_fitness_sum)/invert_fitness_sum),FitnessSoFar = 0.0;
+    double p = sqrt((double)(rand()%invert_fitness_sum)),FitnessSoFar = 0.0;
 
-    for (int i=0; i<GA_POPSIZE; i++){
-        FitnessSoFar += sqrt(pop[i].invert_fitness);
-
-        //if the fitness so far > random number return the chromo at this point
-        if (FitnessSoFar >= p)
-
-            return i;
+//    for (int i=0; i<GA_POPSIZE; i++){
+//        FitnessSoFar += sqrt(pop[i].invert_fitness);
+//
+//        //if the fitness so far > random number return the chromo at this point
+//        if (FitnessSoFar >= p)
+//
+//            return i;
+//    }
+    int i = 0;
+    while( p>=0){
+        p -= sqrt((double)pop[i++].invert_fitness);
     }
+    return i - 1;
 
 }
 
@@ -399,8 +418,8 @@ void roulate_mate(ga_vector &population, ga_vector &buffer){
 	// Mate the rest
 	for (int i=esize; i<GA_POPSIZE; i++) {
 
-            i1 = roulate_wheel_select(population);
-            i2 = roulate_wheel_select(population);
+            i1 = roulate(population);
+            i2 = roulate(population);
             //cout << i1 << " @@@@ " << i2 << endl;
             spos = rand() % tsize;
             //cout << "222" << endl;
