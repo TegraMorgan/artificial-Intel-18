@@ -1,9 +1,0 @@
-O.APPPO.AB..OXXB..CCDD.Q.....QEEFF.Q
-Failure
-
-
-
-Branching Factor: 1.0302608799921873
-
-Number of moves: 0  vs. Provided solution: 32
-Total Runtime: 0.007 Sec

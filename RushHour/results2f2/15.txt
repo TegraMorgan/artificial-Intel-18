@@ -1,9 +1,0 @@
-.AABB.CCDDOPQRXXOPQREFOPQREFGG.HHII.
-Failure
-
-
-
-Branching Factor: 1.0992113425654486
-
-Number of moves: 0  vs. Provided solution: 23
-Total Runtime: 0.007 Sec

@@ -1,9 +1,0 @@
-O..P..O..P..OXXP....AQQQ..A..B..RRRB
-Failure
-
-
-
-Branching Factor: 1.0995642183611936
-
-Number of moves: 0  vs. Provided solution: 9
-Total Runtime: 0.007 Sec
