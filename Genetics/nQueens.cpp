@@ -20,6 +20,7 @@ int main(int argc, char* argv[])
 #include <algorithm>				// for sort algorithm
 #include <time.h>					// for random seed
 #include <math.h>					// for abs()
+#include <chrono>
 
 #define GA_POPSIZE		1000		// ga population size
 #define GA_MAXITER		16384		// maximum iterations
@@ -134,14 +135,74 @@ void elitism(ga_vector &population,
 	}
 }
 
-void mutate(ga_struct &member)
+void mutate1(ga_struct &member)
 {
 	int ipos = rand() % BOARD_SIZE;
-	int delta = (rand() % BOARD_SIZE);
+	int delta = rand() % BOARD_SIZE;
 	
 	//member.sequence[ipos] = ((member.sequence[ipos] + delta) % 122);
 	
 	member.sequence[ipos] = delta;
+}
+
+void swap_mutation(ga_struct &member)
+{
+	int ipos = rand() % BOARD_SIZE;
+	int delta = rand() % BOARD_SIZE;
+	int temp = member.sequence[ipos];
+
+	member.sequence[ipos] = member.sequence[delta];
+	member.sequence[delta] = temp;
+
+}
+
+void scramble_mutation(ga_struct &member)
+{
+	int start = 0;
+	int end = 0;
+	int temp;
+	vector<int>::iterator start_it;
+	vector<int>::iterator end_it;
+
+	while ((start == 0) && (end == 0)){
+		start = rand() % (BOARD_SIZE / 2);
+		end = (rand() % (BOARD_SIZE / 2)) + start;
+	}
+
+
+	//swap
+	/*if ( end<start ){
+		temp = start;
+		start = end;
+		end = start;
+	}*/
+
+	cout << "start: " << start << " end: " << end << endl;
+
+	string os="";
+	for (int i = 0; i < BOARD_SIZE; i++){
+		os += to_string(member.sequence[i]);
+	}
+	cout << os << endl;
+
+	start_it = member.sequence.begin() + start ;
+	end_it = member.sequence.begin() + end;
+	vector<int> newVec1(start_it, end_it);
+
+	random_shuffle(newVec1.begin(), newVec1.end());
+
+	vector<int> newVec(member.sequence.begin(), start_it );
+	newVec.insert(newVec.end(), newVec1.begin(), newVec1.end());
+	newVec.insert(newVec.end(), end_it, member.sequence.end());
+
+	member.sequence = newVec;
+
+	os = "";
+	for (int i = 0; i < BOARD_SIZE; i++){
+		os += to_string(member.sequence[i]);
+	}
+	cout << os << endl;
+
 }
 
 void mate(ga_vector &population, ga_vector &buffer)
@@ -171,7 +232,7 @@ void mate(ga_vector &population, ga_vector &buffer)
 
 		buffer[i].sequence = newVec1;
 
-		if (rand() < GA_MUTATION) mutate(buffer[i]);
+		if (rand() < GA_MUTATION) mutate1(buffer[i]);
 	}
 }
 
@@ -202,7 +263,7 @@ void print_board(ga_vector& g){
 	system("pause");
 }
 
-int iterations = 0;
+int iterations = 1;
 
 inline void print_best(ga_vector &gav)
 {
@@ -224,56 +285,92 @@ inline void swap(ga_vector *&population, ga_vector *&buffer)
 }
 
 
-//int main()
-//{
-//	srand(unsigned(time(NULL)));
-//
-//	ga_vector pop_alpha, pop_beta;
-//	ga_vector *population, *buffer;
-//	int i, j;
-//	init_population(pop_alpha, pop_beta);
-//	population = &pop_alpha;
-//	buffer = &pop_beta;
-//	
-//	for (i = 0; i < 10;i++){
-//		cout << "[";
-//		for (j = 0; j < BOARD_SIZE-1;j++)
-//			cout << pop_alpha[i].sequence[j] << ",";
-//		cout << pop_alpha[i].sequence[j] << "]" << endl;
-//	}
-//
-//	cout << uniqueLength(pop_alpha[1].sequence);
-//	
-//	getchar();
-//
-//	return 0;
-//}
-//
-
 int main()
 {
 	srand(unsigned(time(NULL)));
 
 	ga_vector pop_alpha, pop_beta;
 	ga_vector *population, *buffer;
-
+	int i, j;
 	init_population(pop_alpha, pop_beta);
 	population = &pop_alpha;
 	buffer = &pop_beta;
-
 	
-	for (int i = 0; i<GA_MAXITER; i++) {
-		calc_fitness(*population);		// calculate fitness
-		sort_by_fitness(*population);	// sort them
-		print_best(*population);		// print the best one
 
-		if ((*population)[0].fitness == 0) break;
-
-		mate(*population, *buffer);		// mate the population together
-		swap(population, buffer);		// swap buffers
-	}
-	cout << "End" << endl;
+	scramble_mutation(pop_alpha[1]);
+	
 	getchar();
 
 	return 0;
 }
+
+
+void printBoard(vector<int> toPrint)
+{
+	for (int i = 0; i < BOARD_SIZE; i++){
+		for (int j = 0; j < BOARD_SIZE; j++){
+			if (toPrint[i] == j){
+				cout << " X";
+			}
+			else{
+				cout << " 0";
+			}
+		}
+		cout << endl;
+	}
+}
+
+//int main()
+//{
+//	clock_t t = clock();
+//	auto start_time = std::chrono::high_resolution_clock::now();
+//
+//	srand(unsigned(time(NULL)));
+//
+//	ga_vector pop_alpha, pop_beta;
+//	ga_vector *population, *buffer;
+//
+//	init_population(pop_alpha, pop_beta);
+//	population = &pop_alpha;
+//	buffer = &pop_beta;
+//	bool flag = false;
+//
+//	cout << "Board Size: " << BOARD_SIZE << endl;
+//	for (int i = 0; i<GA_MAXITER; i++) {
+//		auto _start_time = std::chrono::high_resolution_clock::now();
+//		clock_t t_g = clock();
+//		calc_fitness(*population);		// calculate fitness
+//		sort_by_fitness(*population);	// sort them
+//		print_best(*population);		// print the best one
+//
+//		auto _end_time = std::chrono::high_resolution_clock::now();
+//		auto _time = _end_time - _start_time;
+//		cout << "Elapsed time: " << std::chrono::duration_cast<std::chrono::microseconds>(_time).count() / 1000000.0
+//			<< " seconds.\n" << "Clock ticks: " << (float)(clock() - t_g) << endl << endl;
+//
+//		if ((*population)[0].fitness == 0){
+//			flag = true;
+//			break;
+//		}
+//
+//		mate(*population, *buffer);		// mate the population together
+//		swap(population, buffer);		// swap buffers
+//
+//	}
+//
+//	if (flag)
+//		cout << endl << "Solution: " << endl;
+//		printBoard((*population)[0].sequence);
+//	
+//	
+//	cout << endl;
+//	auto end_time = std::chrono::high_resolution_clock::now();
+//	auto time = end_time - start_time;
+//	cout << "Total time: " << std::chrono::duration_cast<std::chrono::microseconds>(time).count() / 1000000.0
+//		<< " seconds." << "\nTotal Clock ticks: " << (float)(clock() - t) << endl ;
+//	cout << endl << "End" << endl << endl;
+//
+//	system("pause");
+//
+//	return 0;
+//}
