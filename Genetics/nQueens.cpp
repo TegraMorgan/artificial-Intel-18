@@ -30,7 +30,7 @@ int main(int argc, char* argv[])
 #define GA_TARGET		std::string("Hello world!")
 
 #define BOARD_SIZE		8
-
+#define SHUFFLE 3
 
 using namespace std;				// polluting global namespace, but hey...
 
@@ -79,7 +79,7 @@ int uniqueLength(vector<int> sequence)
 	sort(temp.begin(),temp.end());
 	vector<int>::iterator un = unique(temp.begin(),temp.end());
 	temp.resize(distance(temp.begin(), un));
-	
+
 	return(temp.size());
 }
 
@@ -139,9 +139,9 @@ void mutate1(ga_struct &member)
 {
 	int ipos = rand() % BOARD_SIZE;
 	int delta = rand() % BOARD_SIZE;
-	
+
 	//member.sequence[ipos] = ((member.sequence[ipos] + delta) % 122);
-	
+
 	member.sequence[ipos] = delta;
 }
 
@@ -156,18 +156,22 @@ void swap_mutation(ga_struct &member)
 
 }
 
+int myrandom (int i) { return std::rand()%i;}
+
 void scramble_mutation(ga_struct &member)
 {
-	int start = 0;
-	int end = 0;
+	int _start = 0;
+	int _end = -1;
 	int temp;
 	vector<int>::iterator start_it;
 	vector<int>::iterator end_it;
 
-	while ((start == 0) && (end == 0)){
-		start = rand() % (BOARD_SIZE / 2);
-		end = (rand() % (BOARD_SIZE / 2)) + start;
-	}
+    while(_end <= _start){
+        _start = rand() % (BOARD_SIZE / 2);
+        _end = (_start + SHUFFLE)%BOARD_SIZE;
+    }
+
+
 
 
 	//swap
@@ -177,29 +181,29 @@ void scramble_mutation(ga_struct &member)
 		end = start;
 	}*/
 
-	cout << "start: " << start << " end: " << end << endl;
+	cout << "start: " << _start << " end: " << _end << endl;
 
 	string os="";
 	for (int i = 0; i < BOARD_SIZE; i++){
-		os += to_string(member.sequence[i]);
+		os += (member.sequence[i] +'0');
 	}
 	cout << os << endl;
 
-	start_it = member.sequence.begin() + start ;
-	end_it = member.sequence.begin() + end;
+	start_it = member.sequence.begin() + _start ;
+	end_it = member.sequence.begin() + _end;
 	vector<int> newVec1(start_it, end_it);
 
-	random_shuffle(newVec1.begin(), newVec1.end());
-
-	vector<int> newVec(member.sequence.begin(), start_it );
-	newVec.insert(newVec.end(), newVec1.begin(), newVec1.end());
-	newVec.insert(newVec.end(), end_it, member.sequence.end());
-
-	member.sequence = newVec;
+	random_shuffle(start_it, end_it,myrandom);
+//
+//	vector<int> newVec(member.sequence.begin(), start_it );
+//	newVec.insert(newVec.end(), newVec1.begin(), newVec1.end());
+//	newVec.insert(newVec.end(), end_it, member.sequence.end());
+//
+//	member.sequence = newVec;
 
 	os = "";
 	for (int i = 0; i < BOARD_SIZE; i++){
-		os += to_string(member.sequence[i]);
+		os += (member.sequence[i]+'0');
 	}
 	cout << os << endl;
 
@@ -254,11 +258,11 @@ void print_board(ga_vector& g){
 	for (int i = 0; i < GA_POPSIZE; i+=4){
 		string os="";
 		for (int k = 0; k < BOARD_SIZE; k++){
-			os += to_string(g[i].sequence[k]);
+			os += (g[i].sequence[k] +'0');
 		}
 
 		cout << i << ": "<< os << "   " << g[i].fitness << endl;
-		
+
 	}
 	system("pause");
 }
@@ -271,7 +275,7 @@ inline void print_best(ga_vector &gav)
 
 	os += "Best: ";
 	for (int i = 0; i < BOARD_SIZE; i++){
-		os += to_string(gav[0].sequence[i]);
+		os += ((gav[0].sequence[i]) +'0');
 	}
 
 	cout << iterations++ << ": " << os << " (" << gav[0].fitness << ")" << endl;
@@ -295,10 +299,10 @@ int main()
 	init_population(pop_alpha, pop_beta);
 	population = &pop_alpha;
 	buffer = &pop_beta;
-	
+
 
 	scramble_mutation(pop_alpha[1]);
-	
+
 	getchar();
 
 	return 0;
@@ -361,8 +365,8 @@ void printBoard(vector<int> toPrint)
 //	if (flag)
 //		cout << endl << "Solution: " << endl;
 //		printBoard((*population)[0].sequence);
-//	
-//	
+//
+//
 //	cout << endl;
 //	auto end_time = std::chrono::high_resolution_clock::now();
 //	auto time = end_time - start_time;
