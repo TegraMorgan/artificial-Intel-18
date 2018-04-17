@@ -13,7 +13,7 @@ int main(int argc, char* argv[])
 #endif
 
 #pragma warning(disable:4786)		// disable debug warning
-
+#include <sstream>
 #include <iostream>					// for cout etc.
 #include <vector>					// for vector class
 #include <string>					// for string class
@@ -41,27 +41,31 @@ struct ga_struct
 	unsigned int fitness;			// its fitness
 };
 
-void init_array(array<int, BOARD_SIZE>& array)
+array<int, BOARD_SIZE> _array;
+bool array_init_flag = false;
+void init_array()
 {
 
 	for (int i = 0; i < BOARD_SIZE; i++)
-		array[i] = 1;
-	
+		_array[i] = 1;
+    array_init_flag = true;
+
 }
 
 typedef vector<ga_struct> ga_vector;// for brevity
 
 
-bool array_init_flag = false;
+
 
 void init_population(ga_vector &population,
 	ga_vector &buffer)
 {
-	array<int, BOARD_SIZE> static_array;
-		init_array(static_array);
+    if(!array_init_flag)
+        init_array();
 
 
 	for (int i = 0; ((i<GA_POPSIZE)); i++) {
+        array<int, BOARD_SIZE> static_array = _array;
 		ga_struct citizen;
 		int a;
 		citizen.fitness = 0;
@@ -70,16 +74,19 @@ void init_population(ga_vector &population,
 
 		for (int j = 0; j < BOARD_SIZE; j++){
 			//	citizen.sequence[j] = rand() % BOARD_SIZE;
-			
-			do{
-				a = rand() % BOARD_SIZE;
-			} while (!static_array[a]);
+
+
+            a = rand() % BOARD_SIZE;
+			while (!static_array[a]){
+                a = rand() % BOARD_SIZE;
+                //cout << "Stuck" << endl;
+			}
 			citizen.sequence[j] = a;
 			static_array[a] = 0;
 		}
-		
+
 		population.push_back(citizen);
-		init_array(static_array);
+		//init_array(static_array);
 	}
 
 	buffer.resize(GA_POPSIZE);
@@ -265,7 +272,10 @@ inline void print_best(ga_vector &gav)
 
 	os += "Best: ";
 	for (int i = 0; i < BOARD_SIZE; i++){
-		os += ((gav[0].sequence[i]) + '0');
+        std::ostringstream ss;
+        ss << (gav[0].sequence[i]);
+        //result += (ss.str() + " ");
+		os += (ss.str() + " ");
 	}
 
 	cout << iterations++ << ": " << os << " (" << gav[0].fitness << ")" << endl;
