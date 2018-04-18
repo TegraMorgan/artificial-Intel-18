@@ -30,7 +30,7 @@ int main(int argc, char* argv[])
 #define GA_MUTATION		RAND_MAX * GA_MUTATIONRATE
 #define GA_TARGET		std::string("Hello world!")
 
-#define BOARD_SIZE		16
+#define BOARD_SIZE		8
 #define SHUFFLE 3
 
 using namespace std;				// polluting global namespace, but hey...
@@ -41,8 +41,14 @@ struct ga_struct
 	unsigned int fitness;			// its fitness
 };
 
-
+struct ga_candidate
+{
+    struct ga_struct gen;
+    int i;
+};
+typedef vector<ga_candidate> ga_t_vector;
 array<int, BOARD_SIZE> _array;
+
 bool array_init_flag = false;
 void init_array()
 {
@@ -52,6 +58,8 @@ void init_array()
 	array_init_flag = true;
 
 }
+
+
 
 typedef vector<ga_struct> ga_vector;// for brevity
 
@@ -257,7 +265,7 @@ vector<int> cyclic_crossover(vector<int> &parent1, vector<int> &parent2){
 	vector<int> p1 = parent1, p2 = parent2, child(BOARD_SIZE, -1), cycle;
 
 	vector<int> so_far(BOARD_SIZE, -1);
-	
+
 	int idx = 0, it = 0;
 	while (find(so_far.begin(), so_far.end(), -1) != so_far.end()){
 		cycle = find_next_cycle(p1, p2, idx);
@@ -290,6 +298,24 @@ vector<int> cyclic_crossover(vector<int> &parent1, vector<int> &parent2){
 
 	return child;
 }
+
+int tournament_select(ga_vector& population, int k){
+    unsigned int _max = 0;
+    int chosen;
+    ga_t_vector teams;
+    for(int i = 0 ; i < k ; i++){
+
+        int select = rand() % GA_POPSIZE;
+        if(population[select].fitness > _max){
+            _max = population[select].fitness;
+            chosen = i;
+        }
+    }
+
+    return chosen;
+}
+
+
 void mate(ga_vector &population, ga_vector &buffer)
 {
 	int esize = GA_POPSIZE * GA_ELITRATE;
@@ -301,8 +327,8 @@ void mate(ga_vector &population, ga_vector &buffer)
 
 	// Mate the rest
 	for (int i = esize; i<GA_POPSIZE; i++) {
-		i1 = rand() % (GA_POPSIZE / 2);
-		i2 = rand() % (GA_POPSIZE / 2);
+		i1 = tournament_select(population,500); //rand() % (GA_POPSIZE / 2);
+		i2 = tournament_select(population,500); //rand() % (GA_POPSIZE / 2);
 
 		parent1 = population[i1].sequence;
 		parent2 = population[i2].sequence;
