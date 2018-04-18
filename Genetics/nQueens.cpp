@@ -23,17 +23,26 @@ int main(int argc, char* argv[])
 #include <chrono>
 #include <array>
 
-#define GA_POPSIZE		1000		// ga population size
+#define GA_POPSIZE		1024		// ga population size
 #define GA_MAXITER		16384		// maximum iterations
-#define GA_ELITRATE		0.10f		// elitism rate
+#define GA_ELITRATE		0.05f		// elitism rate
 #define GA_MUTATIONRATE	0.25f		// mutation rate
 #define GA_MUTATION		RAND_MAX * GA_MUTATIONRATE
-#define GA_TARGET		std::string("Hello world!")
 
-#define BOARD_SIZE		8
+
+#define BOARD_SIZE		16
 #define SHUFFLE 3
 
 using namespace std;				// polluting global namespace, but hey...
+
+const char ORDERED_X = 1;
+const char CYCLIC_X = 2;
+
+const char SWAP_M = 1;
+const char SCRAMBLE_M = 2;
+
+const char RAND_S = 1;
+const char TOURNAMENT_S = 2;
 
 struct ga_struct
 {
@@ -41,13 +50,17 @@ struct ga_struct
 	unsigned int fitness;			// its fitness
 };
 
+// used for tournament selection function
 struct ga_candidate
 {
     struct ga_struct gen;
     int i;
 };
+
+// used for tournament selection function
 typedef vector<ga_candidate> ga_t_vector;
 array<int, BOARD_SIZE> _array;
+
 
 bool array_init_flag = false;
 void init_array()
@@ -61,7 +74,7 @@ void init_array()
 
 
 
-typedef vector<ga_struct> ga_vector;// for brevity
+typedef vector<ga_struct> ga_vector; // for brevity
 
 
 
@@ -82,34 +95,24 @@ void init_population(ga_vector &population,
 		citizen.sequence.resize(BOARD_SIZE);
 
 		for (int j = 0; j < BOARD_SIZE; j++){
-			//	citizen.sequence[j] = rand() % BOARD_SIZE;
+			//citizen.sequence[j] = rand() % BOARD_SIZE;
 
 
 			a = rand() % BOARD_SIZE;
 			while (!static_array[a]){
 				a = rand() % BOARD_SIZE;
-				//cout << "Stuck" << endl;
 			}
 			citizen.sequence[j] = a;
 			static_array[a] = 0;
 		}
 
 		population.push_back(citizen);
-		//init_array(static_array);
 	}
 
 	buffer.resize(GA_POPSIZE);
 }
 
-
-int maxClashes(int boardSize)
-{
-	int count = 0;
-	for (int i = 1; i < boardSize + 1; i++)
-		count += i;
-	return count;
-}
-
+//calculates sequence unique length to use it in finding row and columns clashes
 int uniqueLength(vector<int> sequence)
 {
 	vector<int> temp = sequence;
@@ -121,6 +124,7 @@ int uniqueLength(vector<int> sequence)
 	return(temp.size());
 }
 
+//calculate fitness for a given sequence
 int calc_fitness_for_sequence(vector<int> &sequence)
 {
 
@@ -141,11 +145,11 @@ int calc_fitness_for_sequence(vector<int> &sequence)
 		}
 	}
 
-	//return (maxClashes(BOARD_SIZE) - clashes);
 	return clashes;
 
 }
 
+//calculate fitness for all the population
 void calc_fitness(ga_vector &population)
 {
 
@@ -171,16 +175,6 @@ void elitism(ga_vector &population,
 		buffer[i].sequence = population[i].sequence;
 		buffer[i].fitness = population[i].fitness;
 	}
-}
-
-void mutate1(ga_struct &member)
-{
-	int ipos = rand() % BOARD_SIZE;
-	int delta = rand() % BOARD_SIZE;
-
-	//member.sequence[ipos] = ((member.sequence[ipos] + delta) % 122);
-
-	member.sequence[ipos] = delta;
 }
 
 void swap_mutation(ga_struct &member)
@@ -246,7 +240,7 @@ vector<int> ordered_crossover(vector<int> &parent1, vector<int> &parent2)
 }
 
 
-
+// used in cyclic crossover
 vector<int> find_next_cycle(vector<int> &parent1, vector<int> &parent2, int idx){
 	int term = parent1[idx];
 	vector<int> cycle;
@@ -269,9 +263,6 @@ vector<int> cyclic_crossover(vector<int> &parent1, vector<int> &parent2){
 	int idx = 0, it = 0;
 	while (find(so_far.begin(), so_far.end(), -1) != so_far.end()){
 		cycle = find_next_cycle(p1, p2, idx);
-		//for (int i = 0; i < cycle.size(); i++){
-		//	cout << cycle[i] << " ";
-		//}
 
 		for (int i = 0; i < cycle.size(); i++){
 			so_far[cycle[i]] = 1;
@@ -316,7 +307,7 @@ int tournament_select(ga_vector& population, int k){
 }
 
 
-void mate(ga_vector &population, ga_vector &buffer)
+void mate(ga_vector &population, ga_vector &buffer , char X, char M, char S)
 {
 	int esize = GA_POPSIZE * GA_ELITRATE;
 	int tsize = BOARD_SIZE, spos, i1, i2;
@@ -327,47 +318,37 @@ void mate(ga_vector &population, ga_vector &buffer)
 
 	// Mate the rest
 	for (int i = esize; i<GA_POPSIZE; i++) {
-		i1 = tournament_select(population,500); //rand() % (GA_POPSIZE / 2);
-		i2 = tournament_select(population,500); //rand() % (GA_POPSIZE / 2);
+        if(S == RAND_S){
+            i1 = rand() % (GA_POPSIZE / 2);
+            i2 = rand() % (GA_POPSIZE / 2);
+        }
+        if(S == TOURNAMENT_S){
+            i1 = tournament_select(population,500);
+            i2 = tournament_select(population,500);
+        }
 
 		parent1 = population[i1].sequence;
 		parent2 = population[i2].sequence;
 
 		vector<int> child;
-
-		child = cyclic_crossover(parent1, parent2);
+        if(X == ORDERED_X){
+            child = ordered_crossover(parent1, parent2);
+        }
+        if(X == CYCLIC_X ){
+            child = cyclic_crossover(parent1, parent2);
+        }
 
 		buffer[i].sequence = child;
 
-		if (rand() < GA_MUTATION) swap_mutation(buffer[i]);
-	}
-}
-
-void printit(string str){
-	for (int i = 0; i < BOARD_SIZE; i++){
-		for (int j = 0; j < BOARD_SIZE; j++){
-			if (str[i] - '0' == j){
-				cout << " X";
-			}
-			else{
-				cout << " 0";
-			}
+		if (rand() < GA_MUTATION){
+            if(M == SWAP_M){
+                swap_mutation(buffer[i]);
+            }
+            if(M == SCRAMBLE_M){
+                scramble_mutation(buffer[i]);
+            }
 		}
-		cout << endl;
 	}
-}
-
-void print_board(ga_vector& g){
-	for (int i = 0; i < GA_POPSIZE; i += 4){
-		string os = "";
-		for (int k = 0; k < BOARD_SIZE; k++){
-			os += (g[i].sequence[k] + '0');
-		}
-
-		cout << i << ": " << os << "   " << g[i].fitness << endl;
-
-	}
-	system("pause");
 }
 
 int iterations = 1;
@@ -380,74 +361,16 @@ inline void print_best(ga_vector &gav)
 	for (int i = 0; i < BOARD_SIZE; i++){
 		std::ostringstream ss;
 		ss << (gav[0].sequence[i]);
-		//result += (ss.str() + " ");
 		os += (ss.str() + " ");
 	}
 
 	cout << iterations++ << ": " << os << " (" << gav[0].fitness << ")" << endl;
-	//print_board(gav);
-	//printit(os);
 }
 
 inline void swap(ga_vector *&population, ga_vector *&buffer)
 {
 	ga_vector *temp = population; population = buffer; buffer = temp;
 }
-
-
-//int main()
-//{
-//	srand(unsigned(time(NULL)));
-//
-//	ga_vector pop_alpha, pop_beta;
-//	ga_vector *population, *buffer;
-//	int i, j;
-//	init_population(pop_alpha, pop_beta);
-//	population = &pop_alpha;
-//	buffer = &pop_beta;
-//	vector<int> newVec1;
-//
-//	cout << "1: ";
-//	for (int i = 0; i < pop_alpha[1].sequence.size(); i++)
-//		cout << pop_alpha[1].sequence[i] << " ";
-//
-//	cout << endl;
-//
-//	cout << "2: ";
-//	for (int i = 0; i < pop_alpha[2].sequence.size(); i++)
-//		cout << pop_alpha[2].sequence[i] << " ";
-//
-//	cout << endl;
-//
-//	newVec1 = ordered_crossover(pop_alpha[1].sequence, pop_alpha[2].sequence);
-//
-//
-//
-//	cout << "3: ";
-//	for (int i = 0; i < newVec1.size(); i++)
-//		cout << newVec1[i] << " ";
-//
-//	cout << endl;
-//
-//	system("pause");
-//
-//	return 0;
-//}
-
-//
-//int main()
-//{
-//	vector<int> newVec1(BOARD_SIZE,-1);
-//
-//
-//	for (int i = 0; i < newVec1.size(); i++)
-//		cout << newVec1[i] << " ";
-//
-//	system("pause");
-//	return 0;
-//
-//}
-//
 
 void printBoard(vector<int> toPrint)
 {
@@ -463,31 +386,6 @@ void printBoard(vector<int> toPrint)
 		cout << endl;
 	}
 }
-//
-//int main(){
-//	vector<int> p1 = { 4, 1, 7, 6, 2, 8, 3, 5, 0 }, p2 = { 3, 0, 1, 2, 4, 6, 8, 7, 5 }, cycle;
-//
-//	for (int i = 0; i < p1.size(); i++){
-//		cout << p1[i] << " ";
-//	}
-//	cout << endl;
-//	for (int i = 0; i < p2.size(); i++){
-//		cout << p2[i] << " ";
-//	}
-//	cout << endl << endl;
-//
-//	cycle = cyclic_crossover(p1, p2);
-//
-//	for (int i = 0; i < cycle.size(); i++){
-//		cout << cycle[i] << " ";
-//		//so_far[cycle[i]] = 1;
-//	}
-//
-//	system("pause");
-//
-//	return 0;
-//
-//}
 
 int main()
 {
@@ -503,10 +401,37 @@ int main()
 	population = &pop_alpha;
 	buffer = &pop_beta;
 	bool flag = false;
+    char X,M,S;
 
 	cout << "Board Size: " << BOARD_SIZE << endl;
+
+	cout<< "choose crossover (type 1 or 2):"<<endl
+	<< "1) Ordered crossover"<<endl
+	<< "2) Cyclic crossover"<<endl;
+	cin>> X;
+
+    cout<< "choose mutation (type 1 or 2):"<<endl
+	<< "1) Swap mutation"<<endl
+	<< "2) Scramble mutation"<<endl;
+	cin>> M;
+
+    cout<< "choose parents selection (type 1 or 2):"<<endl
+	<< "1) Random selection"<<endl
+	<< "2) Tournament selection"<<endl;
+	cin>> S;
+
+    X -='0';
+    M -='0';
+    S -='0';
+
 	for (int i = 0; i<GA_MAXITER; i++) {
+        if((X != 1 && X != 2) || (M != 1 && M != 2) || (S != 1 && S != 2)){
+            cout<<"invalid input"<<endl;
+            break;
+        }
+
 		auto _start_time = std::chrono::high_resolution_clock::now();
+
 		clock_t t_g = clock();
 		calc_fitness(*population);		// calculate fitness
 		sort_by_fitness(*population);	// sort them
@@ -515,22 +440,24 @@ int main()
 		auto _end_time = std::chrono::high_resolution_clock::now();
 		auto _time = _end_time - _start_time;
 		cout << "Elapsed time: " << std::chrono::duration_cast<std::chrono::microseconds>(_time).count() / 1000000.0
-			<< " seconds.\n" << "Clock ticks: " << (float)(clock() - t_g) << endl << endl;
+			<< " seconds.\n" << "Clock ticks: " << ((float)(clock() - t_g)/(CLOCKS_PER_SEC)) << endl << endl;
 
 		if ((*population)[0].fitness == 0){
 			flag = true;
 			break;
 		}
 
-		mate(*population, *buffer);		// mate the population together
+		mate(*population, *buffer, X, M, S);		// mate the population together
 		swap(population, buffer);		// swap buffers
 
 	}
 
-	if (flag)
+	if (flag){ // if solution founded then print it
 		cout << endl << "Solution: " << endl;
-	printBoard((*population)[0].sequence);
-
+        printBoard((*population)[0].sequence);
+	}
+	else
+		cout << endl << "SOLUTION NOT FOUND!" << endl;
 
 	cout << endl;
 	auto end_time = std::chrono::high_resolution_clock::now();
