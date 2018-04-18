@@ -30,7 +30,7 @@ int main(int argc, char* argv[])
 #define GA_MUTATION		RAND_MAX * GA_MUTATIONRATE
 #define GA_TARGET		std::string("Hello world!")
 
-#define BOARD_SIZE		12
+#define BOARD_SIZE		10
 #define SHUFFLE 3
 
 using namespace std;				// polluting global namespace, but hey...
@@ -40,6 +40,7 @@ struct ga_struct
 	vector<int> sequence;						// the string
 	unsigned int fitness;			// its fitness
 };
+
 
 array<int, BOARD_SIZE> _array;
 bool array_init_flag = false;
@@ -232,10 +233,85 @@ vector<int> ordered_crossover(vector<int> &parent1, vector<int> &parent2)
 				k++;
 			}
 		}
-	
+
 		return newVec1;
 }
 
+
+
+vector<int> find_next_cycle(vector<int> &parent1, vector<int> &parent2, int idx){
+    int term = parent1[idx];
+    vector<int> cycle;
+    cycle.push_back(term);
+    while(parent2[idx] != term){
+        ptrdiff_t pos = find(parent1.begin(), parent1.end(), parent2[idx]) - parent1.begin();
+        if(pos <= parent1.size()) {
+            cycle.push_back(parent1[pos]);
+            idx = pos;
+        }
+    }
+    return cycle;
+}
+
+vector<int> cyclic_crossover(vector<int> &parent1, vector<int> &parent2){
+    vector<int> p1 = parent1, p2 = parent2,child(BOARD_SIZE,-1),cycle;
+
+    vector<int> so_far(BOARD_SIZE,-1);
+//    for(int i = 0; i < p1.size(); i++){
+//        cout << p1[i]<< " " ;
+//    }
+//    cout << endl;
+//    for(int i = 0; i < p2.size(); i++){
+//        cout << p2[i] << " ";
+//    }
+//    cout << endl << endl;
+    int idx = 0,it = 0;
+    while(find(so_far.begin(),so_far.end(),-1) != so_far.end()){
+            //cout << idx << "       #####################################" << endl;
+        cycle = find_next_cycle(p1,p2,idx);
+        for(int i = 0; i < cycle.size(); i++){
+            cout <<  cycle[i] << " ";
+            //so_far[cycle[i]] = 1;
+        }
+        cout <<  endl<<"####" <<endl;
+//        cout << endl;
+//        cout << "##########" << endl;
+//        for(int i = 0; i < so_far.size(); i++){
+//            cout <<  so_far[i] << " ";
+//            //so_far[cycle[i]] = 1;
+//        }
+//        cout << endl;
+//        cout << "##########" << endl;
+
+        for(int i = 0; i < cycle.size(); i++){
+            //cout << " 1 " << cycle[i]<< endl;
+            so_far[cycle[i]] = 1;
+            ptrdiff_t pos = find(p1.begin(), p1.end(), cycle[i]) - p1.begin();
+            if(pos <= p1.size()) {
+                //cycle.push_back(parent1[pos]);
+                //idx = pos;
+                child[pos] = cycle[i];
+
+            }
+        }
+        for(int i = 0; i < p1.size(); i++){
+            if(so_far[p1[i]] == -1){
+                idx = i;
+                break;
+            }
+        }
+        it++;
+        if(it%2 == 0){
+            p1 = parent1, p2 = parent2;
+        }else{
+            p1 = parent2, p2 = parent1;
+        }
+
+        //cout << " 11" << endl;
+    }
+
+    return child;
+}
 void mate(ga_vector &population, ga_vector &buffer)
 {
 	int esize = GA_POPSIZE * GA_ELITRATE;
@@ -341,7 +417,7 @@ inline void swap(ga_vector *&population, ga_vector *&buffer)
 //
 //	newVec1 = ordered_crossover(pop_alpha[1].sequence, pop_alpha[2].sequence);
 //
-//	
+//
 //
 //	cout << "3: ";
 //	for (int i = 0; i < newVec1.size(); i++)
@@ -365,7 +441,7 @@ inline void swap(ga_vector *&population, ga_vector *&buffer)
 //
 //	system("pause");
 //	return 0;
-//	
+//
 //}
 //
 
@@ -384,57 +460,78 @@ void printBoard(vector<int> toPrint)
 	}
 }
 
-int main()
-{
-	clock_t t = clock();
-	auto start_time = std::chrono::high_resolution_clock::now();
+int main(){
+    vector<int> p1 = {4,1,7,6,2,8,3,9,5,0}, p2 = {3,9,0,1,2,4,6,8,7,5},cycle;
 
-	srand(unsigned(time(NULL)));
+    for(int i = 0; i < p1.size(); i++){
+        cout << p1[i]<< " " ;
+    }
+    cout << endl;
+    for(int i = 0; i < p2.size(); i++){
+        cout << p2[i] << " ";
+    }
+    cout << endl << endl;
 
-	ga_vector pop_alpha, pop_beta;
-	ga_vector *population, *buffer;
+    cycle = cyclic_crossover(p1,p2);
 
-	init_population(pop_alpha, pop_beta);
-	population = &pop_alpha;
-	buffer = &pop_beta;
-	bool flag = false;
+    for(int i = 0; i < cycle.size(); i++){
+            cout <<  cycle[i] << " ";
+            //so_far[cycle[i]] = 1;
+    }
 
-	cout << "Board Size: " << BOARD_SIZE << endl;
-	for (int i = 0; i<GA_MAXITER; i++) {
-		auto _start_time = std::chrono::high_resolution_clock::now();
-		clock_t t_g = clock();
-		calc_fitness(*population);		// calculate fitness
-		sort_by_fitness(*population);	// sort them
-		print_best(*population);		// print the best one
-
-		auto _end_time = std::chrono::high_resolution_clock::now();
-		auto _time = _end_time - _start_time;
-		cout << "Elapsed time: " << std::chrono::duration_cast<std::chrono::microseconds>(_time).count() / 1000000.0
-			<< " seconds.\n" << "Clock ticks: " << (float)(clock() - t_g) << endl << endl;
-
-		if ((*population)[0].fitness == 0){
-			flag = true;
-			break;
-		}
-
-		mate(*population, *buffer);		// mate the population together
-		swap(population, buffer);		// swap buffers
-
-	}
-
-	if (flag)
-		cout << endl << "Solution: " << endl;
-	printBoard((*population)[0].sequence);
-
-
-	cout << endl;
-	auto end_time = std::chrono::high_resolution_clock::now();
-	auto time = end_time - start_time;
-	cout << "Total time: " << std::chrono::duration_cast<std::chrono::microseconds>(time).count() / 1000000.0
-		<< " seconds." << "\nTotal Clock ticks: " << (float)(clock() - t) << endl;
-	cout << endl << "End" << endl << endl;
-
-	system("pause");
-
-	return 0;
 }
+//
+//int main()
+//{
+//	clock_t t = clock();
+//	auto start_time = std::chrono::high_resolution_clock::now();
+//
+//	srand(unsigned(time(NULL)));
+//
+//	ga_vector pop_alpha, pop_beta;
+//	ga_vector *population, *buffer;
+//
+//	init_population(pop_alpha, pop_beta);
+//	population = &pop_alpha;
+//	buffer = &pop_beta;
+//	bool flag = false;
+//
+//	cout << "Board Size: " << BOARD_SIZE << endl;
+//	for (int i = 0; i<GA_MAXITER; i++) {
+//		auto _start_time = std::chrono::high_resolution_clock::now();
+//		clock_t t_g = clock();
+//		calc_fitness(*population);		// calculate fitness
+//		sort_by_fitness(*population);	// sort them
+//		print_best(*population);		// print the best one
+//
+//		auto _end_time = std::chrono::high_resolution_clock::now();
+//		auto _time = _end_time - _start_time;
+//		cout << "Elapsed time: " << std::chrono::duration_cast<std::chrono::microseconds>(_time).count() / 1000000.0
+//			<< " seconds.\n" << "Clock ticks: " << (float)(clock() - t_g) << endl << endl;
+//
+//		if ((*population)[0].fitness == 0){
+//			flag = true;
+//			break;
+//		}
+//
+//		mate(*population, *buffer);		// mate the population together
+//		swap(population, buffer);		// swap buffers
+//
+//	}
+//
+//	if (flag)
+//		cout << endl << "Solution: " << endl;
+//	printBoard((*population)[0].sequence);
+//
+//
+//	cout << endl;
+//	auto end_time = std::chrono::high_resolution_clock::now();
+//	auto time = end_time - start_time;
+//	cout << "Total time: " << std::chrono::duration_cast<std::chrono::microseconds>(time).count() / 1000000.0
+//		<< " seconds." << "\nTotal Clock ticks: " << (float)(clock() - t) << endl;
+//	cout << endl << "End" << endl << endl;
+//
+//	//system("pause");
+//
+//	return 0;
+//}
