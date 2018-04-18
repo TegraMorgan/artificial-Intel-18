@@ -22,7 +22,7 @@ int main(int argc, char* argv[])
 #include <time.h>					// for random seed
 #include <math.h>					// for abs()
 #include <chrono>
-#define GA_POPSIZE		2048		// ga population size
+#define GA_POPSIZE		1024		// ga population size
 #define GA_MAXITER		16384		// maximum iterations
 #define GA_ELITRATE		0.10f		// elitism rate
 #define GA_MUTATIONRATE	0.25f		// mutation rate
@@ -30,7 +30,7 @@ int main(int argc, char* argv[])
 #define GA_TARGET		std::string("Hello world!")
 #define AT 0
 #define MAX_AGE 2
-//#define AT GA_POPSIZE-1
+
 using namespace std;				// polluting global namespace, but hey...
 
 
@@ -119,15 +119,11 @@ void initilize_alpha_beta(){
     }
 }
 
-
-
-
 void calc_b_fitness(ga_vector &population){
     if(!flag)
         initilize_alpha_beta();
     array<char,90> _alpha_beta = alpha_beta;
     array<char,90> __alpha_beta = alpha_beta;
-    //print(_alpha_beta);
     string target = GA_TARGET;
 	int tsize = target.size(), bol = 0,_bol = 0;
 	double fitness;
@@ -138,13 +134,9 @@ void calc_b_fitness(ga_vector &population){
         _bol = 0;
 		fitness = 10*GA_TARGET.size();
 		for (int j=0; j<tsize; j++) {
-			//fitness += abs(int(population[i].str[j] - target[j]));
 			if(_alpha_beta[population[i].str[j] % 90] > 0){
                 if(target[j] == population[i].str[j]){
-                    //cout << target[j] << "   " << population[i].str[j] << "  #####" << endl;
                     bol++;
-                    //fitness -= bol;
-
                     _alpha_beta[population[i].str[j] % 90]--;
                 }else if(__alpha_beta[population[i].str[j] % 90] > 0){
                     _bol++;
@@ -159,9 +151,7 @@ void calc_b_fitness(ga_vector &population){
 		double total;
 
 		if(abs(bol - GA_TARGET.size()) <= 3){
-            //cout << "WTFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" << endl;
             total = bol;
-            //system("pause");
 		}else{
             total = fitness - _bol/2 - bol;
 		}
@@ -170,11 +160,9 @@ void calc_b_fitness(ga_vector &population){
             total = 10*GA_TARGET.size() + 10*fitness;
         }
 		population[i].fitness = total;
-		//population[i].invert_fitness = 1.0/(fitness == 0? 1 : total);
 		fitness_sum += total;
 		if(total > max_fit)
             max_fit = total;
-		//invert_fitness_sum += 1.0/(fitness == 0? 1 : total);
 	}
     calc_maxmize_fitness(population);
 }
@@ -208,25 +196,12 @@ inline void sort_by_b_fitness(ga_vector &population){
 
 void elitism(ga_vector &population,ga_vector &buffer, int esize ){
 	for (int i=0; i<esize; i++) {
-            if(buffer[i].age == MAX_AGE){
-                cout << "We're fucked up!";
-
-            }
 		buffer[i].str = population[i].str;
 		buffer[i].fitness = population[i].fitness;
 		buffer[i].invert_fitness = population[i].invert_fitness;
 		buffer[i].age = population[i].age + 1;
 	}
 }
-
-//void elitism2(ga_vector &population,ga_vector &buffer, int esize ){
-//	for (int i=GA_POPSIZE - esize; i<GA_POPSIZE; i++) {
-//		buffer[i].str = population[i].str;
-//		buffer[i].fitness = population[i].fitness;
-//		buffer[i].invert_fitness = population[i].invert_fitness;
-//		buffer[i].age = population[i].age + 1;
-//	}
-//}
 
 void mutate(ga_struct &member){
 	int tsize = GA_TARGET.size();
@@ -282,7 +257,7 @@ string uniform_cross_over(string p1, string p2,unsigned int pp1, unsigned int pp
         father = p2;
         mother = p1;
     }
-    for(int i = 0; i < GA_TARGET.size(); i++){
+    for(int i = 0; i < (int)GA_TARGET.size(); i++){
         if((double)rand()/RAND_MAX >= ratio){
             result = result + father[i];
         }else{
@@ -292,7 +267,34 @@ string uniform_cross_over(string p1, string p2,unsigned int pp1, unsigned int pp
     return result;
 }
 
-void mate(ga_vector &population, ga_vector &buffer){
+int roulate(ga_vector& pop);
+
+const char TOURNAMENT = 0;
+const char ROULETTE = 1;
+const char RAND = 2;
+const char SINGLE_POINT = 0;
+const char TWO_POINTS = 1;
+const char UNIFORM = 2;
+
+const char get_select(char a){
+    if(a == 0)
+        return TOURNAMENT;
+    if(a == 1)
+        return ROULETTE;
+    else
+        return RAND;
+}
+
+const char get_crossover(char a){
+    if(a == 0)
+        return SINGLE_POINT;
+    if(a == 1)
+        return TWO_POINTS;
+    else
+        return UNIFORM;
+}
+
+void mate(ga_vector &population, ga_vector &buffer, int select_cmd , int crossover_cmd){
 	int esize = GA_POPSIZE * GA_ELITRATE;
 	int tsize = GA_TARGET.size(), spos, i1, i2;
 
@@ -300,81 +302,54 @@ void mate(ga_vector &population, ga_vector &buffer){
 
 	// Mate the rest
 	for (int i=esize; i<GA_POPSIZE; i++) {
-		i1 = tournament_select(population,500); //rand() % (GA_POPSIZE / 2);
-		i2 = tournament_select(population,500);//rand() % (GA_POPSIZE / 2);
-		spos = rand() % tsize;
+        if(select_cmd == TOURNAMENT){
+            i1 = tournament_select(population,100);
+            i2 = tournament_select(population,100);
+        }else if(select_cmd == ROULETTE){
+            i1 = roulate(population);
+            i2 = roulate(population);
+        }else{
+            i1 = rand() % (GA_POPSIZE / 2);
+            i2 = rand() % (GA_POPSIZE / 2);
+        }
 
-		buffer[i].str = two_pts_cross_over(population[i1].str,population[i2].str);
-		 /*uniform_cross_over(population[i1].str,population[i2].str,
-                                      population[i1].invert_fitness,population[i2].invert_fitness,0.4); //population[i1].str.substr(0, spos) +
-			            //population[i2].str.substr(spos, tsize - spos);
-*/
+
+		if(crossover_cmd == SINGLE_POINT){
+            spos = rand()%tsize;
+            buffer[i].str = population[i1].str.substr(0, spos) +
+			            population[i2].str.substr(spos, tsize - spos);
+
+		}else if(crossover_cmd == TWO_POINTS){
+            buffer[i].str = two_pts_cross_over(population[i1].str,population[i2].str);
+		}else{
+            buffer[i].str = uniform_cross_over(population[i1].str,population[i2].str,
+                                      population[i1].invert_fitness,population[i2].invert_fitness,0.4);
+		}
+
         buffer[i].age = 0;
 		if (rand() < GA_MUTATION) mutate(buffer[i]);
 	}
 }
 
-//void mate2(ga_vector &population, ga_vector &buffer){
-//	int esize = GA_POPSIZE * GA_ELITRATE;
-//	int tsize = GA_TARGET.size(), spos, i1, i2;
-//
-//	elitism2(population , buffer , esize);
-//
-//	// Mate the rest
-//	for (int i=0; i<GA_POPSIZE - esize; i++) {
-//		i1 = rand() % (GA_POPSIZE / 2);
-//		i2 = rand() % (GA_POPSIZE / 2);
-//		spos = rand() % tsize;
-//
-//		buffer[i].str = population[i1].str.substr(0, spos) +
-//			            population[i2].str.substr(spos, tsize - spos);
-//
-//		if (rand() < GA_MUTATION) mutate(buffer[i]);
-//	}
-//}
-
-void printo(ga_vector& p)
-{
-    float sum = 0, sum2 = 0;
-    for(int i = 0; i < GA_POPSIZE; i++){
-        //cout << (1 - p[i].fitness/((double)fitness_sum)) << "    &^&^ " << i<< endl;
-//        sum += ( p[i].fitness / fitness_sum);
-//        sum2 += 1 - (( p[i].fitness)/fitness_sum );
-    cout << p[i].invert_fitness << "  "<<i <<  endl;
-    sum+= p[i].invert_fitness;
-    }
-    cout << "###### ::: " << sum << "    " << invert_fitness_sum << endl;
-}
-
-inline void pp(ga_vector& g);
-
 int roulate_wheel_select(ga_vector& population){
     double p;
-    int right,left,mid, i = 0;
+    int right,left,mid;
     p = (rand() % (int)max_invert_fit);
     p = sqrt(p/((double)invert_fitness_sum));
-    //p /= 1000;
 
     right = GA_POPSIZE-1;
     left = 0;
     mid = (right + left)/2;
 
-    //printo(population);
     while(right > 1 && left < GA_POPSIZE - 2){
         double pr = sqrt(population[mid].invert_fitness/(double)(invert_fitness_sum ));
         double next_pr = sqrt(population[mid + 1].invert_fitness/(double)(invert_fitness_sum ));
         if((p <= pr && p >= next_pr)){
-            //cout << mid << "  was selected" << endl;
-            if(population[mid].age > MAX_AGE){
-                //pp(population);
-                system("pause");
-            }
             if(p == next_pr)
                 return mid+1;
             return mid;
         }
         else{
-            //cout <<  pr << "        "<<  p << endl;
             if(p < pr){
                 left = mid +1;
             }
@@ -383,24 +358,13 @@ int roulate_wheel_select(ga_vector& population){
             }
         }
         mid = (right + left)/2;
-//        cout << left << "  " << mid << "  " << right << " #" << i++<< endl
-//        << "pr : " << pr << " next pr: " << next_pr<< " p: " << p <<  endl;
-
     }
     return 0;
 }
 
 int roulate(ga_vector& pop){
-    double p = sqrt((double)(rand()%invert_fitness_sum)),FitnessSoFar = 0.0;
+    double p = sqrt((double)(rand()%invert_fitness_sum));
 
-//    for (int i=0; i<GA_POPSIZE; i++){
-//        FitnessSoFar += sqrt(pop[i].invert_fitness);
-//
-//        //if the fitness so far > random number return the chromo at this point
-//        if (FitnessSoFar >= p)
-//
-//            return i;
-//    }
     int i = 0;
     while( p>=0){
         p -= sqrt((double)pop[i++].invert_fitness);
@@ -408,31 +372,6 @@ int roulate(ga_vector& pop){
     return i - 1;
 
 }
-
-void roulate_mate(ga_vector &population, ga_vector &buffer){
-	int esize = GA_POPSIZE * GA_ELITRATE;
-	int tsize = GA_TARGET.size(), spos, i1, i2;
-
-	elitism(population, buffer, esize);
-
-	// Mate the rest
-	for (int i=esize; i<GA_POPSIZE; i++) {
-
-            i1 = roulate(population);
-            i2 = roulate(population);
-            //cout << i1 << " @@@@ " << i2 << endl;
-            spos = rand() % tsize;
-            //cout << "222" << endl;
-		buffer[i].str = uniform_cross_over(population[i1].str,population[i2].str,
-                                      population[i1].invert_fitness,population[i2].invert_fitness,0.4); //population[i1].str.substr(0, spos) +
-        buffer[i].age = 0;
-		if (rand() < GA_MUTATION) mutate(buffer[i]);
-	}
-	        //cout <<endl << endl<< "################################################################################" << endl<<endl;
-
-}
-
-
 
 inline double calc_dviation(ga_vector& gav){
     double sum = 0,average = fitness_sum/(double)GA_POPSIZE;
@@ -445,7 +384,7 @@ inline double calc_dviation(ga_vector& gav){
 }
 int y = 0;
 inline void print_best(ga_vector &gav , double dev){
-    cout << y++ << ": " << "Best: " << gav[AT].str << " (" << gav[AT].fitness << ") " << "[ " << gav[AT].age << "] "
+    cout << y++ << ": " << "Best: " << gav[AT].str << " (" << gav[AT].fitness << ") "
                 <<"Average: " << fitness_sum/(double)GA_POPSIZE << "\nDeviation is: " << dev << endl ;
 }
 
@@ -453,20 +392,24 @@ inline void swap(ga_vector *&population,ga_vector *&buffer){
      ga_vector *temp = population; population = buffer; buffer = temp;
 }
 
-inline void pp(ga_vector& g)
-{
-    for(int i = 0; i < GA_POPSIZE ; i+=4){
-        cout << i << "_ " << g[i].str <<"  " << g[i].fitness << endl;
-    }
-}
+
+
 
 int main()
 {
-//    begin = clock();
-//    a = b*c;
-//    end = clock();
-//    time_spent = (float)(end - begin)/CLOCKS_PER_SEC;
-
+    char selection_method,crossover_method;
+    cout << "Genetics Engine - Hello wrold!" << endl << endl
+    << "Choose a selection method:\n" << "Tournament Selection: 0\nRoulette Wheel Selection: 1\nRandom Selection: 2\n"
+    << "->> ";
+    cin >> selection_method;
+    cout << endl;
+    cout
+    << "Choose a crossover method:\n" << "Single Point: 0\nTwo Points: 1\nUniform: 2\n"
+    << "->> ";
+    cin >> crossover_method;
+    cout << endl << endl;
+    const char s = get_crossover(selection_method -'0');
+    const char c = get_crossover(crossover_method - '0');
     clock_t t = clock();
     auto start_time = std::chrono::high_resolution_clock::now();
 	srand(unsigned(time(NULL)));
@@ -486,30 +429,22 @@ int main()
 		sort_by_b_fitness(*population);	// sort them
         double dev = calc_dviation(*population);
 		print_best(*population,dev);
-				// print the best one
-        //p(*population);
-        //system("pause");
-        //printf("Elasped time: %.2lf seconds.\n\n", difftime(end_generation,begin_generation));
         auto _end_time = std::chrono::high_resolution_clock::now();
         auto _time = _end_time - _start_time;
         cout << "Elapsed time: " << std::chrono::duration_cast<std::chrono::microseconds>(_time).count()/1000000.0
                                         <<  " seconds.\n"<< "Clock ticks: " << (float) ((clock() - t_g)/CLOCKS_PER_SEC) << endl << endl;
 		if ((*population)[AT].str.compare(GA_TARGET) == 0) break;
 
-		mate(*population, *buffer);		// mate the population together
+		mate(*population, *buffer,s,c);		// mate the population together
 		swap(population, buffer);		// swap buffers
 	}
-    //p(*population);
+
     auto end_time = std::chrono::high_resolution_clock::now();
     auto time = end_time - start_time;
     cout << "Total time: " << std::chrono::duration_cast<std::chrono::microseconds>(time).count()/1000000.0
-    <<  " seconds." <<"\nTotal Clock ticks: " << (float)(clock() - t) << endl;
-    //system("pause");
+    <<  " seconds." <<"\nTotal Clock ticks: " << (float)(clock() - t) << endl << endl;
+    system("pause");
 	return 0;
 }
 
-//int main(){
-//    string a = "hello world!", b = "ifmmp xpsme@";
-//    cout << two_pts_cross_over(a,b);
-//
-//}
+

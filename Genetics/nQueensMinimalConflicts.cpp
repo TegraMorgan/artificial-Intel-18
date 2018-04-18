@@ -1,14 +1,14 @@
 
-#include <iostream>					// for cout etc.
+#include <iostream>
 #include <vector>
 #include <string>
-#include <array>					// for vector class
-#include <string>					// for string class
-#include <algorithm>				// for sort algorithm
-#include <time.h>					// for random seed
+#include <array>
+#include <string>
+#include <algorithm>
+#include <time.h>
 #include <math.h>
 #include <sstream>
-#define N 500
+#define N 16
 
 using namespace std;
 
@@ -42,55 +42,55 @@ int get_conflicts(mc_struct& queens,int row, int col) {
     return _count;
 }
 
-
+/**
+*   This is the minimal conflicts implementation
+*    every iteration:
+*       1: find worst queen (maximum conflicts)
+*       2: find best queen (minimum conflicts)
+*       3: swap them
+*
+**/
 void solve(mc_struct& queens) {
     int moves = 0;
-
     vector<int> candidates;
-
     while (true) {
-        int maxConflicts = 0;
+        int mx_conflicts = 0;
         candidates.clear();
         for (int c = 0; c < N; c++) {
             int conflicts = get_conflicts(queens,queens.board[c], c);
-            if (conflicts == maxConflicts) {
+            if (conflicts == mx_conflicts) {
                 candidates.push_back(c);
-            } else if (conflicts > maxConflicts) {
-                maxConflicts = conflicts;
+            } else if (conflicts > mx_conflicts) {
+                mx_conflicts = conflicts;
                 candidates.clear();
                 candidates.push_back(c);
             }
         }
-
-        if (maxConflicts == 0) {
+        if (mx_conflicts == 0) {
             return;
         }
+        // get a queen from the most conflicted queens in order to swap it's position
+        int worstQueenColumn = candidates[rand()%(candidates.size())];
 
-        // Pick a random queen from those that had the most conflicts
-        int worstQueenColumn =
-                candidates[rand()%(candidates.size())];
-
-        // Move her to the place with the least conflicts.
-        int minConflicts = N;
+        // find the minimal conflicted queens
+        int min_conflicts = N;
         candidates.clear();
         for (int r = 0; r < N; r++) {
             int conflicts = get_conflicts(queens,r, worstQueenColumn);
-            if (conflicts == minConflicts) {
+            if (conflicts == min_conflicts) {
                 candidates.push_back(r);
-            } else if (conflicts < minConflicts) {
-                minConflicts = conflicts;
+            } else if (conflicts < min_conflicts) {
+                min_conflicts = conflicts;
                 candidates.clear();
                 candidates.push_back(r);
             }
         }
-
         if (!candidates.empty()) {
-            queens.board[worstQueenColumn] =
-                candidates[rand()%(candidates.size())];
+            //choose a random element from the minimal conflicted queens and swap it with the maximal conflicted
+            queens.board[worstQueenColumn] =candidates[rand()%(candidates.size())];
         }
-
         moves++;
-        if (moves == N * 2) {
+        if (moves == 2*N) {
             init(queens);
             moves = 0;
         }
@@ -109,20 +109,19 @@ void print(int rows[N]) {
                 ss << c;
                 result += (ss.str() + " ");
             }
-           // result = (rows[c] == r ? (result + (""+(c+'0'))) : result);
         }
     }
     cout << "Done: \n" << result << endl;
 }
 
+void minimal_conflicts(mc_struct mcs){
+    init(mcs);
+    solve(mcs);
+    print(mcs.board);
+}
 
-/
 int main() {
     mc_struct board;
-    init(board);
-
-    solve(board);
-    print(board.board);
-
+    minimal_conflicts(board);
 }
 
