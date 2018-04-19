@@ -8,7 +8,7 @@
 #include <time.h>
 #include <math.h>
 #include <sstream>
-#define N 16
+#define N 500
 
 using namespace std;
 
@@ -121,7 +121,9 @@ void minimal_conflicts(mc_struct mcs){
 }
 
 int main() {
+    cout << "N-Queens Minimal Conflicts solver: N = 500" << endl << endl;
     mc_struct board;
     minimal_conflicts(board);
+    system("pause");
 }
 

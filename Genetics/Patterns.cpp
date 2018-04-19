@@ -459,7 +459,7 @@ int main()
         auto _end_time = std::chrono::high_resolution_clock::now();
         auto _time = _end_time - _start_time;
         cout << "Elapsed time: " << std::chrono::duration_cast<std::chrono::microseconds>(_time).count()/1000000.0
-                                        <<  " seconds.\n"<< "Clock ticks: " << (float) ((clock() - t_g)/CLOCKS_PER_SEC) << endl << endl;
+                                        <<  " seconds.\n"<< "Clock ticks: " << (float) ((clock() - t_g)) << endl << endl;
 		if ((*population)[AT].str.compare(GA_TARGET) == 0) break;
 
 		mate(*population, *buffer,s,c);		// mate the population together

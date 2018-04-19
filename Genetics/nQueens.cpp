@@ -12,7 +12,7 @@ int main(int argc, char* argv[])
 
 #endif
 
-#pragma warning(disable:4786)		// disable debug warning
+
 #include <sstream>
 #include <iostream>					// for cout etc.
 #include <vector>					// for vector class
@@ -310,7 +310,7 @@ int tournament_select(ga_vector& population, int k){
 void mate(ga_vector &population, ga_vector &buffer , char X, char M, char S)
 {
 	int esize = GA_POPSIZE * GA_ELITRATE;
-	int tsize = BOARD_SIZE, spos, i1, i2;
+	int  i1, i2;
 	vector<int> parent1;
 	vector<int> parent2;
 
@@ -440,7 +440,7 @@ int main()
 		auto _end_time = std::chrono::high_resolution_clock::now();
 		auto _time = _end_time - _start_time;
 		cout << "Elapsed time: " << std::chrono::duration_cast<std::chrono::microseconds>(_time).count() / 1000000.0
-			<< " seconds.\n" << "Clock ticks: " << ((float)(clock() - t_g)/(CLOCKS_PER_SEC)) << endl << endl;
+			<< " seconds.\n" << "Clock ticks: " << ((float)(clock() - t_g)) << endl << endl;
 
 		if ((*population)[0].fitness == 0){
 			flag = true;
