@@ -22,15 +22,16 @@ int main(int argc, char* argv[])
 #include <time.h>					// for random seed
 #include <math.h>					// for abs()
 #include <chrono>
-#define GA_POPSIZE		2048		// ga population size
+#define GA_POPSIZE		1024		// ga population size
 #define GA_MAXITER		200		// maximum iterations
-#define GA_ELITRATE		0.10f		// elitism rate
-#define GA_MUTATIONRATE	0.25f		// mutation rate
+#define GA_ELITRATE		0.1f		// elitism rate
+#define GA_MUTATIONRATE	0.9f		// mutation rate
 #define GA_MUTATION		RAND_MAX * GA_MUTATIONRATE
-#define NUM_OF_ITEMS 15
-#define MAX_CAP 750
-
+#define NUM_OF_ITEMS 6 /**/
+#define MAX_CAP 190     /**/
+#define OPTIMAL_PROFIT 150  /**/
 #define AT 0
+#define MAX_AGE 2
 using namespace std;				// polluting global namespace, but hey...
 
 
@@ -40,45 +41,36 @@ struct ga_struct
 	string items;
 	unsigned int weight;
 	unsigned int fitness;
+	int age;
 
 };
 ga_struct glob;
 typedef vector<ga_struct> ga_vector;// for brevity
 
+
+struct ga_candidate
+{
+    struct ga_struct gen;
+    int i;
+};
+typedef vector<ga_candidate> ga_t_vector;// for brevity
+
 unsigned int fitness_sum = 0;
 unsigned int max_fit = 0;
 vector<int> WEIGHTS = {
-70,
- 73,
- 77,
- 80,
- 82,
- 87,
- 90,
- 94,
- 98,
-106,
-110,
-113,
-115,
-118,
-120 };
+56,
+59,
+80,
+64,
+75,
+17};
 vector<int> PROFITS = {
-  135,
-139,
-149,
-150,
-156,
-163,
-173,
-184,
-192,
-201,
-210,
-214,
-221,
-229,
-240};
+50,
+50,
+64,
+46,
+50,
+ 5};
 vector<int> big;
 
 void init_population(ga_vector &population,
@@ -91,7 +83,7 @@ void init_population(ga_vector &population,
 		citizen.fitness = 0;
 		citizen.items.erase();
         citizen.weight = 0;
-
+        citizen.age = 0;
 		for (int j=0; j<NUM_OF_ITEMS; j++)
 			citizen.items += (rand() % 2) + '0';
 
@@ -125,13 +117,18 @@ void calc_fitness(ga_vector &population)
             }
         }
         //total_profits += num;
+        if(population[i].age >= MAX_AGE){
+            total_profits = 0;
+        }
         population[i].fitness = total_profits;
+
         population[i].weight = total_weights;
         fitness_sum += total_profits;
         if(total_profits > max_fit){
             max_fit = total_profits;
             glob = population[i];
         }
+
     }
 }
 
@@ -157,6 +154,7 @@ void elitism(ga_vector &population,ga_vector &buffer, int esize ){
 		buffer[i].items = population[i].items;
 		buffer[i].fitness = population[i].fitness;
 		buffer[i].weight = population[i].weight;
+		buffer[i].age = population[i].age + 1;
 	}
 
 }
@@ -169,13 +167,21 @@ void elitism2(ga_vector &population,ga_vector &buffer, int esize ){
 	}
 }
 
-
+int g = 0;
 void mutate(ga_struct &member){
+
+//    if(g%(50000) == 0){
+//        cout <<endl << "ok" << endl;
+//    }
 	int ipos = rand() % NUM_OF_ITEMS;
-	int delta = (rand() % 2);
-	member.items[ipos] = ((member.items[ipos] + delta) % 2) + '0';
+	while(member.items[ipos] == '0'){
+        ipos = rand() % NUM_OF_ITEMS;
+	}
+	//int delta = (rand() % 2);
+	//member.items[ipos] = ((member.items[ipos] + delta) % 2) + '0';
+	member.items[ipos] = '1';
 }
-/*
+
 int tournament_select(ga_vector& population, int k){
     unsigned int _max = 0;
     int chosen;
@@ -183,8 +189,8 @@ int tournament_select(ga_vector& population, int k){
     for(int i = 0 ; i < k ; i++){
 
         int select = rand() % GA_POPSIZE;
-        if(population[select].invert_fitness > _max){
-            _max = population[select].invert_fitness;
+        if(population[select].fitness > _max){
+            _max = population[select].fitness;
             chosen = i;
         }
     }
@@ -194,7 +200,7 @@ int tournament_select(ga_vector& population, int k){
 
 string two_pts_cross_over(string p1, string p2){
 
-    int spos1 = 0,spos2 = 0,tsize = GA_TARGET.size();
+    int spos1 = 0,spos2 = 0,tsize = NUM_OF_ITEMS;
     spos1 = rand() % (tsize/2);
     spos2 = (rand() % (tsize/2)) + (tsize/2) + 1;
 
@@ -205,7 +211,7 @@ string two_pts_cross_over(string p1, string p2){
     string result = p1.substr(0,spos1) + p2.substr(spos1,spos2 - spos1) + p1.substr(spos2, tsize - spos2);
     return result;
 }
-
+/*
 string pt_cross_over(string p1, string p2){
     int spos = 0,tsize = GA_TARGET.size();
     spos = rand() % (tsize);
@@ -213,24 +219,7 @@ string pt_cross_over(string p1, string p2){
     return result;
 }
 
-string uniform_cross_over(string p1, string p2,unsigned int pp1, unsigned int pp2, double ratio){
-    string result = "",father,mother;
-    if(pp1 > pp2){
-        father = p1;
-        mother = p2;
-    }else{
-        father = p2;
-        mother = p1;
-    }
-    for(int i = 0; i < GA_TARGET.size(); i++){
-        if((double)rand()/RAND_MAX >= ratio){
-            result = result + father[i];
-        }else{
-            result = result + mother[i];
-        }
-    }
-    return result;
-}
+
 */
 
 
@@ -264,34 +253,19 @@ void mate(ga_vector &population, ga_vector &buffer){
 
 	// Mate the rest
 	for (int i=esize; i<GA_POPSIZE; i++) {
-		i1 = rand() % (GA_POPSIZE / 2);
-		i2 = rand() % (GA_POPSIZE / 2);
+		i1 = 0;//tournament_select(population,100); //rand() % (GA_POPSIZE / 2);
+		i2 = tournament_select(population,100);//rand() % (GA_POPSIZE / 2);
 		spos = rand() % tsize;
 
-		buffer[i].items = uniform_cross_over( population[i1].items, population[i2].items,population[i1].fitness,population[i2].fitness,0.5 );
+		buffer[i].items = /*two_pts_cross_over(population[i1].items,population[i2].items);*/ uniform_cross_over( population[i1].items, population[i2].items,population[i1].fitness,population[i2].fitness,0.5 );
         //cout << population[i1].items << "       " << population[i2].items << endl;
+        buffer[i].age = 0;
 		if (rand() < GA_MUTATION) mutate(buffer[i]);
 	}
 }
 
 
-void mate2(ga_vector &population, ga_vector &buffer){
-	int esize = GA_POPSIZE * GA_ELITRATE;
-	int tsize = NUM_OF_ITEMS, spos, i1, i2;
 
-	elitism2(population , buffer , esize);
-
-	// Mate the rest
-	for (int i=0; i<GA_POPSIZE - esize; i++) {
-		i1 = rand() % (GA_POPSIZE / 2);
-		i2 = rand() % (GA_POPSIZE / 2);
-		spos = rand() % tsize;
-
-		buffer[i].items = uniform_cross_over( population[i1].items, population[i2].items,population[i1].fitness,population[i2].fitness,0.5 );
-
-		if (rand() < GA_MUTATION) mutate(buffer[i]);
-	}
-}
 
 
 
@@ -399,16 +373,25 @@ inline void p(ga_vector& g)
     }
 }
 
-
+int get_min(){
+    int min_ = RAND_MAX;
+    for(int i = 0; i < WEIGHTS.size();i++){
+        if(WEIGHTS[i] < min_){
+            min_ = WEIGHTS[i];
+        }
+    }
+    return min_;
+}
 
 struct myclass {
   bool operator() (int i,int j) { return (i<j);}
 } sorter;
 
 bool good_solution(ga_vector &population){
-    if(abs(population[0].weight - MAX_CAP) <= 10 && population[0].fitness >= max_fit)
-        return true;
-    return false;
+//    if(abs(population[0].weight - MAX_CAP) < get_min() && population[0].fitness >= max_fit)
+//        return true;
+//    return false;
+    return (population[0].fitness == OPTIMAL_PROFIT);
 }
 int main()
 {
@@ -440,9 +423,9 @@ int main()
         auto _time = _end_time - _start_time;
         cout << "Elapsed time: " << std::chrono::duration_cast<std::chrono::microseconds>(_time).count()/1000000.0
                                         <<  " seconds.\n"<< "Clock ticks: " << (float)(clock() - t_g) << endl << endl;
-		if (good_solution(*population) && iterations >= GA_MAXITER) break;
+		if (good_solution(*population) ) break;
 
-		mate2(*population, *buffer);		// mate the population together
+		mate(*population, *buffer);		// mate the population together
 		swap(population, buffer);		// swap buffers
 	}
     //p(*population);

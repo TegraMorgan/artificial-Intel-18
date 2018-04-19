@@ -170,8 +170,6 @@ void calc_b_fitness(ga_vector &population){
 void calc_maxmize_fitness(ga_vector &population){
     for(int i = 0 ; i < GA_POPSIZE; i++){
         double k = max_fit - population[i].fitness;
-        if(k < 0)
-            cout <<"$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$4 " << population[i].fitness << "  " << population[i].str << endl;
         population[i].invert_fitness = k;
         invert_fitness_sum += k;
         max_invert_fit = (max_invert_fit > k)? max_invert_fit : k;
@@ -407,6 +405,11 @@ int main()
     << "Choose a crossover method:\n" << "Single Point: 0\nTwo Points: 1\nUniform: 2\n"
     << "->> ";
     cin >> crossover_method;
+    cout << endl;
+    cout<< "Choose a fitness function:\n" << "Original Fitness: 0\nBull's Eye (Bol-Pgea'a): 1\n"
+    << "->> ";
+    int f;
+    cin >> f;
     cout << endl << endl;
     const char s = get_crossover(selection_method -'0');
     const char c = get_crossover(crossover_method - '0');
@@ -425,8 +428,14 @@ int main()
         auto _start_time = std::chrono::high_resolution_clock::now();
         clock_t t_g = clock();
         fitness_sum = 0;
-		calc_b_fitness(*population);		// calculate fitness
-		sort_by_b_fitness(*population);	// sort them
+        if(f == 0){
+            calc_fitness(*population);
+            sort_by_fitness(*population);
+        }else{
+            calc_b_fitness(*population);		// calculate fitness
+            sort_by_b_fitness(*population);	// sort them
+        }
+
         double dev = calc_dviation(*population);
 		print_best(*population,dev);
         auto _end_time = std::chrono::high_resolution_clock::now();
