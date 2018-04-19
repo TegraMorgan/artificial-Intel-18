@@ -1,5 +1,3 @@
-// Genetic5.cpp : Defines the entry point for the console application.
-//
 
 
 #ifdef CHECK
@@ -25,13 +23,13 @@ int main(int argc, char* argv[])
 #define GA_POPSIZE		1024		// ga population size
 #define GA_MAXITER		16384		// maximum iterations
 #define GA_ELITRATE		0.10f		// elitism rate
-#define GA_MUTATIONRATE	0.25f		// mutation rate
+#define GA_MUTATIONRATE	0.7f		// mutation rate
 #define GA_MUTATION		RAND_MAX * GA_MUTATIONRATE
 #define GA_TARGET		std::string("Hello world!")
 #define AT 0
 #define MAX_AGE 2
 
-using namespace std;				// polluting global namespace, but hey...
+using namespace std;
 
 
 
@@ -44,13 +42,20 @@ struct ga_struct
 
 
 };
+//sum of fitness values
 unsigned int fitness_sum = 0;
+//maximum fitness value
 unsigned int max_fit = 0;
+//maximum invert_fitness value
 unsigned int max_invert_fit = 0;
-
+//sum of invert_fitness values
 unsigned int invert_fitness_sum = 0;
+
+
 typedef vector<ga_struct> ga_vector;// for brevity
 
+
+//used for the tournament selection
 struct ga_candidate
 {
     struct ga_struct gen;
@@ -58,9 +63,7 @@ struct ga_candidate
 };
 typedef vector<ga_candidate> ga_t_vector;// for brevity
 
-void init_population(ga_vector &population,
-					 ga_vector &buffer )
-{
+void init_population(ga_vector &population,ga_vector &buffer ){
 	int tsize = GA_TARGET.size();
 
 	for (int i=0; i<GA_POPSIZE; i++) {
@@ -78,10 +81,12 @@ void init_population(ga_vector &population,
 
 	buffer.resize(GA_POPSIZE);
 }
-unsigned int oo = 0;
+
+//this function changes the minimization into maximization and calculates the invert_fitness
 void calc_maxmize_fitness(ga_vector& population);
-void calc_fitness(ga_vector &population)
-{
+
+//Original fitness function
+void calc_fitness(ga_vector &population){
 	string target = GA_TARGET;
 	int tsize = target.size();
 	unsigned int fitness;
@@ -106,8 +111,9 @@ void calc_fitness(ga_vector &population)
 	}
 	calc_maxmize_fitness(population);
 }
+
+//initialize alphabet array for Bol - Pgea'a
 array<char,90> alpha_beta;
-//char alpha_beta[90] = {0};
 bool flag = false;
 void initilize_alpha_beta(){
     flag = true;
@@ -119,6 +125,7 @@ void initilize_alpha_beta(){
     }
 }
 
+//Bol Pgea'a - the pseudo code is given in the Report
 void calc_b_fitness(ga_vector &population){
     if(!flag)
         initilize_alpha_beta();
@@ -167,6 +174,7 @@ void calc_b_fitness(ga_vector &population){
     calc_maxmize_fitness(population);
 }
 
+// calculate the opposite fitness: min will become max and so on
 void calc_maxmize_fitness(ga_vector &population){
     for(int i = 0 ; i < GA_POPSIZE; i++){
         double k = max_fit - population[i].fitness;
@@ -209,6 +217,8 @@ void mutate(ga_struct &member){
 	member.str[ipos] = ((member.str[ipos] + delta) % 90)+32;
 }
 
+
+//tournament select
 int tournament_select(ga_vector& population, int k){
     unsigned int _max = 0;
     int chosen;
@@ -267,6 +277,7 @@ string uniform_cross_over(string p1, string p2,unsigned int pp1, unsigned int pp
 
 int roulate(ga_vector& pop);
 
+//Identifiers - same as enum
 const char TOURNAMENT = 0;
 const char ROULETTE = 1;
 const char RAND = 2;
@@ -329,6 +340,10 @@ void mate(ga_vector &population, ga_vector &buffer, int select_cmd , int crossov
 	}
 }
 
+
+//this function is never used - it's here for future work
+//this is an O(log(N)) roulette wheel selection - with a little bug.
+//We will fix it later
 int roulate_wheel_select(ga_vector& population){
     double p;
     int right,left,mid;
@@ -360,6 +375,7 @@ int roulate_wheel_select(ga_vector& population){
     return 0;
 }
 
+//Roulette wheel selection method
 int roulate(ga_vector& pop){
     double p = sqrt((double)(rand()%invert_fitness_sum));
 
@@ -380,7 +396,9 @@ inline double calc_dviation(ga_vector& gav){
     sum /= gav.size();
     return sqrt(sum);
 }
+
 int y = 0;
+
 inline void print_best(ga_vector &gav , double dev){
     cout << y++ << ": " << "Best: " << gav[AT].str << " (" << gav[AT].fitness << ") "
                 <<"Average: " << fitness_sum/(double)GA_POPSIZE << "\nDeviation is: " << dev << endl ;
