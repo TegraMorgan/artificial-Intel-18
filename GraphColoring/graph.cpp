@@ -1,6 +1,7 @@
 #include "graph.h"
 
-
+#define LOCAL_SEARCH_1 minimalConflicts()
+#define debug(x) std::cout <<x << std::endl
 
 void Graph::addEdge(int v, int w){
     adj[v].push_back(w);
@@ -11,13 +12,16 @@ void Graph::addEdge(int v, int w){
 // the assignment of colors
 void Graph::greedyColoring(){
     int* result = new int[V];
-
+    int* tmpres = new int[V];
     // Assign the first color to first vertex
     result[0]  = 0;
     usedColors.push_back(0);
     // Initialize remaining V-1 vertices as unassigned
-    for (int u = 1; u < V; u++)
-        result[u] = -1;  // no color is assigned to u
+    for (int u = 1; u < V; u++){
+        result[u] = -1;
+        tmpres[u] = -1;
+    }
+          // no color is assigned to u
 
     // A temporary array to store the available colors. True
     // value of available[cr] would mean that the color cr is
@@ -47,7 +51,7 @@ void Graph::greedyColoring(){
             usedColors.push_back(cr);
         }
         result[u] = cr; // Assign the found color
-
+        tmpres[u] = cr;
         // Reset the values back to false for the next iteration
         for (i = adj[u].begin(); i != adj[u].end(); ++i)
             if (result[*i] != -1)
@@ -59,7 +63,13 @@ void Graph::greedyColoring(){
         std::cout << "Vertex " << u << " --->  Color "
              << result[u] << std::endl;
     }
+//    for(int i = 0; i < V; i++){
+//        result[i] = i;
+//        tmpres[i] = i;
+//        usedColors.push_back(i);
+//    }
     this -> colors = result;
+    this -> backup_colors = tmpres;
     delete[] available;
 }
 
@@ -118,24 +128,78 @@ std::list<int>* Graph::getAdjacency(){
     return this -> adj;
 }
 
-void Graph::reduceColors(){
-    //std::cout << "1" << std::endl;
+std::string toStr(std::vector<int>& v){
+    std::stringstream ss;
+    for(size_t i = 0; i < v.size(); ++i)
+    {
+      if(i != 0)
+        ss << ",";
+      ss << v[i];
+    }
+    return ss.str();
+}
+
+int glob = 1;
+void Graph::reduceColors(int iter){
+    int* backup_col = new int[V];
     srand(unsigned(time(NULL)));
-    //std::cout << "2" << std::endl;
+    //vector<int> backub_used(usedColors);
     int csize = usedColors.size();
-    //std::cout << "3 " << csize << std::endl;
-    int reduced_color = rand() % csize;
-    int replace_color = rand() % csize;
-    //std::cout << "4" << std::endl;
-    while(replace_color == reduced_color){
-        replace_color = rand() % csize;
+    std::vector<int> used;
+
+    for(int g = 0; g < csize-1; g++){
+
+
+        for(int c = 0; c < V; c++){
+            backup_col[c]=this->colors[c];
+        }
+        int reduced_color = usedColors.at(rand() % usedColors.size());
+        while(std::find(used.begin(), used.end(), reduced_color) != used.end()){
+            reduced_color = usedColors.at(rand() % usedColors.size());
+        }
+        std::cout << "Trying with color: " << reduced_color << " Result: \n";
+
+
+        int replace_color = usedColors.at(rand() % usedColors.size());
+        //std::cout << "4" << std::endl;
+        while(replace_color == reduced_color){
+            replace_color = usedColors.at(rand() % usedColors.size());
+        }
+
+        //std::cout << "5" << std::endl;
+        //debug("UN-reached");
+//        if(iter > 159){
+//            debug(toStr(usedColors));
+//        }
+        //debug(reduced_color);
+        std::vector<int>::iterator position = std::find(usedColors.begin(), usedColors.end(), reduced_color);
+        if (position != usedColors.end()) // == myVector.end() means the element was not found
+            usedColors.erase(position);
+                //debug("reached");
+        for(int i = 0; i < V; i++){
+            if(this->colors[i] == reduced_color)
+                this->colors[i] = replace_color;
+        }
+        if(LOCAL_SEARCH_1){
+            std::cout << "Done " << iter << " colors count: "<<usedColors.size() << std::endl;
+            reduceColors(iter+1);
+            //printGraph();
+
+        }else{
+
+            glob--;
+            std::cout << "Failure" << std::endl << std::endl;
+            usedColors.push_back(reduced_color);
+            used.push_back(reduced_color);
+            for(int c = 0; c < V; c++){
+                this->colors[c] = backup_col[c];
+            }
+        }
     }
-    //std::cout << "5" << std::endl;
-    usedColors.erase(std::remove(usedColors.begin(), usedColors.end(), reduced_color), usedColors.end());
-    for(int i = 0; i < V; i++){
-        if(this->colors[i] == reduced_color)
-            this->colors[i] = replace_color;
-    }
+
+    delete[] backup_col;
+    debug("\n\n#####DEAD_END######\n\n");
+
     //std::cout << "6" << std::endl;
 }
 

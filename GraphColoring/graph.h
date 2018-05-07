@@ -8,13 +8,14 @@
 #include <cstdlib>
 #include <time.h>
 #include <algorithm>
-
-#define MAX_IT 500000
+#include <sstream>
+#define MAX_IT 1000
 class Graph
 {
     int V;    // No. of vertices
     std::list<int> *adj;    // A dynamic array of adjacency lists
     int* colors; //colors function
+    int* backup_colors;
     std::vector<int> usedColors;
     int* conflicts;
 public:
@@ -64,12 +65,16 @@ public:
                 adj[i].clear();
             }
             delete[] adj;
-            std::cout << "adj was cleared" << std::endl;
+            //std::cout << "adj was cleared" << std::endl;
         }
 
         if(colors){
             delete[] colors;
-            std::cout << "colors was cleared" << std::endl;
+            //std::cout << "colors was cleared" << std::endl;
+        }
+
+        if(backup_colors){
+            delete[] backup_colors;
         }
         this->usedColors.clear();
 
@@ -97,7 +102,7 @@ public:
     void greedyColoring();
 
     //decrease colors used by 1
-    void reduceColors();
+    void reduceColors(int iter);
 
     //set colors
     void setColors(int* new_colors){
