@@ -14,7 +14,7 @@ void Graph::greedyColoring(){
 
     // Assign the first color to first vertex
     result[0]  = 0;
-
+    usedColors.push_back(0);
     // Initialize remaining V-1 vertices as unassigned
     for (int u = 1; u < V; u++)
         result[u] = -1;  // no color is assigned to u
@@ -38,10 +38,14 @@ void Graph::greedyColoring(){
 
         // Find the first available color
         int cr;
-        for (cr = 0; cr < V; cr++)
-            if (available[cr] == false)
+        for (cr = 0; cr < V; cr++){
+            if (available[cr] == false){
                 break;
-
+            }
+        }
+        if(std::find(usedColors.begin(), usedColors.end(), cr) == usedColors.end()) {
+            usedColors.push_back(cr);
+        }
         result[u] = cr; // Assign the found color
 
         // Reset the values back to false for the next iteration
@@ -55,7 +59,7 @@ void Graph::greedyColoring(){
         std::cout << "Vertex " << u << " --->  Color "
              << result[u] << std::endl;
     }
-    delete[] result;
+    this -> colors = result;
     delete[] available;
 }
 
@@ -93,12 +97,146 @@ void Graph::readGraph(std::string path){
 
 void Graph::printGraph(){
     for (int v = 0; v < V; ++v){
-        std::cout << "\nAdjacency list of vertex "<< v << ":\n";
+        std::cout << "\nAdjacency list of vertex "<< v <<" color: "<< this->colors[v] << " Conflicts: " << conflicts[v] << "\n";
         for (auto x : adj[v]){
-           std::cout  << x<< " ";
+           std::cout  << colors[x]<< " ";
         }
         printf("\n");
     }
 
+}
+
+int* Graph::getColors(){
+    return this -> colors;
+}
+
+int Graph::getV(){
+    return this->V;
+}
+
+std::list<int>* Graph::getAdjacency(){
+    return this -> adj;
+}
+
+void Graph::reduceColors(){
+    //std::cout << "1" << std::endl;
+    srand(unsigned(time(NULL)));
+    //std::cout << "2" << std::endl;
+    int csize = usedColors.size();
+    //std::cout << "3 " << csize << std::endl;
+    int reduced_color = rand() % csize;
+    int replace_color = rand() % csize;
+    //std::cout << "4" << std::endl;
+    while(replace_color == reduced_color){
+        replace_color = rand() % csize;
+    }
+    //std::cout << "5" << std::endl;
+    usedColors.erase(std::remove(usedColors.begin(), usedColors.end(), reduced_color), usedColors.end());
+    for(int i = 0; i < V; i++){
+        if(this->colors[i] == reduced_color)
+            this->colors[i] = replace_color;
+    }
+    //std::cout << "6" << std::endl;
+}
+
+std::vector<int> Graph::getUsedColors(){
+        return this->usedColors;
+}
+
+
+
+int Graph::find_minimal_conflicted(){
+    //int* colors = this -> g->getColors();
+    int _min,num_zeros = 0;
+    _min = V;
+    std::vector<int> minimals;
+    for (int u = 0; u < V; u++){
+        std::list<int>::iterator i;
+        int num_of_conflicts = 0;
+        for (i = adj[u].begin(); i != adj[u].end(); ++i){
+            if(colors[*i] == colors[u]){
+                num_of_conflicts++;
+            }
+        }
+        conflicts[u] = num_of_conflicts;
+        if(num_of_conflicts < _min){
+            _min = num_of_conflicts;
+            minimals.clear();
+            minimals.push_back(u);
+        }else if(num_of_conflicts == _min){
+            minimals.push_back(u);
+        }
+
+    }
+    // There's no conflicts
+
+    //std::cout << _min << std::endl;
+    return minimals[rand()%minimals.size()];
+
+}
+
+int Graph::find_maximal_conflicted(){
+    //int* colors = this -> g->getColors();
+    int _max = 0,max_idx = 0,num_zeros = 0;
+
+    std::vector<int> maximals;
+    for (int u = 0; u < V; u++){
+        std::list<int>::iterator i;
+        int num_of_conflicts = 0;
+        for (i = adj[u].begin(); i != adj[u].end(); ++i){
+            if(colors[*i] == colors[u]){
+                num_of_conflicts++;
+            }
+        }
+        conflicts[u] = num_of_conflicts;
+        if(num_of_conflicts > _max){
+            _max = num_of_conflicts;
+            maximals.clear();
+            maximals.push_back(u);
+        }else if(num_of_conflicts == _max){
+            maximals.push_back(u);
+        }
+        if(num_of_conflicts == 0){
+            num_zeros++;
+        }
+    }
+    if(_max == 0){
+        return -1;
+    }
+    //std::cout << _max << std::endl;
+    return maximals[rand()%maximals.size()];
+}
+
+
+
+
+bool Graph::minimalConflicts(){
+    //std::cout << "here1" << std::endl;
+    this->conflicts = new int[V];
+    int i = 0;
+    while(i++ < MAX_IT){
+            //std::cout << i << std::endl;
+        //std::cout << "here2" << std::endl;
+        int min_idx = find_minimal_conflicted();
+        //std::cout << "here3" << std::endl;
+
+        int max_idx = find_maximal_conflicted();
+        if(max_idx == -1){
+            //No conflicts found
+            return true;
+        }
+        int tmp_color = colors[min_idx];
+        //std::cout << "max conflicts at: " << max_idx << "   %% min conflicts at: " << min_idx << std::endl;
+//        if(colors[min_idx] == colors[max_idx]){
+//            return false;
+//        }
+        colors[min_idx] = colors[max_idx];
+        colors[max_idx] = tmp_color;
+    }
+    //printGraph();
+    return false;
+
+
+    //this->g->printGraph();
 }
 
