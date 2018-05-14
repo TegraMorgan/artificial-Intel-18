@@ -8,13 +8,16 @@
 #include <cstdlib>
 #include <time.h>
 #include <algorithm>
-
-#define MAX_IT 500000
+#include <sstream>
+#include <array>
+#define MAX_IT 14000
 class Graph
 {
     int V;    // No. of vertices
     std::list<int> *adj;    // A dynamic array of adjacency lists
     int* colors; //colors function
+    int* colors2;
+    int* backup_colors;
     std::vector<int> usedColors;
     int* conflicts;
 public:
@@ -64,12 +67,20 @@ public:
                 adj[i].clear();
             }
             delete[] adj;
-            std::cout << "adj was cleared" << std::endl;
+            //std::cout << "adj was cleared" << std::endl;
         }
 
         if(colors){
             delete[] colors;
-            std::cout << "colors was cleared" << std::endl;
+            //std::cout << "colors was cleared" << std::endl;
+        }
+
+        if(colors2){
+            delete[] colors2;
+        }
+
+        if(backup_colors){
+            delete[] backup_colors;
         }
         this->usedColors.clear();
 
@@ -97,7 +108,7 @@ public:
     void greedyColoring();
 
     //decrease colors used by 1
-    void reduceColors();
+    int reduceColors();
 
     //set colors
     void setColors(int* new_colors){
@@ -120,13 +131,38 @@ public:
         }
     }
 
+    int get_minimizing_value(int max_idx);
+
+    void print_conflicts();
+
     bool minimalConflicts();
 
+    void find_conflicts();
     //find minimum conflicted vertex
-    int find_minimal_conflicted();
+    //int find_minimal_conflicted();
 
     //find maximum conflicted vertex
-    int find_maximal_conflicted();
+    //int find_maximal_conflicted();
+
+    bool isSafe(int v, int color[], int c);
+
+
+    /* return all the inferences of the assignment */
+    bool Inferences(int v, int color[], int c);
+
+        /* A recursive utility function to solve m coloring problem */
+    bool graphColoringUtil(int m, int color[], int v);
+
+        /* This function solves the m Coloring problem using Backtracking.
+      It mainly uses graphColoringUtil() to solve the problem. It returns
+      false if the m colors cannot be assigned, otherwise return true and
+      prints assignments of colors to all vertices. Please note that there
+      may be more than one solutions, this function prints one of the
+      feasible solutions.*/
+    bool graphColoring(int m);
+
+    /* A utility function to print solution */
+    void printSolution(int color[]);
 
 };
 
