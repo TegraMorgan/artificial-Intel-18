@@ -1,19 +1,28 @@
 #include <iostream>
 #include "graph.h"
-
+#define log(x) std::cout <<x << std::endl
 
 int main(){
-    std::string path = "inputs/le450_5c.col";
+    std::string path = "inputs/2-Insertions_5.col";
     Graph g1;
     g1.readGraph(path);
-    g1.greedyColoring();
-    //std::cout << "100" << std::endl;
-    g1.reduceColors(0);
-    //std::cout << "111" << std::endl;
-
-
-    //std::cout <<  << std::endl;
-
+//    g1.greedyColoring();
+//    std::cout << "\nN. of colors: " << g1.getUsedColors().size() << std::endl;
+//    std::cout << "Reducing in progress..." << std::endl;
+//    int c = g1.reduceColors();
+//    std::stringstream sstm;
+//    sstm <<"Color " << c << " was reduced.\nValidating...\n";
+//    log(sstm.str());
+//    //std::cout << "111" << std::endl;
+//    int iter = 1;
+//    while(g1.minimalConflicts()){
+//        std::cout <<iter++ << ". Success" << std::endl;
+//        g1.reduceColors();
+//    }
+//
+//
+//    //std::cout <<  << std::endl;
+    g1.graphColoring(6);
     return 0;
 
 }
