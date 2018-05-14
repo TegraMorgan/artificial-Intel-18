@@ -14,10 +14,10 @@
 	<iostream>
 	"graph.h"
 
-1525721080 source:c:\users\untitled\desktop\artificial intellegence 2\ailabs\lab1\graphcoloring\graph.cpp
+1526329251 source:c:\users\untitled\desktop\artificial intellegence 2\ailabs\lab1\graphcoloring\graph.cpp
 	"graph.h"
 
-1525721303 c:\users\untitled\desktop\artificial intellegence 2\ailabs\lab1\graphcoloring\graph.h
+1526327284 c:\users\untitled\desktop\artificial intellegence 2\ailabs\lab1\graphcoloring\graph.h
 	<iostream>
 	<list>
 	<fstream>
@@ -27,8 +27,9 @@
 	<time.h>
 	<algorithm>
 	<sstream>
+	<array>
 
-1525721264 source:c:\users\untitled\desktop\artificial intellegence 2\ailabs\lab1\graphcoloring\main.cpp
+1526328785 source:c:\users\untitled\desktop\artificial intellegence 2\ailabs\lab1\graphcoloring\main.cpp
 	<iostream>
 	"graph.h"
 
@@ -37,4 +38,6 @@
 
 1525706882 c:\users\untitled\desktop\artificial intellegence 2\ailabs\lab1\graphcoloring\local_search.h
 	"graph.h"
+
+1526247642 source:c:\users\untitled\desktop\artificial intellegence 2\ailabs\lab1\graphcoloring\geneticscoloring.cpp
 
