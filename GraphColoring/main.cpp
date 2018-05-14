@@ -3,7 +3,7 @@
 #define log(x) std::cout <<x << std::endl
 
 int main(){
-    std::string path = "inputs/2-Insertions_5.col";
+    std::string path = "inputs/myciel7.col";
     Graph g1;
     g1.readGraph(path);
 //    g1.greedyColoring();
@@ -22,7 +22,7 @@ int main(){
 //
 //
 //    //std::cout <<  << std::endl;
-    g1.graphColoring(6);
+    g1.graphColoring(8);
     return 0;
 
 }
