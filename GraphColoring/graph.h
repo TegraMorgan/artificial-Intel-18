@@ -10,16 +10,18 @@
 #include <algorithm>
 #include <sstream>
 #include <array>
-#define MAX_IT 14000
+#define MAX_IT 90000
+#define log(x) std::cout <<x << std::endl
+
+
 class Graph
 {
     int V;    // No. of vertices
-    std::list<int> *adj;    // A dynamic array of adjacency lists
-    int* colors; //colors function
-    int* colors2;
-    int* backup_colors;
+    std::list<int> *adj = nullptr;    // A dynamic array of adjacency lists
+    int* colors = nullptr; //colors function
     std::vector<int> usedColors;
-    int* conflicts;
+    int* conflicts = nullptr;
+    unsigned int max_adj;
 public:
 
     int maxColor;
@@ -62,26 +64,22 @@ public:
     }
 
     ~Graph(){
-        if(adj){
+        if(adj != nullptr){
             for(int i = 0; i < V;i++){
                 adj[i].clear();
             }
             delete[] adj;
             //std::cout << "adj was cleared" << std::endl;
         }
+                //log("2");
 
-        if(colors){
+        if(colors != nullptr){
             delete[] colors;
             //std::cout << "colors was cleared" << std::endl;
         }
+                //log("3");
 
-        if(colors2){
-            delete[] colors2;
-        }
 
-        if(backup_colors){
-            delete[] backup_colors;
-        }
         this->usedColors.clear();
 
     }
@@ -138,9 +136,11 @@ public:
     bool minimalConflicts();
 
     void find_conflicts();
+
+    void get_next_pair();
     //find minimum conflicted vertex
     //int find_minimal_conflicted();
-
+    void kempe_chains();
     //find maximum conflicted vertex
     //int find_maximal_conflicted();
 
@@ -151,7 +151,7 @@ public:
     bool Inferences(int v, int color[], int c);
 
         /* A recursive utility function to solve m coloring problem */
-    bool graphColoringUtil(int m, int color[], int v);
+    bool graphColoringUtil(int m, int color[], int v, int usedColor);
 
         /* This function solves the m Coloring problem using Backtracking.
       It mainly uses graphColoringUtil() to solve the problem. It returns
@@ -160,6 +160,10 @@ public:
       may be more than one solutions, this function prints one of the
       feasible solutions.*/
     bool graphColoring(int m);
+
+    bool forwardChecking(int m);
+
+    bool forwardCheckingUtil(int m, int color[], int v,std::vector<int>* domains);
 
     /* A utility function to print solution */
     void printSolution(int color[]);
