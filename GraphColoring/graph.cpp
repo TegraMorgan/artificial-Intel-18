@@ -3,23 +3,29 @@
 #define LOCAL_SEARCH_1 minimalConflicts()
 #define debug(x) std::cout <<x << std::endl
 
+
+
 void Graph::addEdge(int v, int w){
     adj[v].push_back(w);
+    if(adj[v].size() > max_adj){
+        max_adj = adj[v].size();
+    }
     adj[w].push_back(v);  // Note: the graph is undirected
+    if(adj[w].size() > max_adj){
+        max_adj = adj[w].size();
+    }
 }
 
 // Assigns colors (starting from 0) to all vertices and prints
 // the assignment of colors
 void Graph::greedyColoring(){
     int* result = new int[V];
-    int* tmpres = new int[V];
     // Assign the first color to first vertex
     result[0]  = 0;
     usedColors.push_back(0);
     // Initialize remaining V-1 vertices as unassigned
     for (int u = 1; u < V; u++){
         result[u] = -1;
-        tmpres[u] = -1;
     }
           // no color is assigned to u
 
@@ -51,7 +57,6 @@ void Graph::greedyColoring(){
             usedColors.push_back(cr);
         }
         result[u] = cr; // Assign the found color
-        tmpres[u] = cr;
         // Reset the values back to false for the next iteration
         for (i = adj[u].begin(); i != adj[u].end(); ++i)
             if (result[*i] != -1)
@@ -69,7 +74,6 @@ void Graph::greedyColoring(){
 //        usedColors.push_back(i);
 //    }
     this -> colors = result;
-    this -> backup_colors = tmpres;
     delete[] available;
 }
 
@@ -88,6 +92,7 @@ const std::vector<std::string> explode(const std::string& s, const char& c){
 }
 
 void Graph::readGraph(std::string path){
+    max_adj = 0;
     std::ifstream file(path);
     std::string str;
     while (std::getline(file, str)){
@@ -103,7 +108,11 @@ void Graph::readGraph(std::string path){
         }
 
     }
+    log("###############\n");
+    log(max_adj);
+    log("###############\n");
 }
+
 
 void Graph::printGraph(){
     for (int v = 0; v < V; ++v){
@@ -248,20 +257,24 @@ int Graph::get_minimizing_value(int max_idx){
     return result;
 }
 
+bool COND = true,START = true;
+unsigned int bi = 0, bj = 1;
+
 bool Graph::minimalConflicts(){
     //std::cout << "here1" << std::endl;
+    unsigned int max_it = V*V/2;
     this->conflicts = new int[V];
     int i = 0;
-    bool terminate = true;
-    while(i++ < V*V){
+
+    while(i++ < max_it){
         find_conflicts();
         int min_idx,max_idx,_min = V,_max = 0;
         std::vector<int> maximals,minimals;
         for(int u = 0; u < V; u++){
             int val = conflicts[u];
-            if(val != 0){
-                terminate = false;
-            }
+//            if(val != 0){
+//                terminate = false;
+//            }
             if(val <=_min){
                 if(val == _min){
                     minimals.push_back(u);
@@ -282,8 +295,14 @@ bool Graph::minimalConflicts(){
             }
         }
 
-        if(terminate || V-minimals.size() == 0)
+        if( V-minimals.size() == 0){
+            START = true;
+            bi = 0;
+            bj = 1;
+            COND = true;
             return true;
+        }
+
 
         max_idx = maximals[rand()%maximals.size()];
         min_idx = minimals[rand()%minimals.size()];
@@ -300,13 +319,91 @@ bool Graph::minimalConflicts(){
         minimals.clear();
         maximals.clear();
         //system("pause");
+        if(COND)
+            kempe_chains();
+
     }
     return false;
 }
 
 
+
+
+void Graph::get_next_pair(){
+    if(bi < usedColors.size()){
+        if(bj < usedColors.size()){
+            bj++;
+            return;
+        }else{
+            if(bi + 1 == usedColors.size()){
+                COND = false;
+                return;
+            }else{
+                bi++;
+                bj = bi+1;
+            }
+            return;
+        }
+    }else{
+        COND = false;
+    }
+}
+
+void Graph::kempe_chains(){
+    if(!START){
+        get_next_pair();
+    }else{
+        START = false;
+    }
+
+    if(!COND){
+        //log("\n** All chains were changed **\n");
+        return;
+    }
+    int c1 = usedColors[bi], c2 = usedColors[bj],_max = 0, chain = 0;
+    for(int i = 0;i < V; i++){
+        int current = colors[i];
+        if((current == c1 || current == c2)){
+            int counter = 0;
+            int cc1 = current == c1? c1 : c2;
+            int cc2 = cc1 == c1? c2: c1;
+
+            for(std::list<int>::iterator it = adj[i].begin(); it != adj[i].end(); ++it){
+                if(colors[*it] == cc2)
+                    counter++;
+            }
+            if(counter > _max){
+                chain = i;
+                _max = counter;
+            }
+        }
+    }
+
+    std::vector<int> kempe_chain;
+    kempe_chain.push_back(chain);
+    for(unsigned int it = 0; it < kempe_chain.size(); ++it){
+        //std::cout << kempe_chain[it] << " #" << std::endl;
+        int current = colors[kempe_chain[it]];
+        int cc1 = current == c1? c1 : c2;
+        int cc2 = cc1 == c1? c2: c1;
+        for(std::list<int>::iterator it2 = adj[kempe_chain[it]].begin(); it2 != adj[kempe_chain[it]].end(); ++it2){
+                if(colors[*it2] == cc2 && (std::find(kempe_chain.begin(),kempe_chain.end(),*it2) == kempe_chain.end())){
+                    kempe_chain.push_back(*it2);
+                }
+        }
+
+        //log("\n1\n");
+    }
+    //log("\n1\n");
+    //system("pause");
+    for(std::vector<int>::iterator it = kempe_chain.begin(); it != kempe_chain.end(); ++it){
+        colors[*it] = colors[*it] == c1? c2: c1;
+    }
+    kempe_chain.clear();
+    return;
+}
+
 bool Graph::isSafe (int v, int color[], int c){
-        bool found;
         for (std::list<int>::iterator it = adj[v].begin(); it != adj[v].end(); ++it){
              if (c == color[*it])
                     return false;
@@ -340,36 +437,67 @@ bool Graph::isSafe (int v, int color[], int c){
 //
 
         /* A recursive utility function to solve m coloring problem */
-bool Graph::graphColoringUtil(int m, int color[], int v){
+std::vector<int> backJump;
+std::vector<int> usedJump;
+
+bool Graph::graphColoringUtil(int m, int color[], int v, int usedColor){
 
     /* base case: If all vertices are assigned a color then
        return true */
     if (v == V)
         return true;
+
+    if(adj[v].size() == max_adj && usedColor == 0 && std::find(usedJump.begin(), usedJump.end(), v) == usedJump.end()){
+        //log("##\nAdded!\n");
+        backJump.push_back(v);
+    }
     int cc = 0;
     /* Consider this vertex v and try different colors */
+
     for (int c = 1; c <= m; c++)
     {
+        //debug("3");
+        if(c == usedColor)
+            continue;
         /* Check if assignment of color c to v is fine*/
-        if (isSafe(v, color, c))
+        if (isSafe(v, color, c) )
         {
            color[v] = c;
+
            /* recur to assign colors to rest of the vertices */
-           if (graphColoringUtil (m, color, v+1) == true){
-                std::stringstream sstm;
-                sstm << v << " " << cc;
-                debug(sstm.str());
+           if (graphColoringUtil(m, color, v+1, 0) == true){
+//                std::stringstream sstm;
+//                sstm << v << " " << cc;
+//                debug(sstm.str());
                 return true;
            }
 
-
             /* If assigning color c doesn't lead to a solution
                then remove it */
+
            color[v] = 0;
+           bool flag = false;
+           while(!backJump.empty()){
+                int bac = backJump.back();
+
+                backJump.pop_back();
+                usedJump.push_back(bac);
+                flag = graphColoringUtil(m,color,bac,color[bac]);
+                if(flag){
+//                    std::stringstream sstm;
+//                    sstm << "Jumping to vertex: " << bac << " ... SUCCESS!\n";
+//                    log(sstm.str());
+                    return true;
+                }
+//                std::stringstream sstm;
+//                sstm << "Jumping to vertex: " << bac << " ... FAILURE!\n";
+//                log(sstm.str());
+           }
+           return flag;
         }
         cc++;
 
-}
+    }
 
     /* If no color can be assigned to this vertex then return false */
     return false;
@@ -389,15 +517,18 @@ bool Graph::graphColoring(int m){
        color[i] = 0;
 
     // Call graphColoringUtil() for vertex 0
-    if (graphColoringUtil(m, color, 0) == false)
+    if (graphColoringUtil(m, color, 0, 0) == false)
     {
-      printf("Solution does not exist");
+      //printf("Solution does not exist\n");
+      //debug("\na");
+      delete[] color;
+      //debug("b");
       return false;
     }
 
     // Print the solution
-    printSolution(color);
-    this-> colors2 = color;
+    //printSolution(color);
+    delete[] color;
     return true;
 }
 
@@ -408,7 +539,85 @@ void Graph::printSolution(int color[]){
     for (int i = 0; i < V; i++){
         std::cout << "Vertex " << i << " --->  Color "
          << color[i] << std::endl;
+//         std::list<int>::iterator j;
+//        for (j = adj[i].begin(); j != adj[i].end();++j){
+//                std::cout << color[*j] << " , " ;
+//
+//        }
+//        log("\n");
     }
 
 }
+
+bool Graph::forwardCheckingUtil(int m, int color[], int v,std::vector<int>* domains){
+    if( v == V){
+        return true;
+    }
+    std::vector<int> backup;
+    for(std::vector<int>::iterator it = domains[v].begin(); it != domains[v].end(); ++it){
+        //debug("3");
+
+        /* Check if assignment of color c to v is fine*/
+           color[v] = *it;
+           for(std::list<int>::iterator iter = adj[v].begin(); iter != adj[v].end(); ++iter){
+                if(color[*iter] != 0)
+                    continue;
+                std::vector<int>::iterator position = std::find(domains[*iter].begin(), domains[*iter].end(), *it);
+                if (position != domains[*iter].end()){ // == myVector.end() means the element was not found
+                    domains[*iter].erase(position);
+                    backup.push_back(*iter);
+                }
+           }
+           /* recur to assign colors to rest of the vertices */
+           if (forwardCheckingUtil(m, color, v+1, domains) == true){
+//                std::stringstream sstm;
+//                sstm << v << " " << cc;
+//                debug(sstm.str());
+                return true;
+           }
+
+            /* If assigning color c doesn't lead to a solution
+               then remove it */
+           for(unsigned int u = 0 ; u < backup.size(); u++){
+                domains[backup[u]].push_back(*it);
+           }
+           backup.clear();
+           color[v] = 0;
+
+    }
+
+    return false;
+}
+
+bool Graph::forwardChecking(int m){
+    bool result = false;
+    std::vector<int>* domains = new std::vector<int>[V];
+    for(int i = 0 ; i < V; i++){
+        for(int j = 1 ; j <= m ; j++){
+            domains[i].push_back(j);
+        }
+    }
+
+    int *color = new int[V];
+    for (int i = 0; i < V; i++)
+       color[i] = 0;
+
+    if(forwardCheckingUtil(m,color,0,domains)){
+        std::cout << "Success" << std::endl;
+        result = true;
+    }else{
+        std::cout << "Failure" << std::endl;
+    }
+    if(result)
+        printSolution(color);
+    delete[] color;
+    for(int i = 0 ; i < V ; i++){
+        domains[i].clear();
+    }
+    //debug("1");
+    delete[] domains;
+    return result;
+}
+
+
 
