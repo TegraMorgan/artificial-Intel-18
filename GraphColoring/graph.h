@@ -7,11 +7,14 @@
 #include <vector>
 #include <cstdlib>
 #include <time.h>
+#include <math.h>
 #include <algorithm>
 #include <sstream>
 #include <array>
+#include <chrono>
 #define MAX_IT 90000
 #define log(x) std::cout <<x << std::endl
+
 
 
 class Graph
@@ -24,8 +27,8 @@ class Graph
     unsigned int max_adj;
 public:
 
-    int maxColor;
-
+    unsigned int maxColor;
+    long long unsigned int states = 0;
     Graph(){
 
     }
@@ -135,6 +138,10 @@ public:
 
     bool minimalConflicts();
 
+    bool minimalConflicts_badEdge();
+
+    bool minimalConflicts_kempeChains();
+
     void find_conflicts();
 
     void get_next_pair();
@@ -144,12 +151,17 @@ public:
     //find maximum conflicted vertex
     //int find_maximal_conflicted();
 
+    long int objective_func_BE(int* edges, int* bucket, unsigned int segma_C );
+
+    unsigned int objective_func_KC(int* bucket);
+
     bool isSafe(int v, int color[], int c);
 
 
     /* return all the inferences of the assignment */
     bool Inferences(int v, int color[], int c);
 
+    bool isConflicted(int* color);
         /* A recursive utility function to solve m coloring problem */
     bool graphColoringUtil(int m, int color[], int v, int usedColor);
 

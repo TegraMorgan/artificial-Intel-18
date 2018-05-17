@@ -4,7 +4,6 @@
 #define debug(x) std::cout <<x << std::endl
 
 
-
 void Graph::addEdge(int v, int w){
     adj[v].push_back(w);
     if(adj[v].size() > max_adj){
@@ -64,15 +63,15 @@ void Graph::greedyColoring(){
     }
 
     // print the result
-    for (int u = 0; u < V; u++){
-        std::cout << "Vertex " << u << " --->  Color "
-             << result[u] << std::endl;
-    }
+//    for (int u = 0; u < V; u++){
+//        std::cout << "Vertex " << u << " --->  Color "
+//             << result[u] << std::endl;
+//    }
 //    for(int i = 0; i < V; i++){
 //        result[i] = i;
-//        tmpres[i] = i;
 //        usedColors.push_back(i);
 //    }
+    maxColor = usedColors.size();
     this -> colors = result;
     delete[] available;
 }
@@ -108,9 +107,7 @@ void Graph::readGraph(std::string path){
         }
 
     }
-    log("###############\n");
-    log(max_adj);
-    log("###############\n");
+
 }
 
 
@@ -260,21 +257,64 @@ int Graph::get_minimizing_value(int max_idx){
 bool COND = true,START = true;
 unsigned int bi = 0, bj = 1;
 
-bool Graph::minimalConflicts(){
-    //std::cout << "here1" << std::endl;
-    unsigned int max_it = V*V/2;
+long int Graph::objective_func_BE(int* edges, int* bucket, unsigned int segma_C ){
+    for(unsigned int i = 0 ; i < maxColor; i++){
+        edges[i] = 0;
+    }
+    for(int i = 0 ; i < V; i++){
+        std::list<int>::iterator it;
+        for(it = adj[i].begin(); it != adj[i].end(); ++it){
+            if(*it <= i)
+                continue;
+            if(colors[*it] == colors[i])
+                edges[colors[i]]++;
+        }
+    }
+    long int objective_value = 0;
+    for(unsigned int i = 0 ; i < maxColor; i++){
+        objective_value += (bucket[i]*edges[i]);
+    }
+    objective_value *= 2;
+    objective_value -= segma_C;
+    return objective_value;
+
+}
+
+unsigned int Graph::objective_func_KC(int* bucket){
+    //debug("1");
+    for(unsigned int i = 0 ; i < maxColor; i++){
+        bucket[i] = 0;
+    }
+    //debug("2");
+    for(int i = 0 ; i < V; i++){
+        bucket[colors[i]]++;
+    }
+     unsigned int objective_value = 0;
+    for(unsigned int i = 0 ; i < maxColor; i++){
+        objective_value+= pow(bucket[i],2);
+    }
+    return objective_value;
+    //debug("3");
+}
+
+//BAD EDGES
+bool Graph::minimalConflicts_badEdge(){
+    //std::cout << "### " << maxColor << std::endl;
+    int* bucket = new int[maxColor];
+    int* edges = new int[maxColor];
+    unsigned int max_it = V*100, segma_C = objective_func_KC(bucket);
+    long int objective_value = objective_func_BE(edges,bucket,segma_C);
     this->conflicts = new int[V];
-    int i = 0;
+    unsigned int i = 0;
 
     while(i++ < max_it){
+            //debug("5");
         find_conflicts();
+        //debug("6");
         int min_idx,max_idx,_min = V,_max = 0;
         std::vector<int> maximals,minimals;
         for(int u = 0; u < V; u++){
             int val = conflicts[u];
-//            if(val != 0){
-//                terminate = false;
-//            }
             if(val <=_min){
                 if(val == _min){
                     minimals.push_back(u);
@@ -294,12 +334,14 @@ bool Graph::minimalConflicts(){
                 }
             }
         }
-
+        //debug("7");
         if( V-minimals.size() == 0){
             START = true;
             bi = 0;
             bj = 1;
             COND = true;
+            delete[] bucket;
+            delete[] edges;
             return true;
         }
 
@@ -319,8 +361,208 @@ bool Graph::minimalConflicts(){
         minimals.clear();
         maximals.clear();
         //system("pause");
-        if(COND)
-            kempe_chains();
+//        if(COND){
+//            int it = 0;
+//            while(true){
+//                if(!COND){
+//                    break;
+//                }
+//                kempe_chains();
+//                it++;
+//                unsigned int new_value = objective_func_KC(bucket);
+//                if(new_value > objective_value){
+//                    objective_value = new_value;
+//                    break;
+//                }
+//                if(it == 2){
+//                    break;
+//                }
+//            }
+//
+//            //debug("4");
+//        }
+        if(COND){
+            int it = 0;
+            while(true){
+                if(!COND){
+                    break;
+                }
+                kempe_chains();
+                it++;
+                segma_C = objective_func_KC(bucket);
+                long int new_value = objective_func_BE(edges,bucket,segma_C);
+                if(new_value < objective_value){
+                    objective_value = new_value;
+                    break;
+                }
+                if(it == 2){
+                    break;
+                }
+            }
+
+            //debug("4");
+        }
+    }
+    delete[] bucket;
+    delete[] edges;
+    return false;
+}
+
+bool Graph::minimalConflicts_kempeChains(){
+    //std::cout << "### " << maxColor << std::endl;
+    int* bucket = new int[maxColor];
+    int* edges = new int[maxColor];
+    unsigned int max_it = V*100, segma_C = objective_func_KC(bucket);
+    long int objective_value = objective_func_BE(edges,bucket,segma_C);
+    this->conflicts = new int[V];
+    unsigned int i = 0;
+
+    while(i++ < max_it){
+            //debug("5");
+        find_conflicts();
+        //debug("6");
+        int min_idx,max_idx,_min = V,_max = 0;
+        std::vector<int> maximals,minimals;
+        for(int u = 0; u < V; u++){
+            int val = conflicts[u];
+            if(val <=_min){
+                if(val == _min){
+                    minimals.push_back(u);
+                }else{
+                    minimals.clear();
+                    minimals.push_back(u);
+                    _min = val;
+                }
+            }
+            if(val >=_max){
+                if(val == _max){
+                    maximals.push_back(u);
+                }else{
+                    maximals.clear();
+                    maximals.push_back(u);
+                    _max = val;
+                }
+            }
+        }
+        //debug("7");
+        if( V-minimals.size() == 0){
+            START = true;
+            bi = 0;
+            bj = 1;
+            COND = true;
+            delete[] bucket;
+            delete[] edges;
+            return true;
+        }
+
+
+        max_idx = maximals[rand()%maximals.size()];
+        min_idx = minimals[rand()%minimals.size()];
+
+        //print_conflicts();
+        //std::cout << "(Max:Min) " << max_idx << " , " << min_idx << " Total conflicted vertices: " << (V-minimals.size())<< std::endl;
+
+        //std::cout << "1" << std::endl;
+        //colors[min_idx] = colors[max_idx];
+        //std::cout << "2" << std::endl;
+        //int res = get_minimizing_value(max_idx);
+        colors[max_idx] = colors[min_idx];
+        //std::cout << "3" << std::endl;
+        minimals.clear();
+        maximals.clear();
+        //system("pause");
+//        if(COND){
+//            int it = 0;
+//            while(true){
+//                if(!COND){
+//                    break;
+//                }
+//                kempe_chains();
+//                it++;
+//                unsigned int new_value = objective_func_KC(bucket);
+//                if(new_value > objective_value){
+//                    objective_value = new_value;
+//                    break;
+//                }
+//                if(it == 2){
+//                    break;
+//                }
+//            }
+//
+//            //debug("4");
+//        }
+        if(COND){
+            int it = 0;
+            while(true){
+                if(!COND){
+                    break;
+                }
+                kempe_chains();
+                it++;
+                segma_C = objective_func_KC(bucket);
+                long int new_value = objective_func_BE(edges,bucket,segma_C);
+                if(new_value < objective_value){
+                    objective_value = new_value;
+                    break;
+                }
+                if(it == 2){
+                    break;
+                }
+            }
+
+            //debug("4");
+        }
+    }
+    delete[] bucket;
+    delete[] edges;
+    return false;
+}
+
+
+bool Graph::minimalConflicts(){
+    //std::cout << "### " << maxColor << std::endl;
+
+    unsigned int max_it = V*100;
+    unsigned int i = 0;
+    this->conflicts = new int[V];
+    while(i++ < max_it){
+            //debug("5");
+        find_conflicts();
+        //debug("6");
+        int min_idx,max_idx,_min = V,_max = 0;
+        std::vector<int> maximals,minimals;
+        for(int u = 0; u < V; u++){
+            int val = conflicts[u];
+            if(val <=_min){
+                if(val == _min){
+                    minimals.push_back(u);
+                }else{
+                    minimals.clear();
+                    minimals.push_back(u);
+                    _min = val;
+                }
+            }
+            if(val >=_max){
+                if(val == _max){
+                    maximals.push_back(u);
+                }else{
+                    maximals.clear();
+                    maximals.push_back(u);
+                    _max = val;
+                }
+            }
+        }
+        if( V-minimals.size() == 0){
+            return true;
+        }
+
+
+        max_idx = maximals[rand()%maximals.size()];
+        min_idx = minimals[rand()%minimals.size()];
+
+        colors[max_idx] = colors[min_idx];
+        minimals.clear();
+        maximals.clear();
 
     }
     return false;
@@ -446,8 +688,8 @@ bool Graph::graphColoringUtil(int m, int color[], int v, int usedColor){
        return true */
     if (v == V)
         return true;
-
-    if(adj[v].size() == max_adj && usedColor == 0 && std::find(usedJump.begin(), usedJump.end(), v) == usedJump.end()){
+    states++;
+    if(abs(adj[v].size() - max_adj) <= m  && usedColor == 0 && std::find(usedJump.begin(), usedJump.end(), v) == usedJump.end()){
         //log("##\nAdded!\n");
         backJump.push_back(v);
     }
@@ -466,6 +708,9 @@ bool Graph::graphColoringUtil(int m, int color[], int v, int usedColor){
 
            /* recur to assign colors to rest of the vertices */
            if (graphColoringUtil(m, color, v+1, 0) == true){
+                if(std::find(usedJump.begin(), usedJump.end(), v) == usedJump.end()){
+                    backJump.push_back(v);
+                }
 //                std::stringstream sstm;
 //                sstm << v << " " << cc;
 //                debug(sstm.str());
@@ -475,9 +720,12 @@ bool Graph::graphColoringUtil(int m, int color[], int v, int usedColor){
             /* If assigning color c doesn't lead to a solution
                then remove it */
 
-           color[v] = 0;
+           //color[v] = 0;
+           //std::cout << "LAST            : " << v << "\n";
            bool flag = false;
            while(!backJump.empty()){
+//                debug("SS\n");
+//                debug(backJump.size());
                 int bac = backJump.back();
 
                 backJump.pop_back();
@@ -509,6 +757,33 @@ bool Graph::graphColoringUtil(int m, int color[], int v, int usedColor){
       prints assignments of colors to all vertices. Please note that there
       may be more than one solutions, this function prints one of the
       feasible solutions.*/
+
+bool Graph::isConflicted(int* cs){
+
+    for (int u = 0; u < V; u++){
+        if(cs[u] == 0)
+            return true;
+        std::list<int>::iterator i;
+        for (i = adj[u].begin(); i != adj[u].end(); ++i){
+            if(cs[*i] == cs[u] || cs[*i] == 0){
+                return true;
+            }
+        }
+
+
+    }
+    return false;
+    // There's no conflicts
+
+    //std::cout << _min << std::endl;
+//    int chosen = minimals[rand()%minimals.size()];
+//    minimals.clear();
+//    print_conflicts();
+//    std::cout << "Min: " << chosen << std::endl;
+//    return chosen;
+
+
+}
 bool Graph::graphColoring(int m){
         // Initialize all color values as 0. This initialization is needed
         // correct functioning of isSafe()
@@ -516,15 +791,21 @@ bool Graph::graphColoring(int m){
     for (int i = 0; i < V; i++)
        color[i] = 0;
 
+    states = 0;
+    backJump.clear();
+    usedJump.clear();
     // Call graphColoringUtil() for vertex 0
-    if (graphColoringUtil(m, color, 0, 0) == false)
+    if (graphColoringUtil(m, color, 0, 0) == false || isConflicted(color))
     {
       //printf("Solution does not exist\n");
       //debug("\na");
       delete[] color;
       //debug("b");
+      log("Failure.\n");
       return false;
     }
+    log("Success.\n");
+
 
     // Print the solution
     //printSolution(color);
@@ -539,12 +820,12 @@ void Graph::printSolution(int color[]){
     for (int i = 0; i < V; i++){
         std::cout << "Vertex " << i << " --->  Color "
          << color[i] << std::endl;
-//         std::list<int>::iterator j;
-//        for (j = adj[i].begin(); j != adj[i].end();++j){
-//                std::cout << color[*j] << " , " ;
-//
-//        }
-//        log("\n");
+         std::list<int>::iterator j;
+        for (j = adj[i].begin(); j != adj[i].end();++j){
+                std::cout << *j<< "("<< color[*j] << ") , " ;
+
+        }
+        log("\n");
     }
 
 }
@@ -553,6 +834,7 @@ bool Graph::forwardCheckingUtil(int m, int color[], int v,std::vector<int>* doma
     if( v == V){
         return true;
     }
+    states++;
     std::vector<int> backup;
     for(std::vector<int>::iterator it = domains[v].begin(); it != domains[v].end(); ++it){
         //debug("3");
@@ -602,14 +884,15 @@ bool Graph::forwardChecking(int m){
     for (int i = 0; i < V; i++)
        color[i] = 0;
 
+    states = 0;
     if(forwardCheckingUtil(m,color,0,domains)){
         std::cout << "Success" << std::endl;
         result = true;
     }else{
         std::cout << "Failure" << std::endl;
     }
-    if(result)
-        printSolution(color);
+//    if(result)
+//        printSolution(color);
     delete[] color;
     for(int i = 0 ; i < V ; i++){
         domains[i].clear();
