@@ -20,7 +20,7 @@
 class Graph
 {
     int V;    // No. of vertices
-    std::list<int> *adj = nullptr;    // A dynamic array of adjacency lists
+    std::list<int> *adj = nullptr;    // adjacency lists
     int* colors = nullptr; //colors function
     std::vector<int> usedColors;
     int* conflicts = nullptr;
@@ -43,21 +43,6 @@ public:
         this->V = other.getV();
         this->adj = new std::list<int>[V];
         this-> adj = other.getAdjacency();
-//        std::list<int>* o = other.getAdjacency();
-//        for (int u = 0; u < V; u++){
-////            std::list<int>::iterator j;
-////            for (j = o[u].begin(); j != o[u].end();++j){
-////                    std::cout << *j << " ###" << std::endl;
-////                    adj[u].push_back(*j);
-////            }
-//           // adj[u] = std::list<int>(o[u]);
-//           for (auto const& i : o[u]) {
-//                this->adj[u].push_back(i);
-//            }
-//
-//        }
-        //other.printit();
-        //this->printit();
         this->colors = new int[V];
         int* other_colors = other.getColors();
         for(int i = 0; i < V; i++){
@@ -72,15 +57,12 @@ public:
                 adj[i].clear();
             }
             delete[] adj;
-            //std::cout << "adj was cleared" << std::endl;
         }
-                //log("2");
+
 
         if(colors != nullptr){
             delete[] colors;
-            //std::cout << "colors was cleared" << std::endl;
         }
-                //log("3");
 
 
         this->usedColors.clear();
@@ -117,67 +99,59 @@ public:
         this->colors = new_colors;
     }
 
+    //get vector of used colors
     std::vector<int> getUsedColors();
 
-    void printit(){
-        std::list<int>* o = this->getAdjacency();
-        for (int u = 0; u < V; u++){
-            std::list<int>::iterator j;
-            for (j = o[u].begin(); j != o[u].end();++j){
-                    std::cout << *j << " ###" << std::endl;
-
-            }
-
-
-        }
-    }
 
     int get_minimizing_value(int max_idx);
 
     void print_conflicts();
-
+    //Local search - feasibility
     bool minimalConflicts();
 
+    //Local search - hybridization
     bool minimalConflicts_badEdge();
 
+    //Local search - Kempe
     bool minimalConflicts_kempeChains();
 
+    //function that finds the conflicts in the graph
     void find_conflicts();
 
+    //this function used upon finding the kempe chains
     void get_next_pair();
-    //find minimum conflicted vertex
-    //int find_minimal_conflicted();
-    void kempe_chains();
-    //find maximum conflicted vertex
-    //int find_maximal_conflicted();
 
+    //finds next kempe chain for colors returned by get_next_pair()
+    void kempe_chains();
+
+    //objective function for bad edge
     long int objective_func_BE(int* edges, int* bucket, unsigned int segma_C );
 
+    //objective function for kempe-chains
     unsigned int objective_func_KC(int* bucket);
 
+    //checks if color is valid for vertex v
     bool isSafe(int v, int color[], int c);
 
-
-    /* return all the inferences of the assignment */
-    bool Inferences(int v, int color[], int c);
-
+    //returns true if graph has invalid coloring, false otherwise
     bool isConflicted(int* color);
-        /* A recursive utility function to solve m coloring problem */
-    bool graphColoringUtil(int m, int color[], int v, int usedColor);
 
-        /* This function solves the m Coloring problem using Backtracking.
-      It mainly uses graphColoringUtil() to solve the problem. It returns
-      false if the m colors cannot be assigned, otherwise return true and
-      prints assignments of colors to all vertices. Please note that there
-      may be more than one solutions, this function prints one of the
-      feasible solutions.*/
-    bool graphColoring(int m);
+    // A recursive utility function to solve m coloring problem using backJumping
+    bool backJumpingColoringUtil(int m, int color[], int v, int usedColor);
 
+
+    //This function solves the coloring problem using BackJumping.
+    //It mainly uses backJumpingColoringUtil() to solve the problem. It returns
+    //false if the graph cannot be colored with m colors, otherwise return true
+    bool backJumpingGraphColoring(int m);
+
+    //This is the forward checking function, it uses the forwardCheckingUtil
     bool forwardChecking(int m);
 
+    // A recursive utility function to solve m coloring problem using forwardChecking
     bool forwardCheckingUtil(int m, int color[], int v,std::vector<int>* domains);
 
-    /* A utility function to print solution */
+    /* A function to print the final solution solution */
     void printSolution(int color[]);
 
 };
