@@ -1,0 +1,667 @@
+## 1-FullIns_3.col##
+
+Feasible:
+N. of colors got from greedy coloring: 8
+Best result: 5 colors. 
+Total time: 0.03002
+N. of colors got from greedy coloring: 8
+Best result: 5 colors. 
+Total time: 0.029041
+N. of colors got from greedy coloring: 8
+Best result: 5 colors. 
+Total time: 0.030002
+N. of colors got from greedy coloring: 8
+Best result: 4 colors. 
+Total time: 0.028021
+N. of colors got from greedy coloring: 8
+Best result: 4 colors. 
+Total time: 0.036027
+N. of colors got from greedy coloring: 8
+Best result: 4 colors. 
+Total time: 0.033042
+N. of colors got from greedy coloring: 8
+Best result: 4 colors. 
+Total time: 0.032005
+N. of colors got from greedy coloring: 8
+Best result: 4 colors. 
+Total time: 0.029038
+N. of colors got from greedy coloring: 8
+Best result: 4 colors. 
+Total time: 0.032023
+N. of colors got from greedy coloring: 8
+Best result: 4 colors. 
+Total time: 0.028018
+## 1-FullIns_4.col##
+
+Feasible:
+N. of colors got from greedy coloring: 11
+Best result: 8 colors. 
+Total time: 0.299213
+N. of colors got from greedy coloring: 11
+Best result: 8 colors. 
+Total time: 0.297231
+N. of colors got from greedy coloring: 11
+Best result: 8 colors. 
+Total time: 0.325232
+N. of colors got from greedy coloring: 11
+Best result: 9 colors. 
+Total time: 0.276196
+N. of colors got from greedy coloring: 11
+Best result: 9 colors. 
+Total time: 0.330215
+N. of colors got from greedy coloring: 11
+Best result: 9 colors. 
+Total time: 0.277197
+N. of colors got from greedy coloring: 11
+Best result: 7 colors. 
+Total time: 0.284204
+N. of colors got from greedy coloring: 11
+Best result: 7 colors. 
+Total time: 0.273193
+N. of colors got from greedy coloring: 11
+Best result: 7 colors. 
+Total time: 0.277198
+N. of colors got from greedy coloring: 11
+Best result: 7 colors. 
+Total time: 0.272211
+## 1-FullIns_5.col##
+
+Feasible:
+N. of colors got from greedy coloring: 14
+Best result: 10 colors. 
+Total time: 3.67966
+N. of colors got from greedy coloring: 14
+Best result: 9 colors. 
+Total time: 3.58753
+N. of colors got from greedy coloring: 14
+Best result: 11 colors. 
+Total time: 3.52453
+N. of colors got from greedy coloring: 14
+Best result: 10 colors. 
+Total time: 3.64261
+N. of colors got from greedy coloring: 14
+Best result: 10 colors. 
+Total time: 3.69861
+N. of colors got from greedy coloring: 14
+Best result: 10 colors. 
+Total time: 3.45147
+N. of colors got from greedy coloring: 14
+Best result: 10 colors. 
+Total time: 3.55553
+N. of colors got from greedy coloring: 14
+Best result: 9 colors. 
+Total time: 3.62059
+N. of colors got from greedy coloring: 14
+Best result: 9 colors. 
+Total time: 3.6876
+N. of colors got from greedy coloring: 14
+Best result: 10 colors. 
+Total time: 3.58457
+## 1-Insertions_4.col##
+
+Feasible:
+N. of colors got from greedy coloring: 5
+Best result: 5 colors. 
+Total time: 0.109096
+N. of colors got from greedy coloring: 5
+Best result: 5 colors. 
+Total time: 0.106056
+N. of colors got from greedy coloring: 5
+Best result: 5 colors. 
+Total time: 0.107075
+N. of colors got from greedy coloring: 5
+Best result: 5 colors. 
+Total time: 0.110845
+N. of colors got from greedy coloring: 5
+Best result: 5 colors. 
+Total time: 0.117083
+N. of colors got from greedy coloring: 5
+Best result: 5 colors. 
+Total time: 0.107095
+N. of colors got from greedy coloring: 5
+Best result: 5 colors. 
+Total time: 0.106076
+N. of colors got from greedy coloring: 5
+Best result: 5 colors. 
+Total time: 0.107095
+N. of colors got from greedy coloring: 5
+Best result: 5 colors. 
+Total time: 0.108059
+N. of colors got from greedy coloring: 5
+Best result: 5 colors. 
+Total time: 0.106075
+## 1-Insertions_5.col##
+
+Feasible:
+N. of colors got from greedy coloring: 6
+Best result: 6 colors. 
+Total time: 1.09576
+N. of colors got from greedy coloring: 6
+Best result: 6 colors. 
+Total time: 1.1198
+N. of colors got from greedy coloring: 6
+Best result: 6 colors. 
+Total time: 1.09678
+N. of colors got from greedy coloring: 6
+Best result: 6 colors. 
+Total time: 1.0958
+N. of colors got from greedy coloring: 6
+Best result: 6 colors. 
+Total time: 1.10377
+N. of colors got from greedy coloring: 6
+Best result: 6 colors. 
+Total time: 1.10178
+N. of colors got from greedy coloring: 6
+Best result: 6 colors. 
+Total time: 1.05577
+N. of colors got from greedy coloring: 6
+Best result: 6 colors. 
+Total time: 1.09478
+N. of colors got from greedy coloring: 6
+Best result: 6 colors. 
+Total time: 1.11579
+N. of colors got from greedy coloring: 6
+Best result: 6 colors. 
+Total time: 1.1008
+## 1-Insertions_6.col##
+
+Feasible:
+N. of colors got from greedy coloring: 7
+Best result: 7 colors. 
+Total time: 14.1888
+N. of colors got from greedy coloring: 7
+Best result: 7 colors. 
+Total time: 13.9029
+N. of colors got from greedy coloring: 7
+Best result: 7 colors. 
+Total time: 14.1321
+N. of colors got from greedy coloring: 7
+Best result: 7 colors. 
+Total time: 14.129
+N. of colors got from greedy coloring: 7
+Best result: 7 colors. 
+Total time: 14.4711
+N. of colors got from greedy coloring: 7
+Best result: 7 colors. 
+Total time: 14.7513
+N. of colors got from greedy coloring: 7
+Best result: 7 colors. 
+Total time: 14.2031
+N. of colors got from greedy coloring: 7
+Best result: 7 colors. 
+Total time: 14.4354
+N. of colors got from greedy coloring: 7
+Best result: 7 colors. 
+Total time: 14.8926
+N. of colors got from greedy coloring: 7
+Best result: 7 colors. 
+Total time: 14.1628
+## 2-FullIns_3.col##
+
+Feasible:
+N. of colors got from greedy coloring: 10
+Best result: 7 colors. 
+Total time: 0.073071
+N. of colors got from greedy coloring: 10
+Best result: 7 colors. 
+Total time: 0.072031
+N. of colors got from greedy coloring: 10
+Best result: 7 colors. 
+Total time: 0.073053
+N. of colors got from greedy coloring: 10
+Best result: 7 colors. 
+Total time: 0.072049
+N. of colors got from greedy coloring: 10
+Best result: 7 colors. 
+Total time: 0.072069
+N. of colors got from greedy coloring: 10
+Best result: 7 colors. 
+Total time: 0.073052
+N. of colors got from greedy coloring: 10
+Best result: 7 colors. 
+Total time: 0.074053
+N. of colors got from greedy coloring: 10
+Best result: 7 colors. 
+Total time: 0.07205
+N. of colors got from greedy coloring: 10
+Best result: 7 colors. 
+Total time: 0.072033
+N. of colors got from greedy coloring: 10
+Best result: 7 colors. 
+Total time: 0.07405
+## 2-FullIns_4.col##
+
+Feasible:
+N. of colors got from greedy coloring: 14
+Best result: 9 colors. 
+Total time: 1.45005
+N. of colors got from greedy coloring: 14
+Best result: 8 colors. 
+Total time: 1.49805
+N. of colors got from greedy coloring: 14
+Best result: 8 colors. 
+Total time: 1.51308
+N. of colors got from greedy coloring: 14
+Best result: 8 colors. 
+Total time: 1.44303
+N. of colors got from greedy coloring: 14
+Best result: 9 colors. 
+Total time: 1.44501
+N. of colors got from greedy coloring: 14
+Best result: 8 colors. 
+Total time: 1.53407
+N. of colors got from greedy coloring: 14
+Best result: 8 colors. 
+Total time: 1.44304
+N. of colors got from greedy coloring: 14
+Best result: 10 colors. 
+Total time: 1.53591
+N. of colors got from greedy coloring: 14
+Best result: 8 colors. 
+Total time: 1.44803
+N. of colors got from greedy coloring: 14
+Best result: 10 colors. 
+Total time: 1.47803
+## 2-FullIns_5.col##
+
+Feasible:
+N. of colors got from greedy coloring: 18
+Best result: 13 colors. 
+Total time: 38.3964
+N. of colors got from greedy coloring: 18
+Best result: 11 colors. 
+Total time: 39.1645
+N. of colors got from greedy coloring: 18
+Best result: 10 colors. 
+Total time: 39.3495
+N. of colors got from greedy coloring: 18
+Best result: 12 colors. 
+Total time: 39.303
+N. of colors got from greedy coloring: 18
+Best result: 13 colors. 
+Total time: 38.3544
+N. of colors got from greedy coloring: 18
+Best result: 14 colors. 
+Total time: 38.1853
+N. of colors got from greedy coloring: 18
+Best result: 12 colors. 
+Total time: 37.2433
+N. of colors got from greedy coloring: 18
+Best result: 13 colors. 
+Total time: 50.8671
+N. of colors got from greedy coloring: 18
+Best result: 12 colors. 
+Total time: 57.5567
+N. of colors got from greedy coloring: 18
+Best result: 13 colors. 
+Total time: 54.2638
+## 2-Insertions_3.col##
+
+Feasible:
+N. of colors got from greedy coloring: 4
+Best result: 4 colors. 
+Total time: 0.044531
+N. of colors got from greedy coloring: 4
+Best result: 4 colors. 
+Total time: 0.054538
+N. of colors got from greedy coloring: 4
+Best result: 4 colors. 
+Total time: 0.062045
+N. of colors got from greedy coloring: 4
+Best result: 4 colors. 
+Total time: 0.046032
+N. of colors got from greedy coloring: 4
+Best result: 4 colors. 
+Total time: 0.045532
+N. of colors got from greedy coloring: 4
+Best result: 4 colors. 
+Total time: 0.044031
+N. of colors got from greedy coloring: 4
+Best result: 4 colors. 
+Total time: 0.044031
+N. of colors got from greedy coloring: 4
+Best result: 4 colors. 
+Total time: 0.045532
+N. of colors got from greedy coloring: 4
+Best result: 4 colors. 
+Total time: 0.039528
+N. of colors got from greedy coloring: 4
+Best result: 4 colors. 
+Total time: 0.050038
+## 2-Insertions_4.col##
+
+Feasible:
+N. of colors got from greedy coloring: 5
+Best result: 5 colors. 
+Total time: 0.603928
+N. of colors got from greedy coloring: 5
+Best result: 5 colors. 
+Total time: 0.664472
+N. of colors got from greedy coloring: 5
+Best result: 5 colors. 
+Total time: 0.768046
+N. of colors got from greedy coloring: 5
+Best result: 5 colors. 
+Total time: 0.721012
+N. of colors got from greedy coloring: 5
+Best result: 5 colors. 
+Total time: 0.64746
+N. of colors got from greedy coloring: 5
+Best result: 5 colors. 
+Total time: 0.611436
+N. of colors got from greedy coloring: 5
+Best result: 5 colors. 
+Total time: 0.662284
+N. of colors got from greedy coloring: 5
+Best result: 5 colors. 
+Total time: 0.609946
+N. of colors got from greedy coloring: 5
+Best result: 5 colors. 
+Total time: 0.608918
+N. of colors got from greedy coloring: 5
+Best result: 5 colors. 
+Total time: 0.611935
+## 2-Insertions_5.col##
+
+Feasible:
+N. of colors got from greedy coloring: 6
+Best result: 6 colors. 
+Total time: 13.5567
+N. of colors got from greedy coloring: 6
+Best result: 6 colors. 
+Total time: 12.6936
+N. of colors got from greedy coloring: 6
+Best result: 6 colors. 
+Total time: 10.6517
+N. of colors got from greedy coloring: 6
+Best result: 6 colors. 
+Total time: 12.3634
+N. of colors got from greedy coloring: 6
+Best result: 6 colors. 
+Total time: 11.9586
+N. of colors got from greedy coloring: 6
+Best result: 6 colors. 
+Total time: 11.7597
+N. of colors got from greedy coloring: 6
+Best result: 6 colors. 
+Total time: 10.8978
+N. of colors got from greedy coloring: 6
+Best result: 6 colors. 
+Total time: 10.4962
+N. of colors got from greedy coloring: 6
+Best result: 6 colors. 
+Total time: 10.3651
+N. of colors got from greedy coloring: 6
+Best result: 6 colors. 
+Total time: 10.4891
+## 3-FullIns_3.col##
+
+Feasible:
+N. of colors got from greedy coloring: 12
+Best result: 6 colors. 
+Total time: 0.200643
+N. of colors got from greedy coloring: 12
+Best result: 6 colors. 
+Total time: 0.196639
+N. of colors got from greedy coloring: 12
+Best result: 6 colors. 
+Total time: 0.19814
+N. of colors got from greedy coloring: 12
+Best result: 6 colors. 
+Total time: 0.185133
+N. of colors got from greedy coloring: 12
+Best result: 7 colors. 
+Total time: 0.177126
+N. of colors got from greedy coloring: 12
+Best result: 7 colors. 
+Total time: 0.172123
+N. of colors got from greedy coloring: 12
+Best result: 7 colors. 
+Total time: 0.174141
+N. of colors got from greedy coloring: 12
+Best result: 7 colors. 
+Total time: 0.174104
+N. of colors got from greedy coloring: 12
+Best result: 7 colors. 
+Total time: 0.183129
+N. of colors got from greedy coloring: 12
+Best result: 7 colors. 
+Total time: 0.179627
+## 3-FullIns_4.col##
+
+Feasible:
+N. of colors got from greedy coloring: 17
+Best result: 11 colors. 
+Total time: 6.39855
+N. of colors got from greedy coloring: 17
+Best result: 9 colors. 
+Total time: 6.23693
+N. of colors got from greedy coloring: 17
+Best result: 10 colors. 
+Total time: 6.58525
+N. of colors got from greedy coloring: 17
+Best result: 12 colors. 
+Total time: 6.29967
+N. of colors got from greedy coloring: 17
+Best result: 13 colors. 
+Total time: 7.04816
+N. of colors got from greedy coloring: 17
+Best result: 11 colors. 
+Total time: 6.84687
+N. of colors got from greedy coloring: 17
+Best result: 12 colors. 
+Total time: 6.1934
+N. of colors got from greedy coloring: 17
+Best result: 14 colors. 
+Total time: 6.34006
+N. of colors got from greedy coloring: 17
+Best result: 12 colors. 
+Total time: 6.04666
+N. of colors got from greedy coloring: 17
+Best result: 11 colors. 
+Total time: 6.33652
+## 3-FullIns_5.col##
+
+Feasible:
+N. of colors got from greedy coloring: 22
+Best result: 16 colors. 
+Total time: 283.703
+N. of colors got from greedy coloring: 22
+Best result: 15 colors. 
+Total time: 273.229
+N. of colors got from greedy coloring: 22
+Best result: 17 colors. 
+Total time: 287.675
+N. of colors got from greedy coloring: 22
+Best result: 16 colors. 
+Total time: 283.387
+N. of colors got from greedy coloring: 22
+Best result: 18 colors. 
+Total time: 250.905
+N. of colors got from greedy coloring: 22
+Best result: 17 colors. 
+Total time: 286.927
+N. of colors got from greedy coloring: 22
+Best result: 17 colors. 
+Total time: 284.017
+N. of colors got from greedy coloring: 22
+Best result: 16 colors. 
+Total time: 269.353
+N. of colors got from greedy coloring: 22
+Best result: 17 colors. 
+Total time: 278.904
+N. of colors got from greedy coloring: 22
+Best result: 17 colors. 
+Total time: 266.911
+## 3-Insertions_3.col##
+
+Feasible:
+N. of colors got from greedy coloring: 4
+Best result: 4 colors. 
+Total time: 0.067047
+N. of colors got from greedy coloring: 4
+Best result: 4 colors. 
+Total time: 0.065048
+N. of colors got from greedy coloring: 4
+Best result: 4 colors. 
+Total time: 0.066045
+N. of colors got from greedy coloring: 4
+Best result: 4 colors. 
+Total time: 0.065545
+N. of colors got from greedy coloring: 4
+Best result: 4 colors. 
+Total time: 0.065546
+N. of colors got from greedy coloring: 4
+Best result: 4 colors. 
+Total time: 0.065547
+N. of colors got from greedy coloring: 4
+Best result: 4 colors. 
+Total time: 0.065044
+N. of colors got from greedy coloring: 4
+Best result: 4 colors. 
+Total time: 0.066066
+N. of colors got from greedy coloring: 4
+Best result: 4 colors. 
+Total time: 0.066529
+N. of colors got from greedy coloring: 4
+Best result: 4 colors. 
+Total time: 0.065563
+## 3-Insertions_4.col##
+
+Feasible:
+N. of colors got from greedy coloring: 5
+Best result: 5 colors. 
+Total time: 1.55409
+N. of colors got from greedy coloring: 5
+Best result: 5 colors. 
+Total time: 1.5551
+N. of colors got from greedy coloring: 5
+Best result: 5 colors. 
+Total time: 1.5546
+N. of colors got from greedy coloring: 5
+Best result: 5 colors. 
+Total time: 1.5531
+N. of colors got from greedy coloring: 5
+Best result: 5 colors. 
+Total time: 1.56515
+N. of colors got from greedy coloring: 5
+Best result: 5 colors. 
+Total time: 1.62315
+N. of colors got from greedy coloring: 5
+Best result: 5 colors. 
+Total time: 1.56113
+N. of colors got from greedy coloring: 5
+Best result: 5 colors. 
+Total time: 1.57162
+N. of colors got from greedy coloring: 5
+Best result: 5 colors. 
+Total time: 1.64118
+N. of colors got from greedy coloring: 5
+Best result: 5 colors. 
+Total time: 1.57814
+## 3-Insertions_5.col##
+
+Feasible:
+N. of colors got from greedy coloring: 6
+Best result: 6 colors. 
+Total time: 58.671
+N. of colors got from greedy coloring: 6
+Best result: 6 colors. 
+Total time: 60.0392
+N. of colors got from greedy coloring: 6
+Best result: 6 colors. 
+Total time: 57.8013
+N. of colors got from greedy coloring: 6
+Best result: 6 colors. 
+Total time: 57.872
+N. of colors got from greedy coloring: 6
+Best result: 6 colors. 
+Total time: 58.3438
+N. of colors got from greedy coloring: 6
+Best result: 6 colors. 
+Total time: 59.1988
+N. of colors got from greedy coloring: 6
+Best result: 6 colors. 
+Total time: 57.9537
+N. of colors got from greedy coloring: 6
+Best result: 6 colors. 
+Total time: 60.7876
+N. of colors got from greedy coloring: 6
+Best result: 6 colors. 
+Total time: 58.4731
+N. of colors got from greedy coloring: 6
+Best result: 6 colors. 
+Total time: 57.8954
+## 4-FullIns_3.col##
+
+Feasible:
+N. of colors got from greedy coloring: 14
+Best result: 9 colors. 
+Total time: 0.339243
+N. of colors got from greedy coloring: 14
+Best result: 9 colors. 
+Total time: 0.343262
+N. of colors got from greedy coloring: 14
+Best result: 9 colors. 
+Total time: 0.338221
+N. of colors got from greedy coloring: 14
+Best result: 8 colors. 
+Total time: 0.365279
+N. of colors got from greedy coloring: 14
+Best result: 8 colors. 
+Total time: 0.363758
+N. of colors got from greedy coloring: 14
+Best result: 8 colors. 
+Total time: 0.359755
+N. of colors got from greedy coloring: 14
+Best result: 8 colors. 
+Total time: 0.356772
+N. of colors got from greedy coloring: 14
+Best result: 8 colors. 
+Total time: 0.357272
+N. of colors got from greedy coloring: 14
+Best result: 8 colors. 
+Total time: 0.369745
+N. of colors got from greedy coloring: 14
+Best result: 8 colors. 
+Total time: 0.37777
+## 4-FullIns_4.col##
+
+Feasible:
+N. of colors got from greedy coloring: 20
+Best result: 15 colors. 
+Total time: 20.8066
+N. of colors got from greedy coloring: 20
+Best result: 13 colors. 
+Total time: 21.4034
+N. of colors got from greedy coloring: 20
+Best result: 14 colors. 
+Total time: 20.018
+N. of colors got from greedy coloring: 20
+Best result: 12 colors. 
+Total time: 20.5942
+N. of colors got from greedy coloring: 20
+Best result: 10 colors. 
+Total time: 19.0858
+N. of colors got from greedy coloring: 20
+Best result: 13 colors. 
+Total time: 25.251
+N. of colors got from greedy coloring: 20
+Best result: 13 colors. 
+Total time: 20.5052
+N. of colors got from greedy coloring: 20
+Best result: 12 colors. 
+Total time: 21.2614
+N. of colors got from greedy coloring: 20
+Best result: 13 colors. 
+Total time: 19.9112
+N. of colors got from greedy coloring: 20
+Best result: 11 colors. 
+Total time: 19.666
+## 4-FullIns_5.col##
+
+Feasible:
+N. of colors got from greedy coloring: 26
+Best result: 18 colors. 
+Total time: 1644.32
+N. of colors got from greedy coloring: 26
